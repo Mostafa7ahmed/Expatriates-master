@@ -1,0 +1,24 @@
+:root {
+   --MNF_Body_EN: "Source Sans 3", sans-serif;
+   --MNF_Heading_EN: "Montserrat", sans-serif;
+
+   --MNF_Body_AR: "Noto Kufi Arabic", sans-serif;
+   --MNF_Heading_AR: "Almarai", sans-serif;
+
+   --MNF_Heading_Size1: 64px;
+   --MNF_Heading_Size2: 32px;
+}
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ a {
+    text-decoration: none;
+ }
+
+ ul {
+    list-style: none;
+ }

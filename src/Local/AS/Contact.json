@@ -1,0 +1,25 @@
+{
+    "contact-us": "Contáctanos",
+    "contact-desc": "Estamos aquí para ayudarte y responder a tus consultas.",
+    "suggestions": "Sugerencias",
+    "suggestions-desc": "Agradecemos sus sugerencias para mejorar nuestros servicios.",
+    "complaints": "Quejas",
+    "complaints-desc": "Lamentamos su mala experiencia. Por favor, díganos qué pasó para poder ayudarle.",
+    "ratings": "Calificaciones",
+    "ratings-desc": "Comparte tu experiencia con nosotros",
+    "rating": "Evaluación",
+    "email": "Correo electrónico",
+    "email-placeholder": "Ingrese su correo electrónico",
+    "message": "Texto del mensaje",
+    "message-placeholder-suggestions": "Ingrese su sugerencia aquí...",
+    "message-placeholder-complaints": "Explique su problema con detalle...",
+    "message-placeholder-ratings": "Cuéntanos más sobre tu experiencia...",
+    "submit": "Enviar",
+    "phone": "Número de teléfono",
+    "sending": "Envío...",
+    "address": "Dirección",
+    "suggestions-done": "Su sugerencia se ha enviado correctamente. ¡Gracias por contactarnos!",
+    "complaints-done": "Su queja se ha enviado correctamente. ¡Nos pondremos en contacto con usted pronto!",
+    "ratings-done": "Tu reseña se ha enviado correctamente. ¡Gracias por tu tiempo!"
+  }
+  

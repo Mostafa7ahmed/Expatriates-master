@@ -1,0 +1,306 @@
+.news-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.news-section .news-left-section {
+    flex: 1;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 450px;
+}
+
+.news-section .news-right-section {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    height: 450px;
+}
+
+.news-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-section .card-overlay,
+.news-section .content {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    align-items: flex-end;
+    transition: 0.3s;
+}
+
+.news-section .card-overlay {
+    height: 60%;
+    display: flex;
+    width: 100%;
+    background: linear-gradient(360deg, #000000b0 40%, #00000000);
+}
+
+.news-section .news-left-section:hover .card-overlay,
+.news-section .news-right-section .card:hover .card-overlay {
+    height: 100%;
+    background: linear-gradient(360deg, #000000b0 80%, #00000000);
+}
+
+.news-section .content {
+    width: 80%;
+    height: 100%;
+    font-family: var(--MNF_Body_EN);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.news-section .news-left-section .content {
+    padding: 30px;
+}
+
+.news-section .news-right-section .content {
+    padding: 15px;
+}
+
+.news-section .news-right-section .card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.news-section .news-left-section .content h4 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.news-section .news-right-section .content h4 {
+    
+    margin-bottom: 10px;
+    font-size: small;
+}
+
+.news-section .news-left-section .content p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.news-section .news-right-section .content p {
+    font-size: smaller;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.news-section .card-overlay .content .date-more {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.news-section .news-left-section .date-more span {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.news-section .news-right-section .date-more span {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.news-section .about-news {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transform: rotate(45deg);
+    transition: 0.4s;
+    border-radius: 50%;
+    bottom: 15px;
+    z-index: 2;
+}
+
+.news-section .news-left-section .about-news {
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+}
+
+.news-section .news-right-section .about-news {
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+}
+
+.news-section .news-left-section:hover .about-news, .news-section .card:hover .about-news {
+    background: #F66B15;
+    color: black;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1200px) {
+    .news-section .news-right-section .content h4 {
+        
+        margin-bottom: 10px;
+        font-size: medium;
+    }
+
+    .news-section .news-right-section .content p {
+        font-size: x-small;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .news-section .news-right-section .date-more span {
+        font-size: xx-small;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 1024px) {
+    .news-section {
+        display: grid;
+        gap: 15px;
+        margin-bottom: 30px;
+        grid-template-columns: 1fr;
+    }
+
+    .news-section .news-left-section .content h4 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .news-section .news-left-section .content p {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .news-section .news-right-section .content h4 {
+        
+        margin-bottom: 10px;
+    }
+
+    .news-section .news-right-section .content p {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .news-section .news-left-section .content h4 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        width: fit-content;
+
+    }
+
+    .news-section .news-right-section .content h4 {
+        width: fit-content;
+        margin-bottom: 5px;
+        font-size: 12px;
+
+    }
+
+    .news-section .news-right-section .content p {
+        font-size: xx-small;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+    .news-section .news-left-section {
+        height: 300px;
+    }
+
+    .news-section .news-left-section .content h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        width: fit-content;
+    }
+
+    .news-section .news-left-section .content p {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .news-section .news-left-section .date-more span {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .news-section .news-right-section .content h4 {
+        width: fit-content;
+        margin-bottom: 5px;
+        font-size: xx-small;
+    }
+
+    .news-section .news-right-section .content p {
+        margin-bottom: 5px;
+        font-size: 8px;
+        font-weight: 500;
+    }
+
+    .news-section .news-right-section .date-more span {
+        font-size: xx-small;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 450px) {
+    .news-section .news-right-section {
+        height: 380px;
+    }
+}
+
+@media (max-width: 390px) {
+    .news-section .news-right-section {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 15px;
+        height: 580px;
+    }
+
+    .news-section .news-left-section .content h4 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        width: fit-content;
+    }
+
+    .news-section .news-left-section .content p {
+        font-size: medium;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+
+    .news-section .news-right-section .content h4 {
+        width: fit-content;
+        margin-bottom: 5px;
+        font-size: x-small;
+    }
+
+    .news-section .news-right-section .content p {
+        margin-bottom: 5px;
+        font-size: xx-small;
+        font-weight: 500;
+    }
+
+}

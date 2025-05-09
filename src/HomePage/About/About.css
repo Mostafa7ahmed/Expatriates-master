@@ -1,0 +1,182 @@
+.about-container {
+    display: flex;
+    align-items: center;
+    margin: 60px 0;
+    padding: 16px 64px;
+    justify-content: flex-start;
+    gap: 205px;
+    position: relative;
+    overflow-x: clip;
+}
+
+.about-container .content img {
+    width: 64px;
+    height: 64px;
+    background-color: #f1f8fb;
+    border-radius: 50%;
+    margin-bottom: 24px;
+}
+
+.about-container .content p {
+    width: 310px;
+    font-weight: 500;
+}
+
+.about-container h1 {
+    width: 510px;
+    font-size: var(--MNF_Heading_Size1);
+    color: #001351;
+}
+
+.about-container .curveLine {
+    position: absolute;
+    top: -300px;
+    width: 500px;
+    z-index: -2;
+}
+
+@media (min-width: 1900px) {
+    .about-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1110px) {
+    .about-container {
+        gap: 160px;
+    }
+
+    .about-container .curveLine {
+        width: 350px;
+        top: -150px;
+
+    }
+
+    .about-container .curveLine.curveLinear {
+        left: -60px;
+        transform: rotateY(180deg);
+    }
+
+    .about-container h1 {
+        font-size: 55px
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .about-container {
+        gap: 120px;
+    }
+
+    .about-container .curveLine {
+        width: 320px;
+    }
+
+    .about-container .curveLine.curveLinear {
+        left: -60px;
+    }
+
+    .about-container h1 {
+        font-size: 45px;
+    }
+
+    .about-container .content p {
+        width: 270px;
+    }
+}
+
+@media (max-width: 930px) {
+    .about-container {
+        margin: 0 36px;
+        padding: 14px;
+    }
+}
+
+@media (max-width: 850px) {
+    .about-container {
+        gap: 80px;
+    }
+
+    .about-container .curveLine {
+        width: 300px;
+    }
+
+    .about-container .curveLine.curveLinear {
+        left: -60px;
+    }
+
+    .about-container h1 {
+        font-size: 40px;
+    }
+
+    .about-container .content p {
+        width: 260px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column-reverse;
+        gap: 60px;
+        text-align: center;
+        padding: 16px 20px;
+    }
+
+    .about-container .content {
+        align-items: center;
+    }
+
+    .about-container .content img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .about-container h1 {
+        font-size: 40px;
+        max-width: 100%;
+    }
+
+    .about-container .curveLine {
+        width: 280px;
+    }
+
+    .about-container .curveLine.curveLinear {
+        left: -60px;
+    }
+
+    .about-container .content p {
+        width: 100%;
+        font-size: 15px;
+        padding: 10px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 548px) {
+    .about-container h1 {
+        font-size: 30px;
+    }
+
+    .about-container .content p {
+        font-size: 14px;
+    }
+
+    .about-container .curveLine.curveLinear {
+        left: -60px;
+    }
+}
+
+@media (max-width: 450px) {
+    .about-container .curveLine {
+        width: 220px;
+        top: -110px;
+    }
+}
+
+@media (max-width: 370px) {
+    .about-container .curveLine {
+        width: 210px;
+        top: -110px;
+    }
+}

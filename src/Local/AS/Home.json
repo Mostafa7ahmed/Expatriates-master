@@ -1,0 +1,69 @@
+{
+  "header": {
+    "home": "Inicio",
+    "MNF Uni": "Universidad MNF",
+    "Colleges": "Facultades",
+    "Programs": "Programas",
+    "News": "Noticias",
+    "contact US": "Contáctenos",
+    "Arabic": "Ababic",
+    "English": "Inglesa",
+    "Spanish": "Española",
+    "code": "ES"
+  },
+  "hero": {
+    "title": "Bienvenidos a la Universidad MNF para Estudiantes Internacionales"
+  },
+  "about": {
+    "title": "Oficina de Asuntos de Estudiantes Internacionales",
+    "subtitle": "Brindando apoyo a los estudiantes internacionales en el registro, visas e integración cultural para garantizar una transición sin problemas y un viaje académico agradable en la Universidad MNF.",
+    "latest": "Últimas noticias"
+  },
+  "footer": {
+    "keyInformation": "Información clave",
+    "latestDecisions": "Últimas Decisiones",
+    "conditionsTransfers": "Condiciones de Transferencias",
+    "administrativeDirectives": "Directivas Administrativas",
+    "financialTransferControls": "Controles de Transferencia Financiera",
+    "quarterlyExamResults": "Resultados de Exámenes Trimestrales",
+    "generalGuidelines": "Directrices Generales",
+    "paperServices": "Servicios en Papel",
+    "stoppingRegistration": "Detención del Registro y Congelación de Cuentas",
+
+    "importantLinks": "Enlaces importantes",
+    "importantLatestDecisions": "Portal de Universidades Egipcias",
+    "importantConditionsTransfers": "Centro Nacional de Educación Electrónica",
+    "importantAdministrativeDirectives": "Portal del Gobierno Egipcio",
+    "importantFinancialTransferControls": "Portal de la Gobernación de Menufia",
+    "importantQuarterlyExamResults": "Fondo de Desarrollo de Ciencia y Tecnología",
+    "importantGeneralGuidelines": "Consorcio de Bibliotecas de Universidades Egipcias",
+    "importantPaperServices": "Asociación de Universidades Árabes",
+    "importantStoppingRegistration": "Consejo Supremo de Universidades",
+    "MinistryofHigherEducation": "Ministerio de Educación Superior",
+    "NationalAuthorityforQualityAssuranceandAccreditation": "Autoridad Nacional de Garantía de Calidad y Acreditación",
+
+    "serviceGuide": "Guía de servicios",
+    "serviceGuideLatestDecisions": "Admisión y Solicitud Universitaria",
+    "serviceGuideConditionsTransfers": "Tarifas de Matrícula y Coordinación de Estudios",
+    "serviceGuideAdministrativeDirectives": "Guía del Estudiante Internacional y Programas de Estudio",
+    "serviceGuideFinancialTransferControls": "Comunicaciones y Ubicación",
+    "serviceGuideQuarterlyExamResults": "Residencia y Alojamiento",
+    "serviceGuideGeneralGuidelines": "Estudiar en Egipto",
+    "serviceGuidePaperServices": "Atención Médica",
+    "serviceGuideStoppingRegistration": "Permisos de Residencia y Pasaportes",
+    "serviceReview": "Club Social y Deportivo",
+    "EntertainmentCorner": "Rincón de Entretenimiento",
+
+   "Evaluationcomplaintsandsuggestions": "Revisión del servicio",
+  "performanceEvaluation": "Evaluación del Desempeño",
+  "generalComplaints": "Quejas Generales",
+  "sendSuggestions": "Envía tus Sugerencias",
+
+    "copyrights": "Todos los derechos reservados a la Universidad de Menoufia"
+  },
+  "details": {
+    "latest": "Últimas noticias"
+}
+}
+
+

@@ -1,0 +1,26 @@
+{
+    "contact-us": "تواصل معنا",
+    "contact-desc": "نحن هنا لمساعدتك والإجابة على استفساراتك.",
+    "suggestions": "الإقتراحات",
+    "suggestions-desc": "يسعدنا تلقي اقتراحاتكم لتحسين خدماتنا.",
+    "complaints": "الشكاوي",
+    "complaints-desc": "نأسف لتجربتك السيئة. يرجى إخبارنا بما حدث لمساعدتك.",
+    "ratings": "التقييمات",
+    "ratings-desc": "شاركنا تقييمك لتجربتك معنا",
+    "rating": "التقييم",
+    "email": "البريد الإلكتروني",
+    "email-placeholder": "أدخل بريدك الإلكتروني",
+    "message": "نص الرسالة",
+    "message-placeholder-suggestions": "أدخل اقتراحك هنا...",
+    "message-placeholder-complaints": "اشرح مشكلتك بالتفصيل...",
+    "message-placeholder-ratings": "أخبرنا المزيد عن تجربتك...",
+    "submit": "إرسال",
+    "sending": "جاري الإرسال...",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "suggestions-done": "تم إرسال اقتراحك بنجاح. شكراً لتواصلك معنا!",
+    "complaints-done": "تم إرسال شكواك بنجاح. سنتواصل معك قريباً!",
+    "ratings-done": "تم إرسال تقييمك بنجاح. نشكرك على وقتك!"
+
+  }
+  

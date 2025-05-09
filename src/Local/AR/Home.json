@@ -1,0 +1,65 @@
+{
+  "header": {
+    "home": "الرئيسية",
+    "MNF Uni": "جامعه المنوفية",
+    "Colleges": "الكليات",
+    "Programs": "البرامج",
+    "News": "الاخبار",
+    "contact US": "تواصل معنا",
+    "Arabic": "العربية",
+    "English": "الانجليزية",
+    "Spanish": "الاسبانية",
+    "code": "ع"
+  },
+  "hero": {
+    "title": "نرحب بالطلاب الوافدين في جامعة المنوفيه"
+  },
+  "about": {
+    "title": "مكتب شؤون الطلاب الوافدين",
+    "subtitle": "تقديم الدعم للطلاب الوافدين في مجالات التسجيل، الفيزا، والاندماج الثقافي، لضمان انتقال سلس ورحلة أكاديمية ممتعة في جامعة المنوفية."
+  },
+  "footer": {
+    "keyInformation": "المعلومات الرئيسية",
+    "latestDecisions": "شروط الحوالات الداخلية والخارجية",
+    "conditionsTransfers": "نتائج الامتحانات الربع سنوية",
+    "administrativeDirectives": "الخدمات والبيانات الورقية المقدمة للطلاب",
+    "financialTransferControls": "آخر القرارات",
+    "quarterlyExamResults": "توجيهات إدارية",
+    "generalGuidelines": "ضوابط نقل المالية",
+    "paperServices": "الإرشادات العامة ",
+    "stoppingRegistration": "إيقاف التسجيل وتجميد الحسابات",
+
+    "importantLinks": "روابط هامة",
+    "importantLatestDecisions": "بوابة الجامعات المصرية",
+    "importantConditionsTransfers": "المركز الوطني للتعليم الإلكتروني ",
+    "importantAdministrativeDirectives": "البوابة الحكومية المصرية",
+    "importantFinancialTransferControls": "بوابة محافظة المنوفية",
+    "importantQuarterlyExamResults": "صندوق تنمية العلوم والتكنولوجيا",
+    "importantGeneralGuidelines": "اتحاد مكتبات الجامعات المصرية",
+    "importantPaperServices": "اتحاد الجامعات العربية",
+    "importantStoppingRegistration": "المجلس الأعلى للجامعات",
+    "MinistryofHigherEducation":"وزارة التعليم العالي",
+    "NationalAuthorityforQualityAssuranceandAccreditation":"الهيئة الوطنية لضمان الجودة والاعتماد",
+
+    "serviceGuide": "دليل الخدمات",
+    "serviceGuideLatestDecisions": "التقديم للجامعة والقبول",
+    "serviceGuideConditionsTransfers": "تنسيق رسوم القبول والدراسة",
+    "serviceGuideAdministrativeDirectives": "دليل الطالب الدولي وبرامج الدراسة",
+    "serviceGuideFinancialTransferControls": "الاتصالات والموقع",
+    "serviceGuideQuarterlyExamResults": "إقامة وإقامة ",
+    "serviceGuideGeneralGuidelines": "الدراسة في مصر",
+    "serviceGuidePaperServices": "العناية الطبية ",
+    "serviceGuideStoppingRegistration": "استخراج تصاريح الإقامة وجوازات السفر",
+    "serviceReview": "النادي الاجتماعي والرياضي",
+    "EntertainmentCorner":"زاوية الترفيه",
+
+    "Evaluationcomplaintsandsuggestions":"التقييم و الشكاوي",
+    "performanceEvaluation": "تقييم الأداء",
+    "generalComplaints": "الشكاوى العامة",
+    "sendSuggestions": "أرسل اقتراحاتك",
+    "copyrights": "جميع الحقوق محفوظة لجامعة المنوفية"
+  },
+  "details": {
+    "latest": "آخر الأخبار"
+  }
+}
