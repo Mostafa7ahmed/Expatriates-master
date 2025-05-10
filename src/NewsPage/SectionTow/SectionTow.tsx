@@ -2,8 +2,7 @@ import React from "react";
 import "./SectionTow.css";
 import { Link } from "react-router-dom";
 
-function SectionTow(props) {
-  const News = props.News;
+function SectionTow({ News }) {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
 
   const ArStyle = {
@@ -24,12 +23,13 @@ function SectionTow(props) {
 
   const formatDate = (rawDate) => {
     const date = new Date(rawDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year} - ${month} - ${day}`;
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
   };
-
   return (
     <div className="news-bottom-section">
       {News.map((news, index) => (
@@ -39,8 +39,7 @@ function SectionTow(props) {
             to={`/details`}
             state={{ news }}
             className="about-news"
-            style={savedLang?.code === "ar" ? arrowAr : arrowEn}
-          >
+            style={savedLang?.code === "ar" ? arrowAr : arrowEn}>
             <i className="fa-solid fa-arrow-up"></i>
           </Link>
 
@@ -50,6 +49,7 @@ function SectionTow(props) {
                 {news.header[0].slice(0, 100)}...
               </h4>
               <div className="date-more">
+    
                 <span>{formatDate(news.date)}</span>
               </div>
             </div>

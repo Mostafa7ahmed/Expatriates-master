@@ -9,7 +9,8 @@
     "Arabic": "Ababic",
     "English": "Inglesa",
     "Spanish": "Española",
-    "code": "ES"
+    "code": "ES",
+    "More News":" Más noticias"
   },
   "hero": {
     "title": "Bienvenidos a la Universidad MNF para Estudiantes Internacionales"
@@ -62,7 +63,9 @@
     "copyrights": "Todos los derechos reservados a la Universidad de Menoufia"
   },
   "details": {
-    "latest": "Últimas noticias"
+    "latest": "Últimas noticias",
+  "page": "Página",
+  "of": "de"
 }
 }
 

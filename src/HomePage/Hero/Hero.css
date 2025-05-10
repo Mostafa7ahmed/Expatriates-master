@@ -63,6 +63,7 @@
     bottom: 60px;
     inset-inline-start: 50px;
     border-radius: 10px;
+    height: fit-content;
 }
 
 .carousel-dots {
@@ -164,7 +165,7 @@
 
     }
     .cardSection{
-        top: 15%;
+        top: 23%;
         width: 70%;
     }
     .carousel {

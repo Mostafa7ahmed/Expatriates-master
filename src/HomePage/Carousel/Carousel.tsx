@@ -42,7 +42,7 @@ export default function NewsCarousel(props) {
       <div className="news-carousel-container">
         <div ref={scrollRef} className="news-carousel-scroll custom-scrollbar">
           <div className="news-carousel-content">
-            {props.News.slice(0, 10).map((news, index) => (
+            {props.News?.slice(0, 10).map((news, index) => (
               <div key={index} className="news-card">
                 <div className="news-card-inner">
                   <div className="news-card-content">
@@ -53,10 +53,10 @@ export default function NewsCarousel(props) {
                           : "news-card-text news-card-text-right"
                       }
                     >
-                      <h3 className="news-card-title" style={savedLang?.code === `ar`? ArStyle : EnStyle}>{news.header[0].slice(0, 75)}...</h3>
+                      <h3 className="news-card-title" style={savedLang?.code === `ar`? ArStyle : EnStyle}>{news.newsDetails.head.slice(0, 75)}...</h3>
                       <Link
                         to={`/details`}
-                        state={{ news }}
+                       state={{ news }}
                         className="arrowlinks"
                         onClick={() => window.scrollTo(0, 0)}
                       >
@@ -90,7 +90,7 @@ export default function NewsCarousel(props) {
 
                       <img
                         style={{ clipPath: "url(#img-container)" }}
-                        src={news.image}
+                        src={news.newsImg}
                         alt=""
                         className={
                           index % 2 !== 0
@@ -106,19 +106,11 @@ export default function NewsCarousel(props) {
           </div>
         </div>
 
-        <button
-          onClick={() => scroll("left")}
-          className="carousel-button carousel-button-left"
-        >
-          <ChevronLeft />
-        </button>
 
-        <button
-          onClick={() => scroll("right")}
-          className="carousel-button carousel-button-right"
-        >
-          <ChevronRight />
-        </button>
+      </div>
+
+      <div className="btn">
+        <a href="/contactUs" className="link">{t("header.More News")}</a>
       </div>
     </div>
   );
