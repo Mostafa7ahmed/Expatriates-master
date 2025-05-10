@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/image.png";
 import api from "../../Services/api";
@@ -65,11 +65,12 @@ const Header = (props) => {
       .catch((err) => console.error("Error fetching News:", err));
   };
 
+  const { id } = useParams();
+
   const getNewsById = (lang) => {
-    const newsId = location.state?.news?.newsId;
-    if (!newsId) return;
+    if (!id) return;
     api
-      .get(`News/Id?newsId=${newsId}&langId=${lang.id}`)
+      .get(`news/${id}/${lang.id}`)
       .then((res) => props.setCurrentNews(res.data.result))
       .catch((err) => console.error("Error fetching News:", err));
   };
@@ -82,9 +83,8 @@ const Header = (props) => {
     setLanguage(lang.code);
     localStorage.setItem("lang", JSON.stringify(lang));
     getAllNews(lang);
-    if (location.pathname === `/details`) {
       getNewsById(lang);
-    }
+
     changeAllLanguage(lang.code);
   };
 
@@ -94,9 +94,8 @@ const Header = (props) => {
   useEffect(() => {
     changeAllLanguage(savedLang.code);
     getAllNews(savedLang);
-    if (location.pathname === `/details`) {
       getNewsById(savedLang);
-    }
+
   }, []);
 
   return (

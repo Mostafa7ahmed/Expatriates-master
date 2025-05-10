@@ -33,8 +33,8 @@ const formatDate = (rawDate) => {
     <div className="news-section" style={{ flexDirection: row }}>
       {News[0] && (
         <Link
-          to={`/details`}
-          state={{ news: News[0] }}
+      to={`/details/${News[0].id}`}
+
           className="news-left-section"
         >
           <img src={News[0].newsImg} alt="" />
@@ -61,7 +61,7 @@ const formatDate = (rawDate) => {
 
       <div className="news-right-section">
         {News.slice(1, 5).map((news, index) => (
-          <Link to={`/details`} state={{ news }} className="card" key={index}>
+          <Link to={`/details/${news.id}`} state={{ news }} className="card" key={index}>
             <img src={news.newsImg} alt="" />
 
             <div

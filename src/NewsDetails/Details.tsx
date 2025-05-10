@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./Details.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Header from "../HomePage/Header/Header";
 import Footer from "../HomePage/Footer/Footer";
 import api from "../Services/api";
@@ -25,7 +25,7 @@ function Details(props) {
 
   const savedLang = JSON.parse(localStorage.getItem("lang"));
   const location = useLocation();
-  const news = location.state?.news;
+const { id } = useParams();
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentNews, setCurrentNews] = useState();
   const [langId, setLangId] = useState(savedLang?.id || 2);
@@ -49,9 +49,10 @@ function Details(props) {
 
   const GetNewsById = () => {
     api
-      .get(`News/Id?newsId=${news.newsId}&langId=${langId}`)
+    .get(`News/${id}/${langId}`)
       .then((response) => {
-        setCurrentNews(response.data);
+        setCurrentNews(response.data.result);
+        console.log(currentNews)
       })
       .catch((error) => {
         console.error("Error fetching News:", error);
@@ -79,9 +80,9 @@ function Details(props) {
     GetNewsById();
 
     api
-      .get(`/News?id=${langId}`)
+    .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
       .then((response) => {
-        setFilteredNews(response.data);
+        setFilteredNews(response.data.result);
       })
       .catch((error) => {
         console.error("Error fetching News:", error);
@@ -99,12 +100,12 @@ function Details(props) {
       <main className="main">
         <div className="container">
           <div className="content-wrapper">
-            <div className="event-text-content">
+           <div className="event-text-content">
               <h2
                 className="event-title"
                 style={savedLang?.code === `ar` ? headerArStyle : headerEnStyle}
               >
-                {currentNews?.header}
+                {currentNews?.newsDetails.head}
               </h2>
 
               <div
@@ -121,7 +122,7 @@ function Details(props) {
                   {images.map((image, index) => (
                     <div key={index} className="carousel-slide">
                       <img
-                        src={image}
+                        src={image.url}
                         alt={`University slide ${index + 1}`}
                         className="carousel-image"
                       />
@@ -146,7 +147,7 @@ function Details(props) {
                 className="event-description"
                 style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
               >
-                {currentNews?.body}
+                {currentNews?.newsDetails.body}
               </p>
 
               <p
@@ -155,55 +156,9 @@ function Details(props) {
               >
                 {currentNews?.date && formatDate(currentNews.date)}
               </p>
-            </div>
+            </div> 
 
-            <div className="related-news">
-              <h3
-                className="related-news-title"
-                style={savedLang?.code === `ar` ? headerArStyle : headerEnStyle}
-              >
-                {t("details.latest")}
-              </h3>
-
-              <div className="news-grid">
-                {filteredNews.slice(0, 6).map((news, index) => (
-                  <Link
-                    to={`/details`}
-                    state={{ news: news }}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      setCurrentNews(news);
-                    }}
-                    className="about-news"
-                    key={index}
-                  >
-                    <div className="news-details-card">
-                      <img
-                        src={news.image}
-                        alt={`News ${index}`}
-                        className={
-                          savedLang?.code === `ar`
-                            ? "news-imagear"
-                            : "news-image"
-                        }
-                      />
-                      <div className="news-content">
-                        <h4
-                          style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-                        >
-                          {news.header[0].slice(0, 100)}...
-                        </h4>
-                        <p
-                          style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-                        >
-                          {news.date && formatDate(news.date)}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
+   
           </div>
         </div>
       </main>

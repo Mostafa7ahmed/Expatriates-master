@@ -30,7 +30,7 @@ useEffect(() => {
 
   return (
     <div>
-      <Header index={0}  setFilteredNews={setFilteredNews}  News={filteredNews}/>
+      <Header index={0}  setFilteredNews={setFilteredNews} />
       <Hero News={filteredNews}/>
       <About />
       <Carousel News={filteredNews}/>
