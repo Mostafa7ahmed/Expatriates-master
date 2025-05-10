@@ -266,11 +266,7 @@
     }
 }
 
-@media (max-width: 450px) {
-    .news-section .news-right-section {
-        height: 380px;
-    }
-}
+
 
 @media (max-width: 390px) {
     .news-section .news-right-section {
@@ -306,4 +302,14 @@
         font-weight: 500;
     }
 
+}
+
+@media (max-width: 550px) {
+  .news-section .news-right-section {
+    grid-template-columns: 1fr; /* تغيير الأعمدة إلى عمود واحد */
+  }
+      .news-page {
+        margin: 10px 5px;
+        padding: 23px;
+    }
 }

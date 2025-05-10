@@ -73,9 +73,7 @@ function News() {
         }}>
         <div className="hero-image"></div>
         <div className="hero-overlay"></div>
-        <div className="text" style={headStyle}>
-          {t("details.searchPlaceholder")}
-        </div>
+
 
         <div className="searchCard">
           <div className="inputSerch">
@@ -89,8 +87,8 @@ function News() {
           </div>
           <div onClick={handleSearch} className="btnSearch" style={pStyle}>
             <button>
-              <i className="fa fa-search" aria-hidden="true"></i>{" "}
-              {t("details.search")}
+              <i className="fa fa-search" aria-hidden="true"></i>
+              <span className="Btntext">{t("details.search")}</span>
             </button>
           </div>
         </div>

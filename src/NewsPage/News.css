@@ -1,126 +1,94 @@
 .news-page {
-    margin: 10px 48px;
-    padding: 16px;
+  margin: 10px 48px;
+  padding: 16px;
 }
 
 .News-header {
-    background-color: #e9e9e9;
-    color: #001351;
-    font-family: var(--MNF_Heading_EN);
-    font-size: 40px;
-    font-weight: 800;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    padding: 10px;
-    text-align: center;
+  background-color: #e9e9e9;
+  color: #001351;
+  font-family: var(--MNF_Heading_EN);
+  font-size: 40px;
+  font-weight: 800;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 10px;
+  text-align: center;
 }
 
-
 .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 25px 0;
 }
 
 .pagination .page-btn {
-    background-color: #f3f4f6;
-    outline: none;
-    border: 2px solid #DDDDDD;
-    color: black;
-    padding: 10px;
-    cursor: pointer;
-    width: 80px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--MNF_Body_EN);
-    font-weight: 700;
-    font-size: 15px;
-    transition: 0.3s;
+  background-color: #f3f4f6;
+  outline: none;
+  border: 2px solid #dddddd;
+  color: black;
+  padding: 10px;
+  cursor: pointer;
+  width: 80px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 700;
+  font-size: 15px;
+  transition: 0.3s;
 }
 
 .pagination .page-btn.left {
-    border-radius: 10px 0 0 10px;
-}
-.pagination .page-btn.leftar {
-    border-radius: 0 10px 10px 0;
+  border-radius: 10px 0 0 10px;
 }
 
+.pagination .page-btn.leftar {
+  border-radius: 0 10px 10px 0;
+}
 
 .pagination .page-btn.right {
-    border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
 }
+
 .pagination .page-btn.rightar {
-    border-radius: 10px 0 0 10px;
+  border-radius: 10px 0 0 10px;
 }
 
 .pagination .page-btn.right:hover,
 .pagination .page-btn.left:hover {
-    background-color: #F66B15;
-    color: white;
-    border: none;
+  background-color: #f66b15;
+  color: white;
+  border: none;
 }
 
 .pagination .page-btn.left:disabled,
 .pagination .page-btn.right:disabled {
-    background-color: #f3f4f6;
-    color: rgb(136, 136, 136);
-    border: 2px solid #DDDDDD;
-    cursor: not-allowed;
+  background-color: #f3f4f6;
+  color: rgb(136, 136, 136);
+  border: 2px solid #dddddd;
+  cursor: not-allowed;
 }
 
 .pagination .page-btn.number {
-    width: 35px;
-    height: 35px;
-    border-radius: 5px;
-    margin: 0px 4px;
-    background-color: white;
-    color: black;
-    font-weight: 600;
-    transition: 0.3s;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  margin: 0px 4px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
 .pagination .page-btn.number:hover,
 .pagination .page-btn.number.active {
-    background-color: #000820;
-    color: white;
-    border: none;
+  background-color: #000820;
+  color: white;
+  border: none;
 }
-
-@media (max-width: 930px) {
-    .news-page {
-        margin: 10px 36px;
-        padding: 14px;
-    }
-}
-
-@media (max-width: 768px) {
-    .news-page {
-        margin: 10px 24px;
-        padding: 8px;
-    }
-
-    .News-header {
-        font-size: 30px;
-    }
-
-    @media (max-width: 480px) {
-        .News-header {
-            font-size: 25px;
-        }
-    }
-}
-
-@media (max-width: 550px) {
-    .news-page {
-        margin: 10px 5px;
-        padding: 5px;
-    }
-}
-
 
 .pagination-controls {
   display: flex;
@@ -131,18 +99,18 @@
 }
 
 .pagination-controls button {
-    background-color: #000820da;
-    color: white;
-    border: 2px solid #f7f7f7;
-    padding: 9px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  background-color: #000820da;
+  color: white;
+  border: 2px solid #f7f7f7;
+  padding: 9px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 .pagination-controls button:hover {
-    background-color: #000820;
+  background-color: #000820;
   border-color: #f7f7f7;
 }
 
@@ -156,6 +124,7 @@
   font-size: 16px;
   color: #333;
 }
+
 .hero-image {
   position: absolute;
   inset: 0;
@@ -174,90 +143,160 @@
   border-radius: 10px;
   background-color: #0008208c !important;
 }
-.text{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 700;
-    font-size: 60px;
-    line-height: 20px;
-    letter-spacing: 0%;
-    color: #fff;
-    z-index: 555554444444444444444444444455 !important;
-    position: absolute;
 
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #fff;
+  position: absolute;
+
+  z-index: 55555444455 !important;
 }
+
 .card-not-found {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px; 
-  background-color: #f0f0f0; 
+  height: 200px;
+  background-color: #f0f0f0;
   border-radius: 8px;
   text-align: center;
 }
 
 .card-not-found h2 {
-  font-size: 28px; 
+  font-size: 28px;
   color: #001351;
   font-weight: bold;
 }
-.searchCard{
-    background-color: #fff;
-    position: absolute;
-    width: 80%;
+
+.searchCard {
+  background-color: #fff;
+  position: absolute;
+  width: 80%;
+  transform: translateY(45%);
+  bottom: 25%;
+  inset-inline-start: 10%;
+  box-shadow: 0px 4px 32px 0px #00000026;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  z-index: 555554444444444444444444444455 !important;
+}
+
+.searchCard .inputSerch {
+  width: 70%;
+  flex-grow: 4;
+  padding: 10px;
+}
+
+.searchCard .inputSerch input {
+  width: 100%;
+  flex-grow: 4;
+  padding: 10px;
+  height: 50px;
+  gap: 8px;
+  padding-top: 9px;
+  padding-right: 16px;
+  padding-bottom: 9px;
+  padding-left: 16px;
+  border-radius: 6px;
+  background: #f6f6f6;
+  border: none;
+  outline: none;
+}
+
+.btnSearch i {
+  margin: 0 10px;
+}
+
+.btnSearch button {
+  width: 160px;
+  height: 50px;
+  gap: 12px;
+  padding-top: 2px;
+  padding-right: 20px;
+  padding-bottom: 2px;
+  padding-left: 20px;
+  border-radius: 6px;
+  background: #001351;
+  color: #fff;
+}
+
+@media (max-width: 930px) {
+  .news-page {
+    margin: 10px 36px;
+    padding: 14px;
+  }
+
+  .searchCard {
+    width: 90%;
     transform: translateY(45%);
     bottom: 25%;
-    left: 10%;
+    inset-inline-start: 30px;
     box-shadow: 0px 4px 32px 0px #00000026;
     border-radius: 12px;
     padding: 30px;
     display: flex;
     gap: 40px;
     align-items: center;
-        z-index: 555554444444444444444444444455 !important;
-
-    
+    z-index: 555554444444444444444444444455 !important;
+  }
 }
-.searchCard .inputSerch{
-    width: 70%;
-    flex-grow: 4;
-    padding: 10px;
+
+@media (max-width: 768px) {
+  .news-page {
+    margin: 10px 24px;
+    padding: 8px;
+  }
+
+  .News-header {
+    font-size: 30px;
+  }
+
+  .searchCard {
+    width: 90%;
+    inset-inline-start: 25px;
+  }
 }
-.searchCard .inputSerch input{
-    width: 100%;
-    flex-grow: 4;
-    padding: 10px;
-    height: 50px;
-    gap: 8px;
-    padding-top: 9px;
-    padding-right: 16px;
-    padding-bottom: 9px;
-    padding-left: 16px;
-    border-radius: 6px;
-    background: #F6F6F6;
-    border: none;
-    outline: none;
+@media (max-width: 700px) {
+  .news-page {
+    margin: 10px 5px;
+    padding: 5px;
+  }
+  .searchCard {
+    padding: 20px;
+    gap: 0px;
+  }
+}
+@media (max-width: 550px) {
+  .news-page {
+    margin: 10px 5px;
+    padding: 5px;
+  }
+  .searchCard {
+    padding: 20px;
+    gap: 10px;
 
+  }
+  .btnSearch button{
+    width:fit-content ;
+    padding: 10px !important;
+  }
+  .Btntext{
+    display: none;
+  }
 
 }
-.btnSearch i{
-    margin: 0 10px;
-}
-.btnSearch button{
-    width: 160px;
-    height: 50px;
-    gap: 12px;
-    padding-top: 2px;
-    padding-right: 20px;
-    padding-bottom: 2px;
-    padding-left: 20px;
-    border-radius: 6px;
-    background: #001351;
-    color: #fff;
-
-
-
+@media (max-width: 480px) {
+  .News-header {
+    font-size: 25px;
+  }
 }
