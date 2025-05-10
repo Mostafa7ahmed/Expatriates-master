@@ -110,7 +110,7 @@ export default function NewsCarousel(props) {
       </div>
 
       <div className="btn">
-        <a href="/contactUs" className="link">{t("header.More News")}</a>
+        <a href="/news" className="link">{t("header.More News")}</a>
       </div>
     </div>
   );

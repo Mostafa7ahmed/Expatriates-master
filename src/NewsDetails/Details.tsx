@@ -39,13 +39,14 @@ const { id } = useParams();
     currentNews?.images?.[2],
   ].filter(Boolean); 
 
-  const formatDate = (rawDate: string) => {
-    const date = new Date(rawDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year} - ${month} - ${day}`;
+const formatDate = (rawDate) => {
+  const date = new Date(rawDate);
+  const options = { 
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric' 
   };
+  return date.toLocaleDateString('en-US', options); };
 
   const GetNewsById = () => {
     api
@@ -98,7 +99,7 @@ const { id } = useParams();
       />
 
       <main className="main">
-        <div className="container">
+        <div className="containerr">
           <div className="content-wrapper">
            <div className="event-text-content">
               <h2
@@ -157,6 +158,52 @@ const { id } = useParams();
                 {currentNews?.date && formatDate(currentNews.date)}
               </p>
             </div> 
+                     <div className="related-news">
+              <h3
+                className="related-news-title"
+                style={savedLang?.code === `ar` ? headerArStyle : headerEnStyle}
+              >
+                {t("details.latest")}
+              </h3>
+
+              <div className="news-grid">
+                {filteredNews.slice(0, 6).map((news, index) => (
+                  <Link
+                    to={`/details/${news.id}`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      setCurrentNews(news);
+                    }}
+                    className="about-news"
+                    key={index}
+                  >
+                    <div className="news-details-card">
+                      <img
+                        src={news.newsImg}
+                        alt={`News ${index}`}
+                        className={
+                          savedLang?.code === `ar`
+                            ? "news-imagear"
+                            : "news-image"
+                        }
+                      />
+                      <div className="news-content">
+                        <h4
+                          style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
+                        >
+                          {news.newsDetails.head.slice(0, 100)}...
+                        </h4>
+                        <p
+                          style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
+                        >
+                          {news.date && formatDate(news.date)}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
 
    
           </div>
