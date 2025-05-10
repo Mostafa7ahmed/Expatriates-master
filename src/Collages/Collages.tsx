@@ -98,8 +98,8 @@ const Sector = () => {
         className="hero-container"
         style={{
           backgroundImage:
-            "url(https://i.pinimg.com/736x/6a/d4/df/6ad4df6cc3a3734cc7776f05e9f9ee39.jpg)",
-          backgroundPosition: "center",
+            "url(https://upload.wikimedia.org/wikipedia/commons/2/2c/%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9_%D8%AC%D8%A7%D9%85%D8%B9%D8%A9_%D8%A7%D9%84%D9%85%D9%86%D9%88%D9%81%D9%8A%D8%A9.jpg)",
+          backgroundPosition: "buttom",
           backgroundSize: "cover",
         }}
       >
