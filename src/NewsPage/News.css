@@ -188,7 +188,6 @@
   display: flex;
   gap: 40px;
   align-items: center;
-  z-index: 555554444444444444444444444455 !important;
 }
 
 .searchCard .inputSerch {
@@ -247,7 +246,6 @@
     display: flex;
     gap: 40px;
     align-items: center;
-    z-index: 555554444444444444444444444455 !important;
   }
 }
 
