@@ -65,7 +65,11 @@
   "details": {
     "latest": "Últimas noticias",
   "page": "Página",
-  "of": "de"
+  "of": "de",
+    "search": "Buscar",
+
+    "searchPlaceholder": "Busca las últimas noticias que te importan"
+
 }
 }
 

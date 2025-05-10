@@ -18,6 +18,9 @@ const Header = (props) => {
   const [language, setLanguage] = useState(savedLang.code);
   const inputRef = useRef(null);
 
+  const [showInput, setShowInput] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([4, 4]);
   const ARstyle = { fontFamily: "var(--MNF_Body_AR)", fontSize: "14px" };
   const ENstyle = { fontFamily: "var(--MNF_Body_EN)" };
   const closeStyle =
@@ -58,44 +61,27 @@ const Header = (props) => {
     document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
   };
 
-  const getAllNews = (lang) => {
-    api
-      .get(`/news?LanguageId=${lang.id}`)
-      .then((res) => props.setFilteredNews(res.data.result))
-      .catch((err) => console.error("Error fetching News:", err));
-  };
 
-  const { id } = useParams();
-
-  const getNewsById = (lang) => {
-    if (!id) return;
-    api
-      .get(`news/${id}/${lang.id}`)
-      .then((res) => props.setCurrentNews(res.data.result))
-      .catch((err) => console.error("Error fetching News:", err));
-  };
-
-  const handleSearch = () => {
-    getAllNews(savedLang);
-  };
 
   const changeLanguage = (lang) => {
     setLanguage(lang.code);
     localStorage.setItem("lang", JSON.stringify(lang));
-    getAllNews(lang);
-      getNewsById(lang);
-
     changeAllLanguage(lang.code);
+    window.location.reload(); // يعمل إعادة تحميل للصفحة بعد تغيير اللغة
   };
 
   const toggleLangDropdown = () => setLangActive((prev) => !prev);
   const toggleMenu = () => setMenuActive((prev) => !prev);
 
   useEffect(() => {
-    changeAllLanguage(savedLang.code);
-    getAllNews(savedLang);
-      getNewsById(savedLang);
+    const langObj = languages.find((l) => l.code === language);
+    if (langObj) {
+      changeAllLanguage(langObj.code);
+    }
+  }, [language]);
 
+  useEffect(() => {
+    changeAllLanguage(savedLang.code);
   }, []);
 
   return (
@@ -126,13 +112,6 @@ const Header = (props) => {
       </nav>
 
       <div className="nav-icons">
-        <div className="search-container">
-          <input type="search" className="search-input" ref={inputRef} />
-          <i
-            className="fa-solid fa-magnifying-glass"
-            onClick={handleSearch}></i>
-        </div>
-
         <div className="nav-lang-container" onClick={toggleLangDropdown}>
           <i className="fa-solid fa-globe"></i>
           <span>{language.toUpperCase()}</span>
@@ -146,7 +125,12 @@ const Header = (props) => {
                 className="flagStyle"
                 style={savedLang.code === lang.code ? ARstyle : ENstyle}
                 onClick={() => changeLanguage(lang)}>
-                <img src={`/flags/${lang.flag}.webp`} alt="Egypt Flag" width="20" height="20"/>
+                <img
+                  src={`/flags/${lang.flag}.webp`}
+                  alt="Flag"
+                  width="20"
+                  height="20"
+                />
                 <span> {lang.name}</span>
               </div>
             ))}

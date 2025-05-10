@@ -10,8 +10,7 @@
     "English": "English",
     "Spanish": "Spanish",
     "code": "EN",
-    "More News":"More News"
-
+    "More News": "More News"
   },
   "hero": {
     "title": "Welcome to MNF University for International Students"
@@ -61,7 +60,11 @@
   },
   "details": {
     "latest": "Latest news",
-      "page": "Page",
-  "of": "of"
+    "page": "Page",
+    "of": "of",
+    "searchPlaceholder": "Search for the latest news that matters to you",
+      "search": "Search"
+
+
   }
 }

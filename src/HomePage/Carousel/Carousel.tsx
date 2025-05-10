@@ -55,8 +55,7 @@ export default function NewsCarousel(props) {
                     >
                       <h3 className="news-card-title" style={savedLang?.code === `ar`? ArStyle : EnStyle}>{news.newsDetails.head.slice(0, 75)}...</h3>
                       <Link
-                        to={`/details`}
-                       state={{ news }}
+                        to={`/details/${news.id}`}
                         className="arrowlinks"
                         onClick={() => window.scrollTo(0, 0)}
                       >

@@ -167,7 +167,7 @@ const formatDate = (rawDate) => {
               </h3>
 
               <div className="news-grid">
-                {filteredNews.slice(0, 6).map((news, index) => (
+                {filteredNews.slice(0, 10).map((news, index) => (
                   <Link
                     to={`/details/${news.id}`}
                     onClick={() => {
