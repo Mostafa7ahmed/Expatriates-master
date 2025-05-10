@@ -3,19 +3,33 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 function Hero(props) {
-  const isFeaturedimages = useMemo(() => {
-    return props.News
-      .filter(news => news.isFeatured === true)
-      .map(news => news.image);
-  }, [props.News]);
+const isFeaturedimages = useMemo(() => {
+  return props.News
+    .filter(news => news.isFeature)
+    .flatMap(news => {
+      const head = news.newsDetails?.head || "";
+      if (news.images && news.images.length > 0) {
+        return news.images.map(img => ({
+          url: img.url,
+          head: head
+        }));
+      } else if (news.newsImg) {
+        return [{
+          url: news.newsImg,
+          head: head
+        }];
+      } else {
+        return [];
+      }
+    });
+}, [props.News]);
 
-  const ARstyle = {
-    direction: "rtl",
+  const ARstyle: React.CSSProperties = {
+    direction: "rtl" as "rtl",
     fontFamily: "var(--MNF_Heading_AR)",
-    
   };
-  const ENstyle = {
-    direction: "ltr",
+  const ENstyle: React.CSSProperties = {
+    direction: "ltr" as "ltr",
     fontFamily: "var(--MNF_Heading_EN)",
   };
   const carouselArStyle = {
@@ -25,7 +39,7 @@ function Hero(props) {
     justifyContent: "flex-start",
   };
 
-  const savedLang = JSON.parse(localStorage.getItem("lang"));
+  const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const { i18n, t } = useTranslation();
@@ -46,30 +60,32 @@ function Hero(props) {
   return (
     <div className="carousel-container">
       <div
-        style={savedLang?.code === `ar`? carouselArStyle : carouselEnStyle}
+        style={savedLang?.code === `ar` ? carouselArStyle : carouselEnStyle}
         className="carousel"
         onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+        onMouseLeave={() => setIsPaused(false)}>
         <div
           className="carousel-track"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
-          }}
-        >
-          {isFeaturedimages.map((image, index) => (
+          }}>
+          {isFeaturedimages.map((item, index) => (
             <div key={index} className="carousel-slide">
               <img
-                src={image}
+                src={item.url}
                 alt={`University slide ${index + 1}`}
                 className="carousel-image"
               />
               <div className="carousel-overlay" />
+              <section
+                className="cardSection"
+                style={savedLang?.code === `ar` ? ARstyle : ENstyle}
+              >
+                <h1 className="carousel-heading">{item.head.slice(0,150)}</h1>
+              </section>
             </div>
           ))}
         </div>
-
-        <h1 className="carousel-heading" style={savedLang?.code === `ar`? ARstyle : ENstyle}>{t("hero.title")}</h1>
 
         <div className="carousel-dots">
           {isFeaturedimages.map((_, index) => (

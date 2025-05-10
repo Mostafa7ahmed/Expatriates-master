@@ -1,6 +1,7 @@
 .carousel-container {
     padding: 16px;
     margin: 0 48px;
+    position: relative;
 }
 
 .carousel {
@@ -49,11 +50,20 @@
 .carousel-heading {
     color: white;
     z-index: 10;
-    margin: 0 30px 50px 30px;
-    width: 700px;
-    font-size: 50px;
+    width: 500px;
+    font-size: 40px;
+    width: 100%;
+    line-height: 1.4;
 }
-
+.cardSection{
+    background-color: #d9d9d94f;
+    padding: 20px;
+    position: absolute;
+    width: 714px;
+    bottom: 60px;
+    inset-inline-start: 50px;
+    border-radius: 10px;
+}
 
 .carousel-dots {
     position: absolute;
@@ -93,17 +103,27 @@
         margin: 0 36px;
         padding: 14px;
     }
+    .cardSection{
+        
+        width: 600px;
+    }
 }
 
 @media (max-width: 880px) {
     .carousel-heading {
-        width: 550px;
+        width: 100%;
         font-size: 40px;
     }
 
     .carousel {
         height: 600px;
     }
+        .carousel-heading {
+        width: 100%;
+        font-size: 32px;
+        font-weight: 500;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -113,18 +133,22 @@
     }
 
     .carousel-heading {
-        width: 450px;
-        font-size: 35px;
+        width: 100%;
+        font-size: 28px;
     }
 
     .carousel {
         height: 550px;
     }
+ .cardSection{
+        
+        width: 500px;
+    }
 }
 
 @media (max-width: 660px) {
     .carousel-heading {
-        width: 400px;
+        width: 100%;
         font-size: 30px;
     }
 
@@ -135,10 +159,14 @@
 
 @media (max-width: 550px) {
     .carousel-heading {
-        width: 300px;
-        font-size: 24px;
-    }
+        font-size: 22px;
+                width: 100%;
 
+    }
+    .cardSection{
+        top: 15%;
+        width: 70%;
+    }
     .carousel {
         height: 400px;
     }
@@ -156,7 +184,9 @@
     }
 
     .carousel-heading {
-        font-size: 20px;
-        width: 250px;
+        font-size: 17px;
+        flex-wrap: wrap;
+        width: 100%;
+
     }
 }

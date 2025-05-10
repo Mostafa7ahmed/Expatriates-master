@@ -10,31 +10,30 @@ import { useTranslation } from 'react-i18next';
 
 
 function Home() {
-  const savedLang = JSON.parse(localStorage.getItem("lang"));
+  const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const [filteredNews, setFilteredNews] = useState([]);
   const [langId, setLangId] = useState(savedLang?.id || 2)
+useEffect(() => {
+  if (savedLang) {
+    setLangId(savedLang.id);
+  }
 
-  useEffect(() => {
-    if (savedLang) {
-      setLangId(savedLang.id)
-    }
-
-    api
-      .get(`/News?id=${langId}`)
-      .then((response) => {
-        setFilteredNews(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching News:", error);
-      });
-  }, []);
+  api
+    .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
+    .then((response) => {
+      setFilteredNews(response.data.result);
+    })
+    .catch((error) => {
+      console.error("Error fetching News:", error);
+    });
+}, [langId]);
 
   return (
     <div>
-      <Header index={0} setFilteredNews={setFilteredNews}/>
+      <Header index={0}  setFilteredNews={setFilteredNews}  News={filteredNews}/>
       <Hero News={filteredNews}/>
       <About />
-      <Carousel News={filteredNews}/>
+      {/* <Carousel News={filteredNews}/> */}
       <Footer />
     </div>
   );

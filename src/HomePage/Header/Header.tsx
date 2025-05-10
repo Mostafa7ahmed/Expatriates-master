@@ -1,44 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/image.png";
 import api from "../../Services/api";
 import { useTranslation } from "react-i18next";
-import { Search } from "lucide-react";
+import { Search as SearchIcon } from "lucide-react";
 
 const Header = (props) => {
-  const [displaySearch, setDisplaySearch] = useState(props.display || false);
-
-  const ARstyle = {
-    fontFamily: "var(--MNF_Body_AR)",
-    fontSize: "14px"
-  };
-  const ENstyle = {
-    fontFamily: "var(--MNF_Body_EN)",
-  };
-  const closeStyleAr = {
-    right: "170px",
-  };
-  const closeStyleEn = {
-    left: "170px",
-  };
-
-  const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
-
   const { i18n, t } = useTranslation();
-
-  const [langActive, setlangActive] = useState(false);
-  const [menuActive, setMenuActive] = useState(false);
-  const [language, setLanguage] = useState("EN");
-  const [searchValue, setSearchValue] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
+
+  const savedLang = JSON.parse(localStorage.getItem("lang") || '{"code": "en", "id": 2}');
+  const [langActive, setLangActive] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
+  const [language, setLanguage] = useState(savedLang.code);
+  const inputRef = useRef(null);
+
+  const ARstyle = { fontFamily: "var(--MNF_Body_AR)", fontSize: "14px" };
+  const ENstyle = { fontFamily: "var(--MNF_Body_EN)" };
+  const closeStyle = savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
 
   const languages = [
     { code: "ar", name: t("header.Arabic"), id: 1 },
     { code: "en", name: t("header.English"), id: 2 },
     { code: "as", name: t("header.Spanish"), id: 3 },
-
   ];
 
   const navLinks = [
@@ -50,126 +35,94 @@ const Header = (props) => {
     { name: t("header.contact US"), link: "/contactUs" },
   ];
 
-  const changeAllLanguage = (lng: string) => {
+  const changeAllLanguage = (lng) => {
     i18n.changeLanguage(lng);
     document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
   };
 
-  useEffect(() => {
-    if (savedLang) {
-      setLanguage(savedLang.code);
-      changeAllLanguage(savedLang.code);
-    }
-  }, []);
-
-  const GetAllNews = (lang) => {
+  const getAllNews = (lang) => {
     api
-      .get(`/News?id=${lang?.id}&search=${inputRef.current?.value || ""}`)
-      .then((response) => {
-        props.setFilteredNews(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching News:", error);
-      });
+      .get(`/news?LanguageId=${lang.id}`)
+      .then((res) => props.setFilteredNews(res.data.result))
+      .catch((err) => console.error("Error fetching News:", err));
   };
 
-  const Search = () => {
-    GetAllNews(savedLang);
+  const getNewsById = (lang) => {
+    const newsId = location.state?.news?.newsId;
+    if (!newsId) return;
+    api
+      .get(`News/Id?newsId=${newsId}&langId=${lang.id}`)
+      .then((res) => props.setCurrentNews(res.data.result))
+      .catch((err) => console.error("Error fetching News:", err));
   };
 
-  const GetNewsById = (lang) => {
-    api
-      .get(`News/Id?newsId=${location.state?.news.newsId}&langId=${lang.id}`)
-      .then((response) => {
-        props.setCurrentNews(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching News:", error);
-      });
+  const handleSearch = () => {
+    getAllNews(savedLang);
   };
 
   const changeLanguage = (lang) => {
     setLanguage(lang.code);
     localStorage.setItem("lang", JSON.stringify(lang));
-    GetAllNews(lang);
-
+    getAllNews(lang);
     if (location.pathname === `/details`) {
-      GetNewsById(lang);
+      getNewsById(lang);
     }
+    changeAllLanguage(lang.code);
   };
 
-  const dropdownLang = () => {
-    setlangActive(!langActive);
-  };
+  const toggleLangDropdown = () => setLangActive((prev) => !prev);
+  const toggleMenu = () => setMenuActive((prev) => !prev);
 
-  const navBarMenu = () => {
-    setMenuActive(!menuActive);
-  };
+  useEffect(() => {
+    changeAllLanguage(savedLang.code);
+    getAllNews(savedLang);
+    if (location.pathname === `/details`) {
+      getNewsById(savedLang);
+    }
+  }, []);
 
   return (
     <header className="nav-container">
-      <a href="\" className="nav-logo">
+      <a href="/" className="nav-logo">
         <img src={logo} alt="International Students Affairs office Logo" />
       </a>
 
-      <nav
-        className={`${menuActive ? "nav-links nav-active" : "nav-links"} ${
-          savedLang?.code === `ar` ? "nav-linksar" : "nav-linksen"
-        }`}
-      >
-        <i
-          className="fa-solid fa-times close"
-          onClick={navBarMenu}
-          style={savedLang?.code === `ar` ? closeStyleAr : closeStyleEn}
-        ></i>
-
+      <nav className={`${menuActive ? "nav-links nav-active" : "nav-links"} ${savedLang.code === "ar" ? "nav-linksar" : "nav-linksen"}`}>
+        <i className="fa-solid fa-times close" onClick={toggleMenu} style={closeStyle}></i>
         <ul>
-          {navLinks.map((link, index) => {
-            return (
-              <li key={index} className={props.index === index ? "active" : ""}>
-                <a
-                  href={link.link}
-                  style={savedLang?.code === `ar` ? ARstyle : ENstyle}
-                >
-                  {t(`${link.name}`)}
-                </a>
-              </li>
-            );
-          })}
+          {navLinks.map((link, index) => (
+            <li key={index} className={props.index === index ? "active" : ""}>
+              <a href={link.link} style={savedLang.code === "ar" ? ARstyle : ENstyle}>
+                {link.name}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
 
       <div className="nav-icons">
-        <div className="search-container" style={displaySearch? {display: "flex"} : {display: "none"}}>
-          <input type="search" className="search-input" ref={inputRef}></input>
-          <i className="fa-solid fa-magnifying-glass" onClick={Search}></i>
+        <div className="search-container">
+          <input type="search" className="search-input" ref={inputRef} />
+          <i className="fa-solid fa-magnifying-glass" onClick={handleSearch}></i>
         </div>
-        <div className="nav-lang-container" onClick={dropdownLang}>
+
+        <div className="nav-lang-container" onClick={toggleLangDropdown}>
           <i className="fa-solid fa-globe"></i>
           <span>{language.toUpperCase()}</span>
-
-          <div
-            className={
-              langActive ? "lang-dropdown lang-active" : "lang-dropdown"
-            }
-          >
-            {languages.map((lang) => {
-              return (
-                <div
-                  style={savedLang?.code === `ar` ? ARstyle : ENstyle}
-                  key={lang.code}
-                  onClick={() => {
-                    changeLanguage(lang);
-                    changeAllLanguage(lang.code);
-                  }}
-                >
-                  {lang.name}
-                </div>
-              );
-            })}
+          <div className={langActive ? "lang-dropdown lang-active" : "lang-dropdown"}>
+            {languages.map((lang) => (
+              <div
+                key={lang.code}
+                style={savedLang.code === "ar" ? ARstyle : ENstyle}
+                onClick={() => changeLanguage(lang)}
+              >
+                {lang.name}
+              </div>
+            ))}
           </div>
         </div>
-        <i className="fa-solid fa-bars menu" onClick={navBarMenu}></i>
+
+        <i className="fa-solid fa-bars menu" onClick={toggleMenu}></i>
       </div>
     </header>
   );
