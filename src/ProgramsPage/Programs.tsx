@@ -97,8 +97,7 @@ const Programs = () => {
       <div
         className="program-hero-container"
         style={{
-          backgroundImage:
-            "url(https://i.pinimg.com/736x/20/7f/ce/207fce5a6de259c4c758836ab1f05e4b.jpg)",
+          backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}
