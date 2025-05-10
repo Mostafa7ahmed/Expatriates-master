@@ -275,6 +275,7 @@
         grid-template-columns: repeat(1, 1fr);
         gap: 15px;
     }
+    
 
     .news-section .news-left-section .content h4 {
         font-size: 18px;
