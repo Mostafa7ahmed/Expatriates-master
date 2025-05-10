@@ -15,7 +15,15 @@
 .nav-logo img {
     width: 100%;
 }
-
+.flagStyle{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.flagStyle img{
+    border-radius: 4px;
+    object-fit: cover;
+}
 .nav-links {
     padding: 12px 24px;
     background-color: #f1f8fb;

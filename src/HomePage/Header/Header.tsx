@@ -10,7 +10,9 @@ const Header = (props) => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
 
-  const savedLang = JSON.parse(localStorage.getItem("lang") || '{"code": "en", "id": 2}');
+  const savedLang = JSON.parse(
+    localStorage.getItem("lang") || '{"code": "en", "id": 2}'
+  );
   const [langActive, setLangActive] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
   const [language, setLanguage] = useState(savedLang.code);
@@ -18,12 +20,28 @@ const Header = (props) => {
 
   const ARstyle = { fontFamily: "var(--MNF_Body_AR)", fontSize: "14px" };
   const ENstyle = { fontFamily: "var(--MNF_Body_EN)" };
-  const closeStyle = savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
+  const closeStyle =
+    savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
 
   const languages = [
-    { code: "ar", name: t("header.Arabic"), id: 1 },
-    { code: "en", name: t("header.English"), id: 2 },
-    { code: "as", name: t("header.Spanish"), id: 3 },
+    {
+      code: "ar",
+      name: t("header.Arabic"),
+      id: 1,
+      flag: "eg",
+    },
+    {
+      code: "en",
+      name: t("header.English"),
+      id: 2,
+      flag: "us",
+    },
+    {
+      code: "as",
+      name: t("header.Spanish"),
+      id: 3,
+      flag: "es",
+    },
   ];
 
   const navLinks = [
@@ -87,12 +105,20 @@ const Header = (props) => {
         <img src={logo} alt="International Students Affairs office Logo" />
       </a>
 
-      <nav className={`${menuActive ? "nav-links nav-active" : "nav-links"} ${savedLang.code === "ar" ? "nav-linksar" : "nav-linksen"}`}>
-        <i className="fa-solid fa-times close" onClick={toggleMenu} style={closeStyle}></i>
+      <nav
+        className={`${menuActive ? "nav-links nav-active" : "nav-links"} ${
+          savedLang.code === "ar" ? "nav-linksar" : "nav-linksen"
+        }`}>
+        <i
+          className="fa-solid fa-times close"
+          onClick={toggleMenu}
+          style={closeStyle}></i>
         <ul>
           {navLinks.map((link, index) => (
             <li key={index} className={props.index === index ? "active" : ""}>
-              <a href={link.link} style={savedLang.code === "ar" ? ARstyle : ENstyle}>
+              <a
+                href={link.link}
+                style={savedLang.code === "ar" ? ARstyle : ENstyle}>
                 {link.name}
               </a>
             </li>
@@ -103,20 +129,26 @@ const Header = (props) => {
       <div className="nav-icons">
         <div className="search-container">
           <input type="search" className="search-input" ref={inputRef} />
-          <i className="fa-solid fa-magnifying-glass" onClick={handleSearch}></i>
+          <i
+            className="fa-solid fa-magnifying-glass"
+            onClick={handleSearch}></i>
         </div>
 
         <div className="nav-lang-container" onClick={toggleLangDropdown}>
           <i className="fa-solid fa-globe"></i>
           <span>{language.toUpperCase()}</span>
-          <div className={langActive ? "lang-dropdown lang-active" : "lang-dropdown"}>
+          <div
+            className={
+              langActive ? "lang-dropdown lang-active" : "lang-dropdown"
+            }>
             {languages.map((lang) => (
               <div
                 key={lang.code}
-                style={savedLang.code === "ar" ? ARstyle : ENstyle}
-                onClick={() => changeLanguage(lang)}
-              >
-                {lang.name}
+                className="flagStyle"
+                style={savedLang.code === lang.code ? ARstyle : ENstyle}
+                onClick={() => changeLanguage(lang)}>
+                <img src={`/flags/${lang.flag}.webp`} alt="Egypt Flag" width="20" height="20"/>
+                <span> {lang.name}</span>
               </div>
             ))}
           </div>
