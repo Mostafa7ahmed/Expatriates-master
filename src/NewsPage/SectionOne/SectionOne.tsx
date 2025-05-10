@@ -31,36 +31,9 @@ const formatDate = (rawDate) => {
   return date.toLocaleDateString('en-US', options); };
   return (
     <div className="news-section" style={{ flexDirection: row }}>
-      {News[0] && (
-        <Link
-      to={`/details/${News[0].id}`}
-
-          className="news-left-section"
-        >
-          <img src={News[0].newsImg} alt="" />
-
-          <div
-            className="about-news"
-            style={savedLang?.code === "ar" ? arrowAr : arrowEn}
-          >
-            <i className="fa-solid fa-arrow-up"></i>
-          </div>
-
-          <div className="card-overlay"></div>
-          <div
-            className="content"
-            style={savedLang?.code === "ar" ? ArStyle : EnStyle}
-          >
-            <h4>{News[0]?.newsDetails.head.slice(0, 100)}...</h4>
-              <div className="date-more">
-                <span>{formatDate(News[0].date)}</span>
-              </div>
-          </div>
-        </Link>
-      )}
 
       <div className="news-right-section">
-        {News.slice(1, 5).map((news, index) => (
+        {News.map((news, index) => (
           <Link to={`/details/${news.id}`} state={{ news }} className="card" key={index}>
             <img src={news.newsImg} alt="" />
 

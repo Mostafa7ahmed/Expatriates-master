@@ -67,7 +67,8 @@
   "page": "Página",
   "of": "de",
     "search": "Buscar",
-
+    "noResultsFound": "No se encontraron resultados"
+,
     "searchPlaceholder": "Busca las últimas noticias que te importan"
 
 }

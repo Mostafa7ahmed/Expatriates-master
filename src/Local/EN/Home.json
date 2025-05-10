@@ -63,7 +63,9 @@
     "page": "Page",
     "of": "of",
     "searchPlaceholder": "Search for the latest news that matters to you",
-      "search": "Search"
+      "search": "Search",
+          "noResultsFound": "No results found"
+
 
 
   }

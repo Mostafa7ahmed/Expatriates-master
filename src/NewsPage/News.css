@@ -189,6 +189,21 @@
     position: absolute;
 
 }
+.card-not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; 
+  background-color: #f0f0f0; 
+  border-radius: 8px;
+  text-align: center;
+}
+
+.card-not-found h2 {
+  font-size: 28px; 
+  color: #001351;
+  font-weight: bold;
+}
 .searchCard{
     background-color: #fff;
     position: absolute;
