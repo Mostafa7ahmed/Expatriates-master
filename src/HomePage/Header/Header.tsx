@@ -5,6 +5,9 @@ import logo from "../../assets/image.png";
 import api from "../../Services/api";
 import { useTranslation } from "react-i18next";
 import { Search as SearchIcon } from "lucide-react";
+import eg from "../../assets/flags/eg.webp";
+import us from "../../assets/flags/us.webp";
+import es from "../../assets/flags/es.webp";
 
 const Header = (props) => {
   const { i18n, t } = useTranslation();
@@ -31,19 +34,19 @@ const Header = (props) => {
       code: "ar",
       name: t("header.Arabic"),
       id: 1,
-      flag: "eg",
+      flag: eg,
     },
     {
       code: "en",
       name: t("header.English"),
       id: 2,
-      flag: "us",
+      flag: us,
     },
     {
       code: "as",
       name: t("header.Spanish"),
       id: 3,
-      flag: "es",
+      flag: es,
     },
   ];
 
@@ -126,8 +129,8 @@ const Header = (props) => {
                 style={savedLang.code === lang.code ? ARstyle : ENstyle}
                 onClick={() => changeLanguage(lang)}>
                 <img
-                  src={`/flags/${lang.flag}.webp`}
-                  alt="Flag"
+src={lang.flag}
+alt="Flag"
                   width="20"
                   height="20"
                 />
