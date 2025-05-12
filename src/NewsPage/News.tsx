@@ -20,11 +20,12 @@ function News() {
   const [moveNext, setMoveNext] = useState(false);
   const [movePrevious, setMovePrevious] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const isArabic = savedLang?.code === "ar";
 
+  const isArabic = savedLang?.code === "ar";
   const pStyle = { fontFamily: isArabic ? "var(--MNF_Body_AR)" : "var(--MNF_Body_EN)" };
   const headStyle = { fontFamily: isArabic ? "var(--MNF_Heading_AR)" : "var(--MNF_Heading_EN)" };
 
+  // FETCH FUNCTION
   const fetchNews = (page = 1, term = "") => {
     const query = `news?LanguageId=${langId}&PageIndex=${page}&PageSize=${ITEMS_PER_PAGE}${
       term ? `&Search=${term}` : ""
@@ -37,27 +38,30 @@ function News() {
         setTotalPages(response.data.totalPages);
         setMoveNext(response.data.moveNext);
         setMovePrevious(response.data.movePrevious);
-        setCurrentPage(page);
+        // ❌ لا تعدل currentPage هنا، لأنه بيتعدل خارجه
       })
       .catch((error) => {
         console.error("Error fetching news:", error);
       });
   };
 
+  // HANDLE PAGE / LANG CHANGES
   useEffect(() => {
     fetchNews(currentPage, searchTerm);
   }, [langId, currentPage]);
 
+  // SEARCH ACTION
   const handleSearch = () => {
+    setCurrentPage(1); // رجوع للصفحة الأولى
     fetchNews(1, searchTerm);
   };
 
   const handleNextPage = () => {
-    if (moveNext) fetchNews(currentPage + 1, searchTerm);
+    if (moveNext) setCurrentPage((prev) => prev + 1);
   };
 
   const handlePreviousPage = () => {
-    if (movePrevious) fetchNews(currentPage - 1, searchTerm);
+    if (movePrevious) setCurrentPage((prev) => prev - 1);
   };
 
   return (
@@ -73,7 +77,6 @@ function News() {
         }}>
         <div className="hero-image"></div>
         <div className="hero-overlay"></div>
-
 
         <div className="searchCard">
           <div className="inputSerch">
