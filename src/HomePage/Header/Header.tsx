@@ -117,7 +117,7 @@ const Header = (props) => {
       <div className="nav-icons">
         <div className="nav-lang-container" onClick={toggleLangDropdown}>
           <i className="fa-solid fa-globe"></i>
-          <span>{language.toUpperCase()}</span>
+          <span>{language}</span>
           <div
             className={
               langActive ? "lang-dropdown lang-active" : "lang-dropdown"
@@ -129,8 +129,8 @@ const Header = (props) => {
                 style={savedLang.code === lang.code ? ARstyle : ENstyle}
                 onClick={() => changeLanguage(lang)}>
                 <img
-src={lang.flag}
-alt="Flag"
+                    src={lang.flag}
+                    alt="Flag"
                   width="20"
                   height="20"
                 />

@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 function Hero(props) {
 const isFeaturedimages = useMemo(() => {
   return props.News
-    .filter(news => news.isFeature)
-    .flatMap(news => {
+.some(news => news.isFeatured   ) ? props.News.filter (news => news.isFeatured) : props.News 
+   .flatMap(news => {
       const head = news.newsDetails?.head || "";
       if (news.images && news.images.length > 0) {
         return news.images.map(img => ({

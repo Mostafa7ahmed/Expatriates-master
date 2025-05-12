@@ -25,7 +25,7 @@ function Details(props) {
 
   const savedLang = JSON.parse(localStorage.getItem("lang"));
   const location = useLocation();
-const { id } = useParams();
+  const { id } = useParams();
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentNews, setCurrentNews] = useState();
   const [langId, setLangId] = useState(savedLang?.id || 2);
@@ -37,23 +37,24 @@ const { id } = useParams();
     currentNews?.images?.[0],
     currentNews?.images?.[1],
     currentNews?.images?.[2],
-  ].filter(Boolean); 
+  ].filter(Boolean);
 
-const formatDate = (rawDate) => {
-  const date = new Date(rawDate);
-  const options = { 
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric' 
+  const formatDate = (rawDate) => {
+    const date = new Date(rawDate);
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("en-US", options);
   };
-  return date.toLocaleDateString('en-US', options); };
 
   const GetNewsById = () => {
     api
-    .get(`News/${id}/${langId}`)
+      .get(`News/${id}/${langId}`)
       .then((response) => {
         setCurrentNews(response.data.result);
-        console.log(currentNews)
+        console.log(currentNews);
       })
       .catch((error) => {
         console.error("Error fetching News:", error);
@@ -72,6 +73,19 @@ const formatDate = (rawDate) => {
       return () => clearInterval(interval);
     }
   }, [isPaused, startAutoSlide]);
+  const handleLanguageClick = (selectedLangId) => {
+    console.log(selectedLangId);
+
+    api
+      .get(`News/${id}/${selectedLangId}`)
+      .then((response) => {
+        setCurrentNews(response.data.result);
+        console.log(currentNews);
+      })
+      .catch((error) => {
+        console.error("Error fetching News:", error);
+      });
+  };
 
   useEffect(() => {
     if (savedLang) {
@@ -81,7 +95,7 @@ const formatDate = (rawDate) => {
     GetNewsById();
 
     api
-    .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
+      .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
       .then((response) => {
         setFilteredNews(response.data.result);
       })
@@ -101,34 +115,43 @@ const formatDate = (rawDate) => {
       <main className="main">
         <div className="containerr">
           <div className="content-wrapper">
-           <div className="event-text-content">
-              <h2
-                className="event-title"
-                style={savedLang?.code === `ar` ? headerArStyle : headerEnStyle}
-              >
-                {currentNews?.newsDetails.head}
-              </h2>
+            <div className="event-text-content">
+              <div className="headertext">
+                <h2
+                  className="event-title"
+                  style={
+                    savedLang?.code === `ar` ? headerArStyle : headerEnStyle
+                  }>
+                  {currentNews?.newsDetails.head}
+                </h2>
+                <div className="p-5 slider">
+                  <div className="languages-container">
+                    {currentNews?.languages.map((language) => (
+                      <div
+                        key={language.id}
+                        className="language-card"
+                        onClick={() => handleLanguageClick(language.id)}
+                        style={{ cursor: "pointer" }}>
+                        <img
+                          src={language.flag}
+                          alt={language.name}
+                          className="flag"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-              <div
-                className="image carousel"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-              >
-                <div
-                  className="carousel-track"
-                  style={{
-                    transform: `translateX(-${currentIndex * 100}%)`,
-                  }}
-                >
-                  {images.map((image, index) => (
-                    <div key={index} className="carousel-slide">
-                      <img
-                        src={image.url}
-                        alt={`University slide ${index + 1}`}
-                        className="carousel-image"
-                      />
-                    </div>
-                  ))}
+              <div className="image carousel">
+                <div className="carousel-track">
+                  <div className="carousel-slide">
+                    <img
+                      src={currentNews?.newsImg}
+                      alt={`${currentNews?.newsDetails.head}`}
+                      className="carousel-image"
+                    />
+                  </div>{" "}
                 </div>
 
                 <div className="carousel-dots">
@@ -136,8 +159,9 @@ const formatDate = (rawDate) => {
                     <button
                       key={index}
                       onClick={() => setCurrentIndex(index)}
-                      className={`carousel-dot ${currentIndex === index ? "active" : ""
-                        }`}
+                      className={`carousel-dot ${
+                        currentIndex === index ? "active" : ""
+                      }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}
@@ -146,23 +170,22 @@ const formatDate = (rawDate) => {
 
               <p
                 className="event-description"
-                style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-              >
-                {currentNews?.newsDetails.body}
-              </p>
-
+                style={savedLang?.code === "ar" ? pArStyle : pEnStyle}
+                dangerouslySetInnerHTML={{
+                  __html: currentNews?.newsDetails.body || "",
+                }}></p>
               <p
                 className="event-date"
-                style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-              >
+                style={savedLang?.code === `ar` ? pArStyle : pEnStyle}>
                 {currentNews?.date && formatDate(currentNews.date)}
               </p>
-            </div> 
-                     <div className="related-news">
+            </div>
+            <div className="related-news">
               <h3
                 className="related-news-title"
-                style={savedLang?.code === `ar` ? headerArStyle : headerEnStyle}
-              >
+                style={
+                  savedLang?.code === `ar` ? headerArStyle : headerEnStyle
+                }>
                 {t("details.latest")}
               </h3>
 
@@ -175,8 +198,7 @@ const formatDate = (rawDate) => {
                       setCurrentNews(news);
                     }}
                     className="about-news"
-                    key={index}
-                  >
+                    key={index}>
                     <div className="news-details-card">
                       <img
                         src={news.newsImg}
@@ -189,13 +211,15 @@ const formatDate = (rawDate) => {
                       />
                       <div className="news-content">
                         <h4
-                          style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-                        >
+                          style={
+                            savedLang?.code === `ar` ? pArStyle : pEnStyle
+                          }>
                           {news.newsDetails.head.slice(0, 100)}...
                         </h4>
                         <p
-                          style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-                        >
+                          style={
+                            savedLang?.code === `ar` ? pArStyle : pEnStyle
+                          }>
                           {news.date && formatDate(news.date)}
                         </p>
                       </div>
@@ -204,8 +228,6 @@ const formatDate = (rawDate) => {
                 ))}
               </div>
             </div>
-
-   
           </div>
         </div>
       </main>
