@@ -8,8 +8,6 @@ const isFeaturedimages = useMemo(() => {
     .some(news => news.isFeatured) ? props.News.filter(news => news.isFeatured) : props.News)
    .flatMap(news => {
      const head = news.newsDetails?.head || "";
-     console.log(news.newsImg)
-     console.log(head)
      if (news.newsImg) {
         return [{
           url: news.newsImg,
