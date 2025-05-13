@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 
 
 function Home() {
-  const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
+  const savedLang = JSON.parse(localStorage.getItem("lang") || '{"code":"en","id":"2"}');
   const [filteredNews, setFilteredNews] = useState([]);
-  const [langId, setLangId] = useState(savedLang?.id || 2)
+  const [langId, setLangId] = useState(savedLang?.id || "2")
 useEffect(() => {
   if (savedLang) {
     setLangId(savedLang.id);

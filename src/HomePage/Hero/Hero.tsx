@@ -4,22 +4,19 @@ import { useTranslation } from "react-i18next";
 
 function Hero(props) {
 const isFeaturedimages = useMemo(() => {
-  return props.News
-.some(news => news.isFeatured   ) ? props.News.filter (news => news.isFeatured) : props.News 
+  return (props.News
+    .some(news => news.isFeatured) ? props.News.filter(news => news.isFeatured) : props.News)
    .flatMap(news => {
-      const head = news.newsDetails?.head || "";
-      if (news.images && news.images.length > 0) {
-        return news.images.map(img => ({
-          url: img.url,
-          head: head
-        }));
-      } else if (news.newsImg) {
+     const head = news.newsDetails?.head || "";
+     console.log(news.newsImg)
+     console.log(head)
+     if (news.newsImg) {
         return [{
           url: news.newsImg,
           head: head
         }];
       } else {
-        return [];
+       return [];
       }
     });
 }, [props.News]);
@@ -69,7 +66,7 @@ const isFeaturedimages = useMemo(() => {
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
           }}>
-          {isFeaturedimages.map((item, index) => (
+          {isFeaturedimages?.map((item, index) => (
             <div key={index} className="carousel-slide">
               <img
                 src={item.url}
@@ -81,7 +78,7 @@ const isFeaturedimages = useMemo(() => {
                 className="cardSection"
                 style={savedLang?.code === `ar` ? ARstyle : ENstyle}
               >
-                <h1 className="carousel-heading">{item.head.slice(0,150)}</h1>
+                <h1 className="carousel-heading">{item?.head?.slice(0,150) ?? item?.head}</h1>
               </section>
             </div>
           ))}
