@@ -27,7 +27,7 @@
   flex: 1;
   padding-right: 40px;
   height: fit-content;
-  padding-top: 15px;
+  padding-top: 20px;
 }
 
 .event-title {
@@ -130,7 +130,7 @@
 .headertext {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 15px;
 }
 .languages-container {

@@ -49,17 +49,35 @@ function Details(props) {
     return date.toLocaleDateString("en-US", options);
   };
 
-  const GetNewsById = () => {
+  // ✅ Load news by ID and langId
+  useEffect(() => {
+    if (id && langId) {
+      api
+        .get(`News/${id}/${langId}`)
+        .then((response) => {
+          setCurrentNews(response.data.result);
+        })
+        .catch((error) => {
+          console.error("Error fetching News:", error);
+        });
+    }
+  }, [id, langId]);
+
+  // ✅ Load related news only once
+  useEffect(() => {
+    if (savedLang) {
+      setLangId(savedLang.id);
+    }
+
     api
-      .get(`News/${id}/${langId}`)
+      .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
       .then((response) => {
-        setCurrentNews(response.data.result);
-        console.log(currentNews);
+        setFilteredNews(response.data.result);
       })
       .catch((error) => {
         console.error("Error fetching News:", error);
       });
-  };
+  }, []);
 
   const startAutoSlide = useCallback(() => {
     return setInterval(() => {
@@ -73,36 +91,17 @@ function Details(props) {
       return () => clearInterval(interval);
     }
   }, [isPaused, startAutoSlide]);
-  const handleLanguageClick = (selectedLangId) => {
-    console.log(selectedLangId);
 
+  const handleLanguageClick = (selectedLangId) => {
     api
       .get(`News/${id}/${selectedLangId}`)
       .then((response) => {
         setCurrentNews(response.data.result);
-        console.log(currentNews);
       })
       .catch((error) => {
         console.error("Error fetching News:", error);
       });
   };
-
-  useEffect(() => {
-    if (savedLang) {
-      setLangId(savedLang.id);
-    }
-
-    GetNewsById();
-
-    api
-      .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
-      .then((response) => {
-        setFilteredNews(response.data.result);
-      })
-      .catch((error) => {
-        console.error("Error fetching News:", error);
-      });
-  }, []);
 
   return (
     <div>
@@ -151,7 +150,7 @@ function Details(props) {
                       alt={`${currentNews?.newsDetails.head}`}
                       className="carousel-image"
                     />
-                  </div>{" "}
+                  </div>
                 </div>
 
                 <div className="carousel-dots">
@@ -180,6 +179,7 @@ function Details(props) {
                 {currentNews?.date && formatDate(currentNews.date)}
               </p>
             </div>
+
             <div className="related-news">
               <h3
                 className="related-news-title"
@@ -193,10 +193,7 @@ function Details(props) {
                 {filteredNews.slice(0, 10).map((news, index) => (
                   <Link
                     to={`/details/${news.id}`}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      setCurrentNews(news);
-                    }}
+                    onClick={() => window.scrollTo(0, 0)}
                     className="about-news"
                     key={index}>
                     <div className="news-details-card">
