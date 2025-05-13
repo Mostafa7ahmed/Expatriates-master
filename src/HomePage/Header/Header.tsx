@@ -14,7 +14,7 @@ const Header = (props) => {
   const location = useLocation();
 
   const savedLang = JSON.parse(
-    localStorage.getItem("lang") || '{"code": "en", "id": 2}'
+    localStorage.getItem("lang") || '{"code": "ar", "id": 1}'
   );
   const [langActive, setLangActive] = useState(false);
   const [menuActive, setMenuActive] = useState(false);

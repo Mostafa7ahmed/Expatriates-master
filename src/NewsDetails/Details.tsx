@@ -25,7 +25,7 @@ function Details(props) {
 
   const savedLang = JSON.parse(localStorage.getItem("lang"));
   const location = useLocation();
-  const { id } = useParams();
+const { id, languageId } = useParams();
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentNews, setCurrentNews] = useState();
   const [langId, setLangId] = useState(savedLang?.id || 2);
@@ -51,7 +51,7 @@ function Details(props) {
 
   const GetNewsById = () => {
     api
-      .get(`News/${id}/${langId}`)
+      .get(`News/${id}/${languageId}`)
       .then((response) => {
         setCurrentNews(response.data.result);
         console.log(currentNews);
@@ -95,7 +95,7 @@ function Details(props) {
     GetNewsById();
 
     api
-      .get(`news?LanguageId=${langId}&PageIndex=1&PageSize=50`)
+      .get(`news?PageIndex=1&PageSize=50`)
       .then((response) => {
         setFilteredNews(response.data.result);
       })
@@ -192,7 +192,7 @@ function Details(props) {
               <div className="news-grid">
                 {filteredNews.slice(0, 10).map((news, index) => (
                   <Link
-                    to={`/details/${news.id}`}
+                  to={`/details/${news.id}/${news.newsDetails.languageId}`}                        
                     onClick={() => {
                       window.scrollTo(0, 0);
                       setCurrentNews(news);

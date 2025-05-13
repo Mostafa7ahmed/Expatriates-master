@@ -34,7 +34,10 @@ const formatDate = (rawDate) => {
 
       <div className="news-right-section">
         {News.map((news, index) => (
-          <Link to={`/details/${news.id}`} state={{ news }} className="card" key={index}>
+          <Link               
+          
+            to={`/details/${news.id}/${news.newsDetails.languageId}`}                        
+            state={{ news }} className="card" key={index}>
             <img src={news.newsImg} alt="" />
 
             <div

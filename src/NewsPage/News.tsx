@@ -12,6 +12,7 @@ const ITEMS_PER_PAGE = 10;
 function News() {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const { t } = useTranslation();
+const [isLoading, setIsLoading] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredNews, setFilteredNews] = useState([]);
@@ -36,9 +37,9 @@ function News() {
       .then((response) => {
         setFilteredNews(response.data.result);
         setTotalPages(response.data.totalPages);
+        localStorage.setItem("lang", JSON.stringify(response.data.result.newsDetails.languageId));
         setMoveNext(response.data.moveNext);
         setMovePrevious(response.data.movePrevious);
-        // ❌ لا تعدل currentPage هنا، لأنه بيتعدل خارجه
       })
       .catch((error) => {
         console.error("Error fetching news:", error);
