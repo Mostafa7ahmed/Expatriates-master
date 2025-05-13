@@ -40,7 +40,7 @@ function SectionOne({ News, row }) {
             className="card"
             key={index}>
             <img
-              src={`http://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/${news.newsImg}`}
+              src={`http://mu.menofia.edu.eg/PrtlFiles/Sectors/Wafiden/Portal/Images/${news.newsImg}`}
               alt=""
             />
 

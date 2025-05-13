@@ -89,7 +89,7 @@ export default function NewsCarousel(props) {
 
                       <img
                         style={{ clipPath: "url(#img-container)" }}
-                       src={`http://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/${news.newsImg}`}
+                       src={`http://mu.menofia.edu.eg/PrtlFiles/Sectors/Wafiden/Portal/Images/${news.newsImg}`}
 
                         alt=""
                         className={

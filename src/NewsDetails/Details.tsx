@@ -161,7 +161,7 @@ useEffect(() => {
                 <div className="carousel-track">
                   <div className="carousel-slide">
                     <img
-                      src={`http://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/${currentNews?.newsImg}`}
+                      src={`http://mu.menofia.edu.eg/PrtlFiles/Sectors/Wafiden/Portal/Images/${currentNews?.newsImg}`}
                       alt={`${currentNews?.newsDetails.head}`}
                       className="carousel-image"
                     />
@@ -213,7 +213,7 @@ useEffect(() => {
                     key={index}>
                     <div className="news-details-card">
                       <img
-                                             src={`http://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/${news.newsImg}`}
+                                             src={`http://mu.menofia.edu.eg/PrtlFiles/Sectors/Wafiden/Portal/Images/${news.newsImg}`}
 
                         alt={`News ${index}`}
                         className={
