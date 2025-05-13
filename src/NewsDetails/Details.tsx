@@ -5,6 +5,7 @@ import Header from "../HomePage/Header/Header";
 import Footer from "../HomePage/Footer/Footer";
 import api from "../Services/api";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 function Details(props) {
   const headerArStyle = {
@@ -32,6 +33,7 @@ function Details(props) {
   const { i18n, t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+const navigate = useNavigate();
 
   const images = [
     currentNews?.images?.[0],
@@ -49,19 +51,32 @@ function Details(props) {
     return date.toLocaleDateString("en-US", options);
   };
 
-  // ✅ Load news by ID and langId
-  useEffect(() => {
-    if (id && langId) {
-      api
-        .get(`News/${id}/${langId}`)
-        .then((response) => {
+
+useEffect(() => {
+  if (id && langId) {
+    api
+      .get(`News/${id}/${langId}`)
+      .then((response) => {
+        if (
+          response.data.statusCode === 400 
+        ) {
+          navigate("/news");
+        } else {
           setCurrentNews(response.data.result);
-        })
-        .catch((error) => {
+        }
+      })
+      .catch((error) => {
+        if (
+          error.response ||
+          error.response.status === 400 
+        ) {
+          navigate("/news");
+        } else {
           console.error("Error fetching News:", error);
-        });
-    }
-  }, [id, langId]);
+        }
+      });
+  }
+}, [id, langId]);
 
   // ✅ Load related news only once
   useEffect(() => {
@@ -146,7 +161,7 @@ function Details(props) {
                 <div className="carousel-track">
                   <div className="carousel-slide">
                     <img
-                      src={currentNews?.newsImg}
+                      src={`http://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/${currentNews?.newsImg}`}
                       alt={`${currentNews?.newsDetails.head}`}
                       className="carousel-image"
                     />
@@ -198,7 +213,8 @@ function Details(props) {
                     key={index}>
                     <div className="news-details-card">
                       <img
-                        src={news.newsImg}
+                                             src={`http://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/${news.newsImg}`}
+
                         alt={`News ${index}`}
                         className={
                           savedLang?.code === `ar`
