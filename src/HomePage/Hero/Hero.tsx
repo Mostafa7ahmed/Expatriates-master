@@ -1,7 +1,7 @@
 import "./Hero.css";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import defaultImg from "../../assets/AboutUniversity.jpg";
+import defaultImg from "../../assets/raes.jpg";
 
 function Hero(props) {
 const isFeaturedimages = useMemo(() => {

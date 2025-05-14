@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Carousel.css";
 import api from "../../Services/api";
 import { useTranslation } from "react-i18next";
-import defaultImg from "../../assets/AboutUniversity.jpg";
+import defaultImg from "../../assets/raes.jpg";
 
 
 export default function NewsCarousel(props) {

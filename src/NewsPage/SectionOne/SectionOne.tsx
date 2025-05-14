@@ -1,7 +1,7 @@
 import React from "react";
 import "./SectionOne.css";
 import { Link } from "react-router-dom";
-import defaultImg from "../../assets/AboutUniversity.jpg";
+import defaultImg from "../../assets/raes.jpg";
 
 function SectionOne({ News, row }) {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");

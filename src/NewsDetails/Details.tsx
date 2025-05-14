@@ -6,7 +6,7 @@ import Footer from "../HomePage/Footer/Footer";
 import api from "../Services/api";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import defaultImg from "../assets/AboutUniversity.jpg";
+import defaultImg from "../assets/raes.jpg";
 
 function Details(props) {
   const headerArStyle = {
