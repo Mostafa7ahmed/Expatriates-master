@@ -1,6 +1,7 @@
 import "./Hero.css";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import defaultImg from "../../assets/AboutUniversity.jpg";
 
 function Hero(props) {
 const isFeaturedimages = useMemo(() => {
@@ -67,8 +68,12 @@ const isFeaturedimages = useMemo(() => {
           {isFeaturedimages?.map((item, index) => (
             <div key={index} className="carousel-slide">
               <img
-                src={`${item.url}`}
+                src={item.url || defaultImg}
                 alt={`University slide ${index + 1}`}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = defaultImg;
+                }}
                 className="carousel-image"
               />
               <div className="carousel-overlay" />

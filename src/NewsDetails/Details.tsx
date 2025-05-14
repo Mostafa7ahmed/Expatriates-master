@@ -6,6 +6,7 @@ import Footer from "../HomePage/Footer/Footer";
 import api from "../Services/api";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import defaultImg from "../assets/AboutUniversity.jpg";
 
 function Details(props) {
   const headerArStyle = {
@@ -161,9 +162,13 @@ useEffect(() => {
                 <div className="carousel-track">
                   <div className="carousel-slide">
                     <img
-                      src={`${currentNews?.newsImg}`}
+                      src={currentNews?.newsImg || defaultImg}
                       alt={`${currentNews?.newsDetails.head}`}
                       className="carousel-image"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = defaultImg;
+                    }}
                     />
                   </div>
                 </div>
@@ -213,9 +218,12 @@ useEffect(() => {
                     key={index}>
                     <div className="news-details-card">
                       <img
-                                             src={`${news.newsImg}`}
-
+                        src={news.newsImg || defaultImg}
                         alt={`News ${index}`}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}
                         className={
                           savedLang?.code === `ar`
                             ? "news-imagear"

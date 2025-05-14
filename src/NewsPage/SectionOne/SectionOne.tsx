@@ -1,6 +1,7 @@
 import React from "react";
 import "./SectionOne.css";
 import { Link } from "react-router-dom";
+import defaultImg from "../../assets/AboutUniversity.jpg";
 
 function SectionOne({ News, row }) {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
@@ -40,8 +41,12 @@ function SectionOne({ News, row }) {
             className="card"
             key={index}>
             <img
-              src={`${news.newsImg}`}
+            src={news.newsImg ? news.newsImg : defaultImg}
               alt=""
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = defaultImg;
+              }}
             />
 
             <div

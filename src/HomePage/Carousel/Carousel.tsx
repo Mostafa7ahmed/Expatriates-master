@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Carousel.css";
 import api from "../../Services/api";
 import { useTranslation } from "react-i18next";
+import defaultImg from "../../assets/AboutUniversity.jpg";
 
 
 export default function NewsCarousel(props) {
@@ -89,7 +90,7 @@ export default function NewsCarousel(props) {
 
                       <img
                         style={{ clipPath: "url(#img-container)" }}
-                       src={`${news.newsImg}`}
+                        src={news.newsImg || defaultImg}
 
                         alt=""
                         className={
@@ -97,6 +98,10 @@ export default function NewsCarousel(props) {
                             ? "news-card-image"
                             : "news-card-image news-card-image-right"
                         }
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = defaultImg;
+                        }}
                       />
                     </div>
                   </div>
