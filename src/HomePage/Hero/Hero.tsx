@@ -67,7 +67,7 @@ const isFeaturedimages = useMemo(() => {
           {isFeaturedimages?.map((item, index) => (
             <div key={index} className="carousel-slide">
               <img
-                src={`{item.url}`}
+                src={`${item.url}`}
                 alt={`University slide ${index + 1}`}
                 className="carousel-image"
               />
