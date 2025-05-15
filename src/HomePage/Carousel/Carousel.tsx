@@ -11,7 +11,6 @@ export default function NewsCarousel(props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const { i18n, t } = useTranslation();
-
   const ArStyle = {
     fontFamily: "var(--MNF_Body_AR)",
     // fontSize: "16px"
