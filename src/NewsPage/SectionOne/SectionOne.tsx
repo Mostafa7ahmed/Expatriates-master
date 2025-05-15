@@ -2,6 +2,34 @@ import React from "react";
 import "./SectionOne.css";
 import { Link } from "react-router-dom";
 import defaultImg from "../../assets/raes.jpg";
+import  { useState, useEffect  } from "react";
+
+
+// ✅ SmartImage component
+const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
+  const [imageSrc, setImageSrc] = useState(defaultImg);
+
+  useEffect(() => {
+    if (!src) return;
+
+    const img = new Image();
+    img.src = src;
+
+    img.onload = () => {
+      setImageSrc(src);
+    };
+    // لو فشل التحميل تظل الافتراضية
+  }, [src]);
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      className={className}
+      style={{ ...style, clipPath }}
+    />
+  );
+};
+
 
 function SectionOne({ News, row }) {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
@@ -40,14 +68,23 @@ function SectionOne({ News, row }) {
             state={{ news }}
             className="card"
             key={index}>
-            <img
+            {/* <img
             src={news.newsImg ? news.newsImg : defaultImg}
               alt=""
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = defaultImg;
               }}
-            />
+            /> */}
+
+            
+              <SmartImage 
+                        src={news?.newsImg}
+                        alt=""
+                        className=""
+                        style={{}}
+                        clipPath=""
+                />
 
             <div
               className="about-news"

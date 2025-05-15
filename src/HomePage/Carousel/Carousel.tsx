@@ -1,30 +1,48 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Carousel.css";
-import api from "../../Services/api";
 import { useTranslation } from "react-i18next";
 import defaultImg from "../../assets/raes.jpg";
 
+// ✅ SmartImage component
+const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
+  const [imageSrc, setImageSrc] = useState(defaultImg);
+
+  useEffect(() => {
+    if (!src) return;
+
+    const img = new Image();
+    img.src = src;
+
+    img.onload = () => {
+      setImageSrc(src);
+    };
+    // لو فشل التحميل تظل الافتراضية
+  }, [src]);
+
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      className={className}
+      style={{ ...style, clipPath }}
+    />
+  );
+};
 
 export default function NewsCarousel(props) {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef(null);
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
-  const { i18n, t } = useTranslation();
-  const ArStyle = {
-    fontFamily: "var(--MNF_Body_AR)",
-    // fontSize: "16px"
-  }
-  
-  const EnStyle = {
-    fontFamily: "var(--MNF_Body_EN)",
-  }
+  const { t } = useTranslation();
 
-  const scroll = (direction: "left" | "right") => {
+  const ArStyle = { fontFamily: "var(--MNF_Body_AR)" };
+  const EnStyle = { fontFamily: "var(--MNF_Body_EN)" };
+
+  const scroll = (direction) => {
     const card = scrollRef.current?.childNodes[0].childNodes[0];
 
     if (scrollRef.current && card) {
-      const scrollAmount = (card as HTMLElement).clientWidth + 24;
+      const scrollAmount = card.clientWidth + 24;
       const newScrollLeft =
         direction === "left"
           ? scrollRef.current.scrollLeft - scrollAmount
@@ -53,7 +71,14 @@ export default function NewsCarousel(props) {
                           : "news-card-text news-card-text-right"
                       }
                     >
-                      <h3 className="news-card-title" style={savedLang?.code === `ar`? ArStyle : EnStyle}>{news.newsDetails.head.slice(0, 75)}...</h3>
+                      <h3
+                        className="news-card-title"
+                        style={
+                          savedLang?.code === "ar" ? ArStyle : EnStyle
+                        }
+                      >
+                        {news.newsDetails.head.slice(0, 75)}...
+                      </h3>
                       <Link
                         to={`/details/${news.id}`}
                         className="arrowlinks"
@@ -70,6 +95,7 @@ export default function NewsCarousel(props) {
                         </svg>
                       </Link>
                     </div>
+
                     <div
                       className={
                         index % 2 !== 0
@@ -87,20 +113,16 @@ export default function NewsCarousel(props) {
                         </clipPath>
                       </svg>
 
-                      <img
-                        style={{ clipPath: "url(#img-container)" }}
-                        src={news.newsImg || defaultImg}
-
-                        alt=""
+                      <SmartImage
+                        src={news.newsImg}
+                        alt="news"
                         className={
                           index % 2 !== 0
                             ? "news-card-image"
                             : "news-card-image news-card-image-right"
                         }
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = defaultImg;
-                        }}
+                        style={{}}
+                        clipPath="url(#img-container)"
                       />
                     </div>
                   </div>
@@ -109,12 +131,12 @@ export default function NewsCarousel(props) {
             ))}
           </div>
         </div>
-
-
       </div>
 
       <div className="btn">
-        <a href="/news" className="link">{t("header.More News")}</a>
+        <a href="/news" className="link">
+          {t("header.More News")}
+        </a>
       </div>
     </div>
   );

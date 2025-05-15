@@ -3,6 +3,31 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import defaultImg from "../../assets/raes.jpg";
 
+// ✅ SmartImage component
+const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
+  const [imageSrc, setImageSrc] = useState(defaultImg);
+
+  useEffect(() => {
+    if (!src) return;
+
+    const img = new Image();
+    img.src = src;
+
+    img.onload = () => {
+      setImageSrc(src);
+    };
+    // لو فشل التحميل تظل الافتراضية
+  }, [src]);
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      className={className}
+      style={{ ...style, clipPath }}
+    />
+  );
+};
+
 function Hero(props) {
 const isFeaturedimages = useMemo(() => {
   return (props.News
@@ -67,7 +92,7 @@ const isFeaturedimages = useMemo(() => {
           }}>
           {isFeaturedimages?.map((item, index) => (
             <div key={index} className="carousel-slide">
-              <img
+              {/* <img
                 src={item.url || defaultImg}
                 alt={`University slide ${index + 1}`}
                   onError={(e) => {
@@ -75,7 +100,16 @@ const isFeaturedimages = useMemo(() => {
                     e.target.src = defaultImg;
                 }}
                 className="carousel-image"
-              />
+              /> */}
+
+              <SmartImage
+                        src={item.url}
+                         alt={`University slide ${index + 1}`}
+                        className="carousel-image"
+                        style={{}}
+                        clipPath=""
+                />
+              
               <div className="carousel-overlay" />
               <section
                 className="cardSection"

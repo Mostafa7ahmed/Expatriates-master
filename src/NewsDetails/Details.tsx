@@ -8,6 +8,31 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import defaultImg from "../assets/raes.jpg";
 
+// ✅ SmartImage component
+const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
+  const [imageSrc, setImageSrc] = useState(defaultImg);
+
+  useEffect(() => {
+    if (!src) return;
+
+    const img = new Image();
+    img.src = src;
+
+    img.onload = () => {
+      setImageSrc(src);
+    };
+    // لو فشل التحميل تظل الافتراضية
+  }, [src]);
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      className={className}
+      style={{ ...style, clipPath }}
+    />
+  );
+};
+
 function Details(props) {
   const headerArStyle = {
     fontFamily: "var(--MNF_Heading_AR)",
@@ -161,7 +186,7 @@ useEffect(() => {
               <div className="image carousel">
                 <div className="carousel-track">
                   <div className="carousel-slide">
-                    <img
+                    {/* <img
                       src={currentNews?.newsImg || defaultImg}
                       alt={`${currentNews?.newsDetails.head}`}
                       className="carousel-image"
@@ -169,7 +194,15 @@ useEffect(() => {
                         e.target.onerror = null;
                         e.target.src = defaultImg;
                     }}
-                    />
+                    /> */}
+
+                    <SmartImage
+                        src={currentNews?.newsImg }
+                        alt={`${currentNews?.newsDetails.head}`}
+                        className="carousel-image"
+                        style={{}}
+                        clipPath=""
+                      />
                   </div>
                 </div>
 
