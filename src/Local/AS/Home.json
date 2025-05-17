@@ -71,7 +71,10 @@
 ,
     "searchPlaceholder": "Busca las últimas noticias que te importan"
 
-}
+},
+  "tooltip": {
+    "details": "Haz clic para ver los detalles"
+  }
 }
 
 

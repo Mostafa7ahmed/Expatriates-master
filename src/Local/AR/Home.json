@@ -10,7 +10,7 @@
     "English": "الانجليزية",
     "Spanish": "الاسبانية",
     "code": "ع",
-    "More News":"المزيد من الأخبار"
+    "More News": "المزيد من الأخبار"
   },
   "hero": {
     "title": "نرحب بالطلاب الوافدين في جامعة المنوفيه"
@@ -29,7 +29,6 @@
     "generalGuidelines": "ضوابط نقل المالية",
     "paperServices": "الإرشادات العامة ",
     "stoppingRegistration": "إيقاف التسجيل وتجميد الحسابات",
-
     "importantLinks": "روابط هامة",
     "importantLatestDecisions": "بوابة الجامعات المصرية",
     "importantConditionsTransfers": "المركز الوطني للتعليم الإلكتروني ",
@@ -39,9 +38,8 @@
     "importantGeneralGuidelines": "اتحاد مكتبات الجامعات المصرية",
     "importantPaperServices": "اتحاد الجامعات العربية",
     "importantStoppingRegistration": "المجلس الأعلى للجامعات",
-    "MinistryofHigherEducation":"وزارة التعليم العالي",
-    "NationalAuthorityforQualityAssuranceandAccreditation":"الهيئة الوطنية لضمان الجودة والاعتماد",
-
+    "MinistryofHigherEducation": "وزارة التعليم العالي",
+    "NationalAuthorityforQualityAssuranceandAccreditation": "الهيئة الوطنية لضمان الجودة والاعتماد",
     "serviceGuide": "دليل الخدمات",
     "serviceGuideLatestDecisions": "التقديم للجامعة والقبول",
     "serviceGuideConditionsTransfers": "تنسيق رسوم القبول والدراسة",
@@ -52,9 +50,8 @@
     "serviceGuidePaperServices": "العناية الطبية ",
     "serviceGuideStoppingRegistration": "استخراج تصاريح الإقامة وجوازات السفر",
     "serviceReview": "النادي الاجتماعي والرياضي",
-    "EntertainmentCorner":"زاوية الترفيه",
-
-    "Evaluationcomplaintsandsuggestions":"التقييم و الشكاوي",
+    "EntertainmentCorner": "زاوية الترفيه",
+    "Evaluationcomplaintsandsuggestions": "التقييم و الشكاوي",
     "performanceEvaluation": "تقييم الأداء",
     "generalComplaints": "الشكاوى العامة",
     "sendSuggestions": "أرسل اقتراحاتك",
@@ -63,12 +60,12 @@
   "details": {
     "latest": "آخر الأخبار",
     "page": "الصفحة",
-     "of":"من",
-       "search": "بحث",
-    "noResultsFound": "لم يتم العثور على نتائج"
-,
-       "searchPlaceholder": "ابحث عن آخر الأخبار التي تهمك"
-
-
+    "of": "من",
+    "search": "بحث",
+    "noResultsFound": "لم يتم العثور على نتائج",
+    "searchPlaceholder": "ابحث عن آخر الأخبار التي تهمك"
+  },
+   "tooltip": {
+    "details": "اضغط لرؤية التفاصيل"
   }
 }

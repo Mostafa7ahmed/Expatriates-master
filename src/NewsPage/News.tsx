@@ -20,7 +20,7 @@ function News() {
   const [moveNext, setMoveNext] = useState(false);
   const [movePrevious, setMovePrevious] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isArabic = savedLang?.code === "ar";
   const pStyle = { fontFamily: isArabic ? "var(--MNF_Body_AR)" : "var(--MNF_Body_EN)" };
@@ -40,12 +40,12 @@ const [isLoading, setIsLoading] = useState(false);
         setMoveNext(response.data.moveNext);
         setMovePrevious(response.data.movePrevious);
       })
-    .catch((error) => {
-      console.error("Error fetching news:", error);
-    })
-    .finally(() => {
-      setIsLoading(false);
-    });
+      .catch((error) => {
+        console.error("Error fetching news:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -53,8 +53,14 @@ const [isLoading, setIsLoading] = useState(false);
   }, [langId, currentPage]);
 
   const handleSearch = () => {
-    setCurrentPage(1); 
+    setCurrentPage(1);
     fetchNews(1, searchTerm);
+  };
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages && page !== currentPage) {
+      setCurrentPage(page);
+    }
   };
 
   const handleNextPage = () => {
@@ -65,17 +71,36 @@ const [isLoading, setIsLoading] = useState(false);
     if (movePrevious) setCurrentPage((prev) => prev - 1);
   };
 
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const maxPagesToShow = 5; // Number of page buttons to show
+    const pages = [];
+    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+    if (endPage - startPage + 1 < maxPagesToShow) {
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
   return (
     <div>
       <Header index={4} setFilteredNews={setFilteredNews} display={true} />
 
       <div
-        className="hero-container"
+        className="heroSlider"
         style={{
           backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
           backgroundSize: "cover",
-        }}>
+        }}
+      >
         <div className="hero-image"></div>
         <div className="hero-overlay"></div>
 
@@ -108,22 +133,33 @@ const [isLoading, setIsLoading] = useState(false);
         )}
       </div>
 
-      <div className="pagination-controls">
+      <div className="pagination-controls" style={{ direction: isArabic ? "rtl" : "ltr" }}>
         <button
           onClick={handlePreviousPage}
-        disabled={isLoading || !movePrevious}
-          className="pagination-btn">
+          disabled={isLoading || !movePrevious}
+          className="pagination-btn"
+        >
           <i className={`fa-solid ${isArabic ? "fa-chevron-right" : "fa-chevron-left"}`}></i>
         </button>
 
-        <span>
-          {t("details.page")} {currentPage} {t("details.of")} {totalPages}
-        </span>
+        <div className="page-numbers">
+          {getPageNumbers().map((page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={`pagination-btn ${page === currentPage ? "active" : ""}`}
+              disabled={isLoading}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
 
         <button
           onClick={handleNextPage}
-            disabled={isLoading || !moveNext}
-          className="pagination-btn">
+          disabled={isLoading || !moveNext}
+          className="pagination-btn"
+        >
           <i className={`fa-solid ${isArabic ? "fa-chevron-left" : "fa-chevron-right"}`}></i>
         </button>
       </div>

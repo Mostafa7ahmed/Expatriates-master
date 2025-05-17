@@ -59,11 +59,14 @@
     background-color: #d9d9d94f;
     padding: 20px;
     position: absolute;
-    width: 714px;
+    width: 800px;
     bottom: 60px;
     inset-inline-start: 50px;
     border-radius: 10px;
     height: fit-content;
+}
+.custom-tooltip {
+  white-space: nowrap !important;
 }
 
 .carousel-dots {
@@ -91,7 +94,11 @@
     width: 1rem;
     background-color: white;
 }
-
+.linkArrow{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 @media (max-width: 1024px) {
     .carousel-heading {
         width: 600px;

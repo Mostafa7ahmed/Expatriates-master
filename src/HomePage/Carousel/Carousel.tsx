@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Carousel.css";
 import { useTranslation } from "react-i18next";
 import defaultImg from "../../assets/raes.jpg";
+import ReactTooltip from "react-tooltip";
 
 // ✅ SmartImage component
 const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
@@ -17,7 +18,6 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
     img.onload = () => {
       setImageSrc(src);
     };
-    // لو فشل التحميل تظل الافتراضية
   }, [src]);
 
   return (
@@ -38,23 +38,6 @@ export default function NewsCarousel(props) {
   const ArStyle = { fontFamily: "var(--MNF_Body_AR)" };
   const EnStyle = { fontFamily: "var(--MNF_Body_EN)" };
 
-  const scroll = (direction) => {
-    const card = scrollRef.current?.childNodes[0].childNodes[0];
-
-    if (scrollRef.current && card) {
-      const scrollAmount = card.clientWidth + 24;
-      const newScrollLeft =
-        direction === "left"
-          ? scrollRef.current.scrollLeft - scrollAmount
-          : scrollRef.current.scrollLeft + scrollAmount;
-
-      scrollRef.current.scrollTo({
-        left: newScrollLeft,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
     <div className="news-carousel">
       <div className="news-carousel-container">
@@ -69,31 +52,34 @@ export default function NewsCarousel(props) {
                         index % 2 === 0
                           ? "news-card-text"
                           : "news-card-text news-card-text-right"
-                      }
-                    >
+                      }>
                       <h3
                         className="news-card-title"
-                        style={
-                          savedLang?.code === "ar" ? ArStyle : EnStyle
-                        }
-                      >
-                        {news.newsDetails.head.slice(0, 75)}...
+                        style={savedLang?.code === "ar" ? ArStyle : EnStyle}>
+                        {news.newsDetails.head.length > 75
+                          ? news.newsDetails.head.slice(0, 75) + "..."
+                          : news.newsDetails.head}{" "}
                       </h3>
                       <Link
                         to={`/details/${news.id}`}
                         className="arrowlinks"
-                        onClick={() => window.scrollTo(0, 0)}
-                      >
+                        data-tip={t("tooltip.details")}
+                        onClick={() => window.scrollTo(0, 0)}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           height="24px"
                           viewBox="0 -960 960 960"
                           width="24px"
-                          fill="#1f1f1f"
-                        >
+                          fill="#1f1f1f">
                           <path d="m242-246-42-42 412-412H234v-60h480v480h-60v-378L242-246Z" />
                         </svg>
                       </Link>
+                      <ReactTooltip
+                        place="top"
+                        className="custom-tooltip"
+                        type="dark"
+                        effect="solid"
+                      />
                     </div>
 
                     <div
@@ -101,8 +87,7 @@ export default function NewsCarousel(props) {
                         index % 2 !== 0
                           ? "news-card-image-container"
                           : "news-card-image-container news-card-image-container-right"
-                      }
-                    >
+                      }>
                       <svg width="0" height="0">
                         <clipPath id="img-container">
                           <path

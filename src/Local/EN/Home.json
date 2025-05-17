@@ -51,7 +51,6 @@
     "serviceGuideStoppingRegistration": "Residence Permits & Passports",
     "serviceReview": "Social & Sports Club",
     "EntertainmentCorner": "Entertainment Corner",
-
     "Evaluationcomplaintsandsuggestions": "Evaluation and Suggestions",
     "performanceEvaluation": "Performance Evaluation",
     "generalComplaints": "General Complaints",
@@ -63,10 +62,10 @@
     "page": "Page",
     "of": "of",
     "searchPlaceholder": "Search for the latest news that matters to you",
-      "search": "Search",
-          "noResultsFound": "No results found"
-
-
-
+    "search": "Search",
+    "noResultsFound": "No results found"
+  },
+    "tooltip": {
+    "details": "Click to view details"
   }
 }

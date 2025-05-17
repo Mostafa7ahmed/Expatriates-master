@@ -3,11 +3,14 @@ import "./SectionOne.css";
 import { Link } from "react-router-dom";
 import defaultImg from "../../assets/raes.jpg";
 import  { useState, useEffect  } from "react";
+import { useTranslation } from "react-i18next";
+import ReactTooltip from "react-tooltip";
 
 
 // ✅ SmartImage component
 const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
   const [imageSrc, setImageSrc] = useState(defaultImg);
+
 
   useEffect(() => {
     if (!src) return;
@@ -18,7 +21,6 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
     img.onload = () => {
       setImageSrc(src);
     };
-    // لو فشل التحميل تظل الافتراضية
   }, [src]);
   return (
     <img
@@ -33,6 +35,7 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
 
 function SectionOne({ News, row }) {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
+    const { t } = useTranslation();
 
   const ArStyle = {
     fontFamily: "var(--MNF_Heading_AR)",
@@ -68,14 +71,7 @@ function SectionOne({ News, row }) {
             state={{ news }}
             className="card"
             key={index}>
-            {/* <img
-            src={news.newsImg ? news.newsImg : defaultImg}
-              alt=""
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = defaultImg;
-              }}
-            /> */}
+
 
             
               <SmartImage 
@@ -88,9 +84,13 @@ function SectionOne({ News, row }) {
 
             <div
               className="about-news"
+                 data-tip={t("tooltip.details")}
+
               style={savedLang?.code === "ar" ? arrowAr : arrowEn}>
               <i className="fa-solid fa-arrow-up"></i>
             </div>
+             <ReactTooltip place="top"   className="custom-tooltip"  type="dark" effect="solid" />
+
             <div className="card-overlay"></div>
 
             <div

@@ -176,11 +176,10 @@
 }
 
 .searchCard {
-  background-color: #fff;
+  background-color: #ffffff1a;
   position: absolute;
   width: 80%;
   transform: translateY(45%);
-  bottom: 25%;
   inset-inline-start: 10%;
   box-shadow: 0px 4px 32px 0px #00000026;
   border-radius: 12px;
@@ -194,6 +193,12 @@
   width: 70%;
   flex-grow: 4;
   padding: 10px;
+}
+.heroSlider{
+      position: relative;
+    margin: 16px 64px 80px;
+    border-radius: 10px;
+    height: 250px;
 }
 
 .searchCard .inputSerch input {
@@ -227,6 +232,42 @@
   border-radius: 6px;
   background: #001351;
   color: #fff;
+}
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.pagination-btn {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.pagination-btn:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination-btn.active {
+  background-color: #0013516b;
+  color: white;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 5px;
 }
 
 @media (max-width: 930px) {

@@ -2,6 +2,8 @@ import "./Hero.css";
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import defaultImg from "../../assets/raes.jpg";
+import { Link } from "react-router-dom";
+import ReactTooltip from 'react-tooltip';
 
 // ✅ SmartImage component
 const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
@@ -16,7 +18,6 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
     img.onload = () => {
       setImageSrc(src);
     };
-    // لو فشل التحميل تظل الافتراضية
   }, [src]);
   return (
     <img
@@ -29,21 +30,28 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
 };
 
 function Hero(props) {
-const isFeaturedimages = useMemo(() => {
-  return (props.News
-    .some(news => news.isFeatured) ? props.News.filter(news => news.isFeatured) : props.News)
-   .flatMap(news => {
-     const head = news.newsDetails?.head || "";
-     if (news.newsImg) {
-        return [{
-          url: news.newsImg,
-          head: head
-        }];
+  const isFeaturedimages = useMemo(() => {
+    return (
+      props.News.some((news) => news.isFeatured)
+        ? props.News.filter((news) => news.isFeatured)
+        : props.News
+    ).flatMap((news) => {
+      const head = news.newsDetails?.head || "";
+      const id = news.id;
+
+      if (news.newsImg) {
+        return [
+          {
+            url: news.newsImg,
+            head: head,
+            id: id,
+          },
+        ];
       } else {
-       return [];
+        return [];
       }
     });
-}, [props.News]);
+  }, [props.News]);
 
   const ARstyle: React.CSSProperties = {
     direction: "rtl" as "rtl",
@@ -63,7 +71,7 @@ const isFeaturedimages = useMemo(() => {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   const startAutoSlide = useCallback(() => {
     return setInterval(() => {
@@ -82,9 +90,7 @@ const isFeaturedimages = useMemo(() => {
     <div className="carousel-container">
       <div
         style={savedLang?.code === `ar` ? carouselArStyle : carouselEnStyle}
-        className="carousel"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}>
+        className="carousel">
         <div
           className="carousel-track"
           style={{
@@ -92,30 +98,45 @@ const isFeaturedimages = useMemo(() => {
           }}>
           {isFeaturedimages?.map((item, index) => (
             <div key={index} className="carousel-slide">
-              {/* <img
-                src={item.url || defaultImg}
-                alt={`University slide ${index + 1}`}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = defaultImg;
-                }}
-                className="carousel-image"
-              /> */}
+
 
               <SmartImage
-                        src={item.url}
-                         alt={`University slide ${index + 1}`}
-                        className="carousel-image"
-                        style={{}}
-                        clipPath=""
-                />
-              
+                src={item.url}
+                alt={`University slide ${index + 1}`}
+                className="carousel-image"
+                style={{}}
+                clipPath=""
+              />
+
               <div className="carousel-overlay" />
               <section
                 className="cardSection"
-                style={savedLang?.code === `ar` ? ARstyle : ENstyle}
-              >
-                <h1 className="carousel-heading">{item?.head?.slice(0,150) ?? item?.head}</h1>
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                style={savedLang?.code === `ar` ? ARstyle : ENstyle}>
+                <h1 className="carousel-heading">
+                  {item?.head?.slice(0, 150) ?? item?.head}
+                </h1>
+                <div className="linkArrow">
+                  <Link
+                    to={`/details/${item.id}`}
+                    className="arrowlinks"
+                      data-tip={t("tooltip.details")}
+
+
+                    onClick={() => window.scrollTo(0, 0)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#1f1f1f">
+                      <path d="m242-246-42-42 412-412H234v-60h480v480h-60v-378L242-246Z" />
+                    </svg>
+                  </Link>
+                  <ReactTooltip place="top"   className="custom-tooltip"  type="dark" effect="solid" />
+
+                </div>
               </section>
             </div>
           ))}
