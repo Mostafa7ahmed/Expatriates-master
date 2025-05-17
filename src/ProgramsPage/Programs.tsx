@@ -1,136 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Programs.css";
 import Header from "../HomePage/Header/Header";
 import Footer from "../HomePage/Footer/Footer";
 import { useTranslation } from "react-i18next";
+import { FaGraduationCap, FaArrowRight, FaSearch } from "react-icons/fa";
 
 const Programs = () => {
-  const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
-  const { i18n, t } = useTranslation("Programs");
+  const { t, i18n } = useTranslation("Programs");
+  const lang = i18n.language || "ar";
+  const colleges = t("colleges", { returnObjects: true });
 
-  const pArStyle = {
-    fontFamily: "var(--MNF_Body_AR)",
-  };
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const pEnStyle = {
-    fontFamily: "var(--MNF_Body_EN)",
-  };
+  const filteredColleges = colleges.filter((college) =>
+    college.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    college.programs.some((prog) =>
+      prog.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
 
-  const headArStyle = {
-    fontFamily: "var(--MNF_Heading_AR)",
-  };
-
-  const headEnStyle = {
-    fontFamily: "var(--MNF_Heading_EN)",
-  };
-
-  const allPrograms = [
-    {
-      id: 1,
-      program: t("program.general_admin"),
-      link: "https://mu.menofia.edu.eg/infor/infoHome/ar",
-    },
-    {
-      id: 2,
-      program: t("program.commerce_special"),
-      link: "https://www.menofia.edu.eg/View/12737/ar",
-    },
-    {
-      id: 3,
-      program: t("program.legal_open"),
-      link: "https://www.menofia.edu.eg/View/12738/ar",
-    },
-    {
-      id: 4,
-      program: t("program.blended_arts"),
-      link: "https://www.menofia.edu.eg/View/12739/ar",
-    },
-    {
-      id: 5,
-      program: t("program.medicine_credit"),
-      link: "https://www.menofia.edu.eg/View/69836/ar",
-    },
-    {
-      id: 6,
-      program: t("program.university_housing"),
-      link: "http://alzahraa.mans.edu.eg/studentApplications",
-    },
-    {
-      id: 7,
-      program: t("program.student_inquiry"),
-      link: "https://www.menofia.edu.eg/Students/ar",
-    },
-    {
-      id: 8,
-      program: t("program.ece_program"),
-      link: "https://www.menofia.edu.eg/View/12740/ar",
-    },
-    {
-      id: 9,
-      program: t("program.centers_excellence"),
-      link: "https://www.menofia.edu.eg/View/63344/ar",
-    },
-    {
-      id: 10,
-      program: t("program.eval_center"),
-      link: "http://mu.menofia.edu.eg/CenEv/",
-    },
-    {
-      id: 11,
-      program: t("program.iso_training"),
-      link: "https://www.menofia.edu.eg/View/126087/ar",
-    },
-    {
-      id: 12,
-      program: t("program.engineering_library"),
-      link: "https://www.menofia.edu.eg/View/129655/ar",
-    },
-  ];
+  const clearSearch = () => setSearchTerm("");
 
   return (
-    <div
-      className="programs-container"
-      style={savedLang?.code === `ar` ? headArStyle : headEnStyle}
-    >
-      <Header index={3}></Header>
+    <div className="programs-container">
+      <Header index={3} />
 
-      <div
-        className="program-hero-container"
-        style={{
-          backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="program-hero-overlay"></div>
-        <div
-          className={
-            savedLang?.code === `ar`
-              ? "program-box ar-program-box"
-              : "program-box en-program-box"
-          }
-        >
-          <h2
-            className="programs-text"
-            style={savedLang?.code === `ar` ? pArStyle : pEnStyle}
-          >
-            {t("note.expatriate_activities")}
-          </h2>
-        </div>
-      </div>
-
-      <div className="program-cards">
-        {allPrograms.map((program) => (
-          <div className="program-item" key={program.id}>
-            <h4>{program.program}</h4>
-            <a href={program.link} target="_blank">
-              {t("button.learn_more")}
-            </a>
+      <div className={`programs-container-inner ${lang}`}>
+        {/* Header */}
+        <div className="program-hero">
+          <h2 className="hero-title">{t("note.expatriate_activities")}</h2>
+          <div className="search-bar">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder={t("search_placeholder")}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-        ))}
+        </div>
+
+        {filteredColleges.length === 0 ? (
+          <div className="no-results">
+            <img
+              src="/images/no-results.png"
+              alt="No results"
+              className="no-results-img"
+            />
+            <h3>{t("no_colleges_found")}</h3>
+            <p>{t("no_colleges_desc")}</p>
+            <button className="clear-search-btn" onClick={clearSearch}>
+              {t("clear_search")}
+            </button>
+          </div>
+        ) : (
+          <div className="program-grid">
+            {filteredColleges.map((college, index) => (
+              <div className="program-card" key={index}>
+                <img
+                  src={college.image}
+                  alt={college.name}
+                  className="card-img"
+                />
+                <div className="card-content">
+                  <h3 className="college-title">{college.name}</h3>
+                  <p className="programs-subtitle">{t("programs")}</p>
+                  <ul className="programs-list">
+                    {college.programs.slice(0, 3).map((prog, i) => (
+                      <li key={i}>
+                        <FaGraduationCap /> {prog}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="show-all">
+                    {t("show_all", { count: college.programs.length })}
+                  </p>
+                  <button className="learn-more-btn">
+                    {t("learn_more")} <FaArrowRight />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
