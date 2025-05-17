@@ -269,6 +269,42 @@
   display: flex;
   gap: 5px;
 }
+.pagainationDown{
+  display: flex;
+  justify-content:space-between ;
+  margin: 0 50px ;
+}
+.pageSearch{
+  padding: 5px 20px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+      background-color: #000820da;
+    inset-inline-start: 10%;
+    border-radius: 12px;
+
+}
+.pageSearch .inputPage{
+
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+
+  
+}
+.pageSearch .btnPage{
+white-space: nowrap;
+color: #001351;
+  padding: 10px;
+background-color: #fff;
+border-radius: 5px;
+  border: none;
+
+}
 
 @media (max-width: 930px) {
   .news-page {

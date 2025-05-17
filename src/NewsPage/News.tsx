@@ -6,6 +6,7 @@ import "./News.css";
 import "./SectionTow/SectionTow.css";
 import api from "../Services/api";
 import { useTranslation } from "react-i18next";
+import ReactTooltip from "react-tooltip";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -132,8 +133,8 @@ function News() {
           <SectionOne row="row" News={filteredNews} />
         )}
       </div>
-
-      <div className="pagination-controls" style={{ direction: isArabic ? "rtl" : "ltr" }}>
+      <div className="pagainationDown">
+        <div className="pagination-controls" style={{ direction: isArabic ? "rtl" : "ltr" }}>
         <button
           onClick={handlePreviousPage}
           disabled={isLoading || !movePrevious}
@@ -163,6 +164,18 @@ function News() {
           <i className={`fa-solid ${isArabic ? "fa-chevron-left" : "fa-chevron-right"}`}></i>
         </button>
       </div>
+
+      <div className="pageSearch">
+         
+         <input type="text" className="inputPage" />
+         <button  data-tip='Search By Page'  className="btnPage"><i className="fa-solid fa-magnifying-glass-arrow-right"></i></button>
+         <ReactTooltip place="top"   className="custom-tooltip"  type="dark" effect="solid" />
+
+      </div>
+      
+      </div>
+
+  
 
       <Footer />
     </div>
