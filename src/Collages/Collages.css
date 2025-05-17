@@ -70,7 +70,20 @@ button {
 .en-classification-box {
   left: 60px;
 }
-
+.imageCard{
+  background-color: #ffffff;
+    position: absolute;
+    width: 80%;
+    transform: translateY(100%);
+    inset-inline-start: 10%;
+    box-shadow: 0px 4px 32px 0px #00000026;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    gap: -3px;
+    align-items: center;
+    flex-direction: column;
+}
 .classification-title {
   color: #001351;
   font-size: 40px;

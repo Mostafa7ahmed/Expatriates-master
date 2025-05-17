@@ -19,7 +19,12 @@
   font-size: 2rem;
   margin-bottom: 20px;
 }
-
+.heroSliderpor {
+    position: relative;
+    margin: 0;
+    border-radius: 10px;
+    height: 250px;
+}
 .search-bar {
   max-width: 600px;
   margin: auto;
@@ -56,6 +61,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
   display: flex;
+  max-width: 340px;
   flex-direction: column;
 }
 
@@ -121,7 +127,11 @@
   text-align: center;
   margin-top: 50px;
 }
-
+.no-results i{
+  font-size: 50px;
+  margin-bottom: 15px;
+  color: #1746a2;
+}
 .no-results-img {
   width: 80px;
   opacity: 0.6;
@@ -140,4 +150,61 @@
 
 .clear-search-btn:hover {
   background-color: #1d47b9;
+}
+.program-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 450px; /* ارتفاع ثابت */
+  transition: transform 0.3s;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.programs-subtitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.scrollable-programs {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+      display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.scrollable-programs::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-programs::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
 }

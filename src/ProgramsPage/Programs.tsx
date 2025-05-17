@@ -4,6 +4,8 @@ import Header from "../HomePage/Header/Header";
 import Footer from "../HomePage/Footer/Footer";
 import { useTranslation } from "react-i18next";
 import { FaGraduationCap, FaArrowRight, FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import ReactTooltip from "react-tooltip";
 
 const Programs = () => {
   const { t, i18n } = useTranslation("Programs");
@@ -25,32 +27,40 @@ const Programs = () => {
     <div className="programs-container">
       <Header index={3} />
 
-      <div className={`programs-container-inner ${lang}`}>
-        {/* Header */}
-        <div className="program-hero">
-          <h2 className="hero-title">{t("note.expatriate_activities")}</h2>
-          <div className="search-bar">
-            <FaSearch className="search-icon" />
-            <input
+      
+      <div
+        className="heroSliderpor"
+        style={{
+          backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
+          backgroundPosition: "top",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="hero-image"></div>
+        <div className="hero-overlay"></div>
+
+        <div className="searchCard">
+          <div className="inputSerch">
+        <input
               type="text"
-              placeholder={t("search_placeholder")}
-              value={searchTerm}
+                placeholder={t("note.searchPlaceholder")}
+               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
+          
         </div>
+      </div>
+
+      <div className={`programs-container-inner ${lang}`}>
+ 
 
         {filteredColleges.length === 0 ? (
           <div className="no-results">
-            <img
-              src="/images/no-results.png"
-              alt="No results"
-              className="no-results-img"
-            />
-            <h3>{t("no_colleges_found")}</h3>
-            <p>{t("no_colleges_desc")}</p>
+         <i className="fas fa-search fs-1 text-5xl text-gray-300 mb-4"></i>
+            <h3>{t("note.No colleges found")}</h3>
             <button className="clear-search-btn" onClick={clearSearch}>
-              {t("clear_search")}
+              {t("note.Clear Search")}
             </button>
           </div>
         ) : (
@@ -64,20 +74,37 @@ const Programs = () => {
                 />
                 <div className="card-content">
                   <h3 className="college-title">{college.name}</h3>
-                  <p className="programs-subtitle">{t("programs")}</p>
-                  <ul className="programs-list">
-                    {college.programs.slice(0, 3).map((prog, i) => (
-                      <li key={i}>
-                        <FaGraduationCap /> {prog}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="show-all">
-                    {t("show_all", { count: college.programs.length })}
-                  </p>
-                  <button className="learn-more-btn">
-                    {t("learn_more")} <FaArrowRight />
-                  </button>
+                  <p className="programs-subtitle">{t("note.programs")}</p>
+                 <ul className="programs-list scrollable-programs">
+            {college.programs.map((prog, i) => (
+              <li key={i}>
+                <FaGraduationCap /> {prog}
+              </li>
+            ))}
+            
+          </ul>
+            <div className="linkArrow">
+                  <Link
+                    to={college.link}
+                    className="arrowlinks"
+                      data-tip={t("tooltip.details")}
+
+
+                    onClick={() => window.scrollTo(0, 0)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#1f1f1f">
+                      <path d="m242-246-42-42 412-412H234v-60h480v480h-60v-378L242-246Z" />
+                    </svg>
+                  </Link>
+                  <ReactTooltip place="top"   className="custom-tooltip"  type="dark" effect="solid" />
+
+                </div>
+                    
+             
                 </div>
               </div>
             ))}

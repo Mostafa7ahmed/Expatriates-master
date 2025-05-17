@@ -93,22 +93,23 @@ const Sector = () => {
   return (
     <div className="page-container">
       <Header index={2}></Header>
-
       <div
-        className="hero-container"
+        className="heroSlider"
         style={{
-          backgroundImage:
-            "url(https://upload.wikimedia.org/wikipedia/commons/2/2c/%D8%A7%D8%AF%D8%A7%D8%B1%D8%A9_%D8%AC%D8%A7%D9%85%D8%B9%D8%A9_%D8%A7%D9%84%D9%85%D9%86%D9%88%D9%81%D9%8A%D8%A9.jpg)",
-          backgroundPosition: "buttom",
+          backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
+          backgroundPosition: "top",
           backgroundSize: "cover",
         }}
       >
         <div className="hero-image"></div>
         <div className="hero-overlay"></div>
-        <div className={savedLang?.code === `ar` ? "classification-box ar-classification-box" : "classification-box en-classification-box"}>
-          <h2 className="classification-title" style={savedLang?.code === `ar` ? headArStyle : headEnStyle}>{t("classification")}</h2>
-          <p className="classification-text" style={savedLang?.code === `ar` ? pArStyle : pEnStyle}>{t("classification-desc")}</p>
+              <div className="imageCard">
+                  <h2 className="classification-title" style={savedLang?.code === `ar` ? headArStyle : headEnStyle}>{t("classification")}</h2>
+            <p className="classification-text" style={savedLang?.code === `ar` ? pArStyle : pEnStyle}>{t("classification-desc")}</p>
+
+          
         </div>
+
       </div>
 
       <div className="title-container">
