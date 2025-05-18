@@ -13,6 +13,7 @@ const ITEMS_PER_PAGE = 10;
 function News() {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const { t } = useTranslation();
+const [inputPage, setInputPage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredNews, setFilteredNews] = useState([]);
@@ -165,13 +166,36 @@ function News() {
         </button>
       </div>
 
-      <div className="pageSearch">
-         
-         <input type="text" className="inputPage" />
-         <button  data-tip='Search By Page'  className="btnPage"><i className="fa-solid fa-magnifying-glass-arrow-right"></i></button>
-         <ReactTooltip place="top"   className="custom-tooltip"  type="dark" effect="solid" />
+    <div className="pageSearch">
+  <input
+    type="number"
+    className="inputPage"
+    value={inputPage}
+    onChange={(e) => setInputPage(e.target.value)}
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        const page = parseInt(inputPage);
+        if (page >= 1 && page <= totalPages) {
+          setCurrentPage(page);
+        }
+      }
+    }}
+  />
+  <button
+    data-tip="Search By Page"
+    className="btnPage"
+    onClick={() => {
+      const page = parseInt(inputPage);
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    }}
+  >
+    <i className="fa-solid fa-magnifying-glass-arrow-right"></i>
+  </button>
+  <ReactTooltip place="top" className="custom-tooltip" type="dark" effect="solid" />
+</div>
 
-      </div>
       
       </div>
 
