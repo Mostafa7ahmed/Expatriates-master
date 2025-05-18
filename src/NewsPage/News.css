@@ -305,7 +305,16 @@ border-radius: 5px;
   border: none;
 
 }
+.pages{
+  white-space: nowrap;
+  color: #fff;
+  font-size: 18px;
+  font-family: var(--MNF_Body_EN);
 
+}
+.pages span{
+    font-weight: 800;
+}
 @media (max-width: 930px) {
   .news-page {
     margin: 10px 36px;

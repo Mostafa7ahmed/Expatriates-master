@@ -13,7 +13,7 @@ const ITEMS_PER_PAGE = 10;
 function News() {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const { t } = useTranslation();
-const [inputPage, setInputPage] = useState("");
+  const [inputPage, setInputPage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredNews, setFilteredNews] = useState([]);
@@ -25,8 +25,12 @@ const [inputPage, setInputPage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const isArabic = savedLang?.code === "ar";
-  const pStyle = { fontFamily: isArabic ? "var(--MNF_Body_AR)" : "var(--MNF_Body_EN)" };
-  const headStyle = { fontFamily: isArabic ? "var(--MNF_Heading_AR)" : "var(--MNF_Heading_EN)" };
+  const pStyle = {
+    fontFamily: isArabic ? "var(--MNF_Body_AR)" : "var(--MNF_Body_EN)",
+  };
+  const headStyle = {
+    fontFamily: isArabic ? "var(--MNF_Heading_AR)" : "var(--MNF_Heading_EN)",
+  };
 
   const fetchNews = (page = 1, term = "") => {
     const query = `news?LanguageId=${langId}&PageIndex=${page}&PageSize=${ITEMS_PER_PAGE}${
@@ -98,11 +102,11 @@ const [inputPage, setInputPage] = useState("");
       <div
         className="heroSlider"
         style={{
-          backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
+          backgroundImage:
+            "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
           backgroundPosition: "top",
           backgroundSize: "cover",
-        }}
-      >
+        }}>
         <div className="hero-image"></div>
         <div className="hero-overlay"></div>
 
@@ -135,71 +139,79 @@ const [inputPage, setInputPage] = useState("");
         )}
       </div>
       <div className="pagainationDown">
-        <div className="pagination-controls" style={{ direction: isArabic ? "rtl" : "ltr" }}>
-        <button
-          onClick={handlePreviousPage}
-          disabled={isLoading || !movePrevious}
-          className="pagination-btn"
-        >
-          <i className={`fa-solid ${isArabic ? "fa-chevron-right" : "fa-chevron-left"}`}></i>
-        </button>
+        <div
+          className="pagination-controls"
+          style={{ direction: isArabic ? "rtl" : "ltr" }}>
+          <button
+            onClick={handlePreviousPage}
+            disabled={isLoading || !movePrevious}
+            className="pagination-btn">
+            <i
+              className={`fa-solid ${
+                isArabic ? "fa-chevron-right" : "fa-chevron-left"
+              }`}></i>
+          </button>
 
-        <div className="page-numbers">
-          {getPageNumbers().map((page) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              className={`pagination-btn ${page === currentPage ? "active" : ""}`}
-              disabled={isLoading}
-            >
-              {page}
-            </button>
-          ))}
+          <div className="page-numbers">
+            {getPageNumbers().map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`pagination-btn ${
+                  page === currentPage ? "active" : ""
+                }`}
+                disabled={isLoading}>
+                {page}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={handleNextPage}
+            disabled={isLoading || !moveNext}
+            className="pagination-btn">
+            <i
+              className={`fa-solid ${
+                isArabic ? "fa-chevron-left" : "fa-chevron-right"
+              }`}></i>
+          </button>
         </div>
 
-        <button
-          onClick={handleNextPage}
-          disabled={isLoading || !moveNext}
-          className="pagination-btn"
-        >
-          <i className={`fa-solid ${isArabic ? "fa-chevron-left" : "fa-chevron-right"}`}></i>
-        </button>
+        <div className="pageSearch">
+           <p className="pages">{t("details.page")} : <span>{totalPages}</span></p>
+          <input
+            type="number"
+            className="inputPage"
+            value={inputPage}
+            onChange={(e) => setInputPage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                const page = parseInt(inputPage);
+                if (page >= 1 && page <= totalPages) {
+                  setCurrentPage(page);
+                }
+              }
+            }}
+          />
+          <button
+            data-tip="Search By Page"
+            className="btnPage"
+            onClick={() => {
+              const page = parseInt(inputPage);
+              if (page >= 1 && page <= totalPages) {
+                setCurrentPage(page);
+              }
+            }}>
+            <i className="fa-solid fa-magnifying-glass-arrow-right"></i>
+          </button>
+          <ReactTooltip
+            place="top"
+            className="custom-tooltip"
+            type="dark"
+            effect="solid"
+          />
+        </div>
       </div>
-
-    <div className="pageSearch">
-  <input
-    type="number"
-    className="inputPage"
-    value={inputPage}
-    onChange={(e) => setInputPage(e.target.value)}
-    onKeyDown={(e) => {
-      if (e.key === "Enter") {
-        const page = parseInt(inputPage);
-        if (page >= 1 && page <= totalPages) {
-          setCurrentPage(page);
-        }
-      }
-    }}
-  />
-  <button
-    data-tip="Search By Page"
-    className="btnPage"
-    onClick={() => {
-      const page = parseInt(inputPage);
-      if (page >= 1 && page <= totalPages) {
-        setCurrentPage(page);
-      }
-    }}
-  >
-    <i className="fa-solid fa-magnifying-glass-arrow-right"></i>
-  </button>
-  <ReactTooltip place="top" className="custom-tooltip" type="dark" effect="solid" />
-</div>
-
-      
-      </div>
-
-  
 
       <Footer />
     </div>
