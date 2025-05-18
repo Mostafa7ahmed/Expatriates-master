@@ -74,7 +74,7 @@ button {
   background-color: #ffffff;
     position: absolute;
     width: 80%;
-    transform: translateY(100%);
+    transform: translateY(75%);
     inset-inline-start: 10%;
     box-shadow: 0px 4px 32px 0px #00000026;
     border-radius: 12px;
