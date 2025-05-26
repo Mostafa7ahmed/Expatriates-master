@@ -116,7 +116,7 @@ useEffect(() => {
           style={closeStyle}></i>
         <ul>
           {navLinks.map((link, index) => (
-            <li key={index} className={props.index === index ? "active" : ""}>
+            <li key={index} className={location.pathname === link.link ? "active" : ""}>
               <Link
                 to={link.link}
                 style={savedLang.code === "ar" ? ARstyle : ENstyle}>
