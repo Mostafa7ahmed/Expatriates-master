@@ -92,8 +92,7 @@ const Sector = () => {
 
   return (
     <div className="page-container">
-      <Header index={2}></Header>
-      <div
+-      <div
         className="heroSlider"
         style={{
           backgroundImage: "url(https://portaltest.menofia.edu.eg/images/AboutUniversity.jpg)",
@@ -194,7 +193,6 @@ const Sector = () => {
         </div>
       </section>
 
-      <Footer></Footer>
     </div>
   );
 };

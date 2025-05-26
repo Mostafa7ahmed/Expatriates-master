@@ -102,6 +102,15 @@
     background-color: #f1f8fb;
     border-radius: 10px;
     display: none;
+        width: 142px;
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.textLang{
+    font-weight: 600;
+    color: black;
+    margin-left: 10px;
 }
 
 .search-container {

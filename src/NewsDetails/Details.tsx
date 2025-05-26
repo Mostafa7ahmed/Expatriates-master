@@ -146,11 +146,6 @@ useEffect(() => {
 
   return (
     <div>
-      <Header
-        index={4}
-        setFilteredNews={setFilteredNews}
-        setCurrentNews={setCurrentNews}
-      />
 
       <main className="main">
         <div className="containerr">
@@ -286,7 +281,6 @@ useEffect(() => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }

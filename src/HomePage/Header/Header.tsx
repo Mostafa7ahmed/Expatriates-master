@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/image.png";
 import api from "../../Services/api";
@@ -28,27 +28,28 @@ const Header = (props) => {
   const ENstyle = { fontFamily: "var(--MNF_Body_EN)" };
   const closeStyle =
     savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
+const [languages, setLanguages] = useState([]);
 
-  const languages = [
-    {
-      code: "ar",
-      name: t("header.Arabic"),
-      id: 1,
-      flag: eg,
-    },
-    {
-      code: "en",
-      name: t("header.English"),
-      id: 2,
-      flag: us,
-    },
-    {
-      code: "as",
-      name: t("header.Spanish"),
-      id: 3,
-      flag: es,
-    },
-  ];
+  // const languages = [
+  //   {
+  //     code: "ar",
+  //     name: t("header.Arabic"),
+  //     id: 1,
+  //     flag: eg,
+  //   },
+  //   {
+  //     code: "en",
+  //     name: t("header.English"),
+  //     id: 2,
+  //     flag: us,
+  //   },
+  //   {
+  //     code: "as",
+  //     name: t("header.Spanish"),
+  //     id: 3,
+  //     flag: es,
+  //   },
+  // ];
 
   const navLinks = [
     { name: t("header.home"), link: "/" },
@@ -70,7 +71,7 @@ const Header = (props) => {
     setLanguage(lang.code);
     localStorage.setItem("lang", JSON.stringify(lang));
     changeAllLanguage(lang.code);
-    window.location.reload(); // يعمل إعادة تحميل للصفحة بعد تغيير اللغة
+    window.location.reload(); 
   };
 
   const toggleLangDropdown = () => setLangActive((prev) => !prev);
@@ -82,7 +83,19 @@ const Header = (props) => {
       changeAllLanguage(langObj.code);
     }
   }, [language]);
-
+const fetchLanguages = async () => {
+  try {
+    const response = await api.get("/languages");
+    if (response?.data?.success) {
+      setLanguages(response.data.result);
+    }
+  } catch (error) {
+    console.error("Error fetching languages:", error);
+  }
+};
+useEffect(() => {
+  fetchLanguages();
+}, []);
   useEffect(() => {
     changeAllLanguage(savedLang.code);
   }, []);
@@ -104,11 +117,11 @@ const Header = (props) => {
         <ul>
           {navLinks.map((link, index) => (
             <li key={index} className={props.index === index ? "active" : ""}>
-              <a
-                href={link.link}
+              <Link
+                to={link.link}
                 style={savedLang.code === "ar" ? ARstyle : ENstyle}>
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -134,7 +147,7 @@ const Header = (props) => {
                   width="20"
                   height="20"
                 />
-                <span> {lang.name}</span>
+                <span className="textLang"> {lang.name}</span>
               </div>
             ))}
           </div>

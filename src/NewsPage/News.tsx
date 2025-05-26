@@ -97,7 +97,6 @@ function News() {
 
   return (
     <div>
-      <Header index={4} setFilteredNews={setFilteredNews} display={true} />
 
       <div
         className="heroSlider"
@@ -213,7 +212,6 @@ function News() {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 }

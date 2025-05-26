@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header/Header";
 import Hero from "./Hero/Hero";
 import About from "./About/About";
 import Carousel from "./Carousel/Carousel";
-import Footer from "./Footer/Footer";
 import api from "../Services/api" ;
-import i18n from "../i18n";
 import { useTranslation } from 'react-i18next';
 
 
@@ -30,11 +27,9 @@ useEffect(() => {
 
   return (
     <div>
-      <Header index={0}  />
       <Hero News={filteredNews}/>
       <About />
       <Carousel News={filteredNews}/>
-      <Footer />
     </div>
   );
 }

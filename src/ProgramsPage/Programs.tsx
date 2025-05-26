@@ -24,10 +24,7 @@ const Programs = () => {
   const clearSearch = () => setSearchTerm("");
 
   return (
-    <div className="programs-container">
-      <Header index={3} />
-
-      
+    <div className="programs-container">      
       <div
         className="heroSliderpor"
         style={{
@@ -112,7 +109,6 @@ const Programs = () => {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 };

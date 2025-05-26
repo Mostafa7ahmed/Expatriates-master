@@ -5,10 +5,13 @@ import Details from "./NewsDetails/Details";
 import ContactUs from "./ContactUsPage/ContactUs"
 import Collage from "./Collages/Collages"
 import Programs from "./ProgramsPage/Programs";
+import Header from "./HomePage/Header/Header";
+import Footer from "./HomePage/Footer/Footer";
 
 function App() {
   return (
     <Router>
+      <Header  index={2}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
@@ -17,7 +20,10 @@ function App() {
         <Route path="/collage" element={<Collage />} />
         <Route path="/programs" element={<Programs />} />
       </Routes>
+            <Footer />
+
     </Router>
+    
   );
 }
 

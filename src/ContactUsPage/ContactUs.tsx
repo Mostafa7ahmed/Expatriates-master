@@ -211,8 +211,6 @@ function ContactUs(props) {
 
   return (
     <div>
-      <Header index={5}></Header>
-
       <div
         className="contact-page"
         style={savedLang?.code === `ar` ? pArStyle : pEnStyle}>
@@ -301,7 +299,6 @@ function ContactUs(props) {
         </div>
       </div>
 
-      <Footer></Footer>
     </div>
   );
 }
