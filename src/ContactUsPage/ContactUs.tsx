@@ -95,7 +95,7 @@ function ContactUs(props) {
 
     try {
       const response = await axios.post(
-        "http://193.227.24.31:5050/api/v1/mail/send",
+        "https://stage.menofia.edu.eg/api/v1/mail/send",
         messageData,
         {
           headers: {
