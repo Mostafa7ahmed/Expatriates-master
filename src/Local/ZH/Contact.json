@@ -1,0 +1,25 @@
+{
+    "contact-us": "Contact Us",
+    "contact-desc": "We are here to help and answer your inquiries.",
+    "suggestions": "Suggestions",
+    "suggestions-desc": "We welcome your suggestions to improve our services.",
+    "complaints": "Complaints",
+    "complaints-desc": "We're sorry for your bad experience. Please tell us what happened so we can help you.",
+    "ratings": "Ratings",
+    "ratings-desc": "Share your experience with us",
+    "rating": "Rating",
+    "email": "Email",
+    "email-placeholder": "Enter your email",
+    "message": "Message text",
+    "message-placeholder-suggestions": "Enter your suggestion here...",
+    "message-placeholder-complaints": "Explain your issue in detail...",
+    "message-placeholder-ratings": "Tell us more about your experience...",
+    "submit": "Submit",
+    "sending": "Sending...",
+    "phone": "Phone Number",
+    "address": "Address",
+    "suggestions-done": "Your suggestion has been submitted successfully. Thank you for contacting us!",
+    "complaints-done": "Your complaint has been submitted successfully. We will contact you soon!",
+    "ratings-done": "Your review has been submitted successfully. Thank you for your time!"
+  }
+  
