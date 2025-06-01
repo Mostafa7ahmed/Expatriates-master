@@ -1,23 +1,22 @@
 {
   "header": {
     "home": "Home",
-    "MNF Uni": "MNF University",
-    "Colleges": "Colleges",
-    "Programs": "Programs",
-    "News": "News",
-    "contact US": "Contact Us",
-    "Arabic": "Arabic",
-    "English": "English",
-    "Spanish": "Spanish",
-    "code": "EN",
-    "More News": "More News"
-  },
-  "hero": {
-    "title": "Welcome to MNF University for International Students"
+    "MNF Uni": "Università MNF",
+    "Colleges": "Facoltà",
+    "Programs": "Programmi",
+    "News": "Notizie",
+    "contact US": "Contattaci",
+    "Arabic": "Arabo",
+    "English": "Inglese",
+    "Spanish": "Spagnolo",
+    "code": "IT",
+    "More News": "Altre notizie"
+  },  "hero": {
+    "title": "Benvenuti all'Università MNF per Studenti Internazionali"
   },
   "about": {
-    "title": "International Students Affairs Office",
-    "subtitle": "Providing support for international students in registration, visas, and cultural integration to ensure a smooth transition and an enjoyable academic journey at MNF University."
+    "title": "Ufficio Affari Studenti Internazionali",
+    "subtitle": "Forniamo supporto agli studenti internazionali per iscrizione, visti e integrazione culturale per garantire una transizione agevole e un percorso accademico piacevole all'Università MNF."
   },
   "footer": {
     "keyInformation": "Key Information",

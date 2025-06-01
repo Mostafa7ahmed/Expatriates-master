@@ -1,3 +1,9 @@
 {
-
+  "pageTitle": "Détails de l'actualité",
+  "backToNews": "Retour aux actualités",
+  "publishedOn": "Publié le",
+  "shareNews": "Partager cette actualité",
+  "relatedNews": "Actualités connexes",
+  "readMore": "Lire la suite",
+  "noContent": "Aucun contenu disponible"
 }

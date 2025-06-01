@@ -1,3 +1,9 @@
 {
-
+  "pageTitle": "جزئیات خبر",
+  "backToNews": "بازگشت به اخبار",
+  "publishedOn": "تاریخ انتشار",
+  "shareNews": "اشتراک‌گذاری این خبر",
+  "relatedNews": "اخبار مرتبط",
+  "readMore": "ادامه مطلب",
+  "noContent": "محتوایی موجود نیست"
 }

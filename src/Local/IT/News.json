@@ -1,0 +1,20 @@
+{
+  "title": "Ultime Notizie",
+  "description": "Rimani aggiornato con le ultime notizie ed eventi",
+  "newsItems": [
+    {
+      "id": 1,
+      "title": "Annuncio Universitario",
+      "date": "2025-06-01",
+      "summary": "Importante annuncio universitario",
+      "content": "Ultimi aggiornamenti dall'amministrazione universitaria"
+    },
+    {
+      "id": 2,
+      "title": "Risultati Accademici",
+      "date": "2025-05-30",
+      "summary": "Risultati e premi degli studenti",
+      "content": "Celebriamo il successo dei nostri studenti"
+    }
+  ]
+}

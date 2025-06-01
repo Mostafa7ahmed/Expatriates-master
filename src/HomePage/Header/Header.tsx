@@ -30,26 +30,7 @@ const Header = (props) => {
     savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
 const [languages, setLanguages] = useState([]);
 
-  // const languages = [
-  //   {
-  //     code: "ar",
-  //     name: t("header.Arabic"),
-  //     id: 1,
-  //     flag: eg,
-  //   },
-  //   {
-  //     code: "en",
-  //     name: t("header.English"),
-  //     id: 2,
-  //     flag: us,
-  //   },
-  //   {
-  //     code: "as",
-  //     name: t("header.Spanish"),
-  //     id: 3,
-  //     flag: es,
-  //   },
-  // ];
+
 
   const navLinks = [
     { name: t("header.home"), link: "/" },

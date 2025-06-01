@@ -1,3 +1,9 @@
 {
-
+  "pageTitle": "ニュース詳細",
+  "backToNews": "ニュース一覧に戻る",
+  "publishedOn": "公開日",
+  "shareNews": "このニュースを共有",
+  "relatedNews": "関連ニュース",
+  "readMore": "続きを読む",
+  "noContent": "コンテンツがありません"
 }

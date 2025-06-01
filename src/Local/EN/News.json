@@ -1,0 +1,20 @@
+{
+  "title": "Latest News",
+  "description": "Stay updated with the latest news and events",
+  "newsItems": [
+    {
+      "id": 1,
+      "title": "University Announcement",
+      "date": "2025-06-01",
+      "summary": "Important university announcement",
+      "content": "Latest updates from the university administration"
+    },
+    {
+      "id": 2,
+      "title": "Academic Achievement",
+      "date": "2025-05-30",
+      "summary": "Student achievements and awards",
+      "content": "Celebrating our students' success"
+    }
+  ]
+}

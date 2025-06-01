@@ -1,0 +1,20 @@
+{
+  "title": "Aktuelle Nachrichten",
+  "description": "Bleiben Sie über die neuesten Nachrichten und Veranstaltungen informiert",
+  "newsItems": [
+    {
+      "id": 1,
+      "title": "Universitätsankündigung",
+      "date": "2025-06-01",
+      "summary": "Wichtige Universitätsankündigung",
+      "content": "Aktuelle Updates der Universitätsverwaltung"
+    },
+    {
+      "id": 2,
+      "title": "Akademische Leistung",
+      "date": "2025-05-30",
+      "summary": "Studentische Erfolge und Auszeichnungen",
+      "content": "Wir feiern den Erfolg unserer Studenten"
+    }
+  ]
+}

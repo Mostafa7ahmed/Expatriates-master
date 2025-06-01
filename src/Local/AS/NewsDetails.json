@@ -1,3 +1,9 @@
 {
-
+  "pageTitle": "新闻详情",
+  "backToNews": "返回新闻列表",
+  "publishedOn": "发布日期",
+  "shareNews": "分享新闻",
+  "relatedNews": "相关新闻",
+  "readMore": "阅读更多",
+  "noContent": "暂无内容"
 }

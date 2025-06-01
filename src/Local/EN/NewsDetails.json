@@ -1,3 +1,9 @@
 {
-
+  "pageTitle": "News Details",
+  "backToNews": "Back to News",
+  "publishedOn": "Published on",
+  "shareNews": "Share this news",
+  "relatedNews": "Related News",
+  "readMore": "Read More",
+  "noContent": "No content available"
 }
