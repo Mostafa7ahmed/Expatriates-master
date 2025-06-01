@@ -1,3 +1,9 @@
 {
-
+  "pageTitle": "Haber Detayları",
+  "backToNews": "Haberlere Dön",
+  "publishedOn": "Yayınlanma Tarihi",
+  "shareNews": "Bu haberi paylaş",
+  "relatedNews": "İlgili Haberler",
+  "readMore": "Devamını Oku",
+  "noContent": "İçerik mevcut değil"
 }

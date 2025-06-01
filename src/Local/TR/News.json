@@ -1,0 +1,20 @@
+{
+  "title": "Son Haberler",
+  "description": "En son haberler ve etkinliklerden haberdar olun",
+  "newsItems": [
+    {
+      "id": 1,
+      "title": "Üniversite Duyurusu",
+      "date": "2025-06-01",
+      "summary": "Önemli üniversite duyurusu",
+      "content": "Üniversite yönetiminden son güncellemeler"
+    },
+    {
+      "id": 2,
+      "title": "Akademik Başarı",
+      "date": "2025-05-30",
+      "summary": "Öğrenci başarıları ve ödülleri",
+      "content": "Öğrencilerimizin başarısını kutluyoruz"
+    }
+  ]
+}

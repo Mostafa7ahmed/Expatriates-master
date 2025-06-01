@@ -74,6 +74,22 @@ import faPrograms from "./Local/FA/Programs.json";
 import faNews from "./Local/FA/News.json";
 import faNewsDetails from "./Local/FA/NewsDetails.json";
 
+// Turkish (TR) imports
+import trHome from './Local/TR/Home.json';
+import trCollege from "./Local/TR/College.json";
+import trContact from "./Local/TR/Contact.json";
+import trPrograms from "./Local/TR/Programs.json";
+import trNews from "./Local/TR/News.json";
+import trNewsDetails from "./Local/TR/NewsDetails.json";
+
+// Chinese (ZH) imports
+import zhHome from './Local/ZH/Home.json';
+import zhCollege from "./Local/ZH/College.json";
+import zhContact from "./Local/ZH/Contact.json";
+import zhPrograms from "./Local/ZH/Programs.json";
+import zhNews from "./Local/ZH/News.json";
+import zhNewsDetails from "./Local/ZH/NewsDetails.json";
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -150,6 +166,22 @@ i18n
         Programs: faPrograms,
         News: faNews,
         NewsDetails: faNewsDetails
+      },
+      tr: {
+        translation: trHome,
+        Contact: trContact,
+        College: trCollege,
+        Programs: trPrograms,
+        News: trNews,
+        NewsDetails: trNewsDetails
+      },
+      ch: {
+        translation: zhHome,
+        Contact: zhContact,
+        College: zhCollege,
+        Programs: zhPrograms,
+        News: zhNews,
+        NewsDetails: zhNewsDetails
       }
     },
     fallbackLng: 'en',
