@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/image.png";
 import api from "../../Services/api";
@@ -12,6 +12,7 @@ import es from "../../assets/flags/es.webp";
 const Header = (props) => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const savedLang = JSON.parse(
     localStorage.getItem("lang") || '{"code": "en", "id": 2}'
@@ -24,13 +25,16 @@ const Header = (props) => {
   const [showInput, setShowInput] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([4, 4]);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("token"))
+  );
+  const [userMenuActive, setUserMenuActive] = useState(false);
+
   const ARstyle = { fontFamily: "var(--MNF_Body_AR)", fontSize: "14px" };
   const ENstyle = { fontFamily: "var(--MNF_Body_EN)" };
   const closeStyle =
     savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
-const [languages, setLanguages] = useState([]);
-
-
+  const [languages, setLanguages] = useState([]);
 
   const navLinks = [
     { name: t("header.home"), link: "/" },
@@ -46,8 +50,6 @@ const [languages, setLanguages] = useState([]);
     document.documentElement.dir = lng === "ar" ? "rtl" : "ltr";
   };
 
-
-
   const changeLanguage = (lang) => {
     setLanguage(lang.code);
     localStorage.setItem("lang", JSON.stringify(lang));
@@ -57,6 +59,14 @@ const [languages, setLanguages] = useState([]);
 
   const toggleLangDropdown = () => setLangActive((prev) => !prev);
   const toggleMenu = () => setMenuActive((prev) => !prev);
+  const toggleUserMenu = () => setUserMenuActive((prev) => !prev);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setUserMenuActive(false);
+    navigate("/");
+  };
 
   useEffect(() => {
     const langObj = languages.find((l) => l.code === language);
@@ -64,21 +74,32 @@ const [languages, setLanguages] = useState([]);
       changeAllLanguage(langObj.code);
     }
   }, [language]);
-const fetchLanguages = async () => {
-  try {
-    const response = await api.get("/languages");
-    if (response?.data?.success) {
-      setLanguages(response.data.result);
+
+  const fetchLanguages = async () => {
+    try {
+      const response = await api.get("/languages");
+      if (response?.data?.success) {
+        setLanguages(response.data.result);
+      }
+    } catch (error) {
+      console.error("Error fetching languages:", error);
     }
-  } catch (error) {
-    console.error("Error fetching languages:", error);
-  }
-};
-useEffect(() => {
-  fetchLanguages();
-}, []);
+  };
+
+  useEffect(() => {
+    fetchLanguages();
+  }, []);
+
   useEffect(() => {
     changeAllLanguage(savedLang.code);
+  }, []);
+
+  useEffect(() => {
+    const handleStorage = () => {
+      setIsLoggedIn(Boolean(localStorage.getItem("token")));
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   return (
@@ -132,6 +153,32 @@ useEffect(() => {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="nav-auth-container">
+          {isLoggedIn ? (
+            <div className="user-wrapper" onClick={toggleUserMenu}>
+              <i className="fa-solid fa-user"></i>
+              <div
+                className={
+                  userMenuActive
+                    ? "user-dropdown user-active"
+                    : "user-dropdown"
+                }>
+                <Link to="/dashboard" onClick={() => setUserMenuActive(false)}>
+                  {t("header.dashboard", "Dashboard")}
+                </Link>
+                <span onClick={handleLogout}>{t("header.logout", "Logout")}</span>
+              </div>
+            </div>
+          ) : (
+            <button
+              className="login-btn"
+              onClick={() => navigate("/login")}
+            >
+              {t("header.login", "Login")}
+            </button>
+          )}
         </div>
 
         <i className="fa-solid fa-bars menu" onClick={toggleMenu}></i>

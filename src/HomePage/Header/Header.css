@@ -356,3 +356,62 @@ width: 100%;
 .result-item:last-child {
   border-bottom: none;
 }
+
+/* Add styles for auth buttons and dropdown */
+.nav-auth-container {
+  position: relative;
+}
+
+.login-btn {
+  padding: 6px 14px;
+  background-color: #F66B15;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.user-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  background-color: #f1f8fb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+  z-index: 1000;
+}
+
+.user-dropdown a,
+.user-dropdown span {
+  color: black;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user-dropdown span:hover,
+.user-dropdown a:hover {
+  text-decoration: underline;
+}
+
+.user-dropdown.user-active {
+  display: flex;
+}
+
+/* Responsive: adjust dropdown direction for RTL */
+html[dir="rtl"] .user-dropdown {
+  right: auto;
+  left: 0;
+}
