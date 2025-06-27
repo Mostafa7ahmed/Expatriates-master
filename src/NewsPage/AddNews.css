@@ -1,0 +1,191 @@
+.add-news-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.add-news-container h2 {
+  margin-bottom: 24px;
+  font-family: var(--MNF_Heading_EN);
+  font-size: 28px;
+  text-align: center;
+}
+
+.add-news-container h3 {
+  font-family: var(--MNF_Heading_EN);
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.main-info,
+.translations {
+  margin-bottom: 32px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-family: var(--MNF_Body_EN);
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: var(--MNF_Body_EN);
+  font-size: 14px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.translation-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #F66B15;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #d95c0f;
+}
+
+.add-news-container button:not(.add-news-btn) {
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .add-news-container {
+    padding: 16px;
+  }
+}
+
+/* ---------- Image Uploader ---------- */
+.file-drop {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fafafa;
+  color: #888;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.file-drop:hover {
+  border-color: #F66B15;
+  color: #333;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* ---------- Translation Card ---------- */
+.translation-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0 16px 16px;
+  margin-bottom: 20px;
+}
+
+.translation-card summary {
+  padding: 16px 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--MNF_Heading_EN);
+}
+
+.translation-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.translation-body {
+  border-top: 1px solid #f1f1f1;
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+/* ---------- Buttons ---------- */
+.add-translation-btn {
+  background-color: transparent;
+  color: #F66B15;
+  border: 2px dashed #F66B15;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.add-translation-btn:hover {
+  background-color: #F66B15;
+  color: #fff;
+}
+
+.save-news-btn {
+  background-color: #001351;
+  color: #fff;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-news-btn:hover {
+  background-color: #000820;
+}
+
+.delete-icon {
+  color: #d11a2a;
+  font-size: 18px;
+  margin-inline-start: 12px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-icon:hover {
+  color: #a00;
+} 

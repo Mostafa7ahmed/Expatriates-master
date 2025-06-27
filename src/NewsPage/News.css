@@ -400,3 +400,20 @@ border-radius: 5px;
         gap: 10px;
     }
 }
+
+.add-news-btn {
+  display: inline-block;
+  background-color: #F66B15;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-news-btn:hover {
+  background-color: #d95c0f;
+}
