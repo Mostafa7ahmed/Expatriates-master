@@ -5,9 +5,7 @@ import logo from "../../assets/image.png";
 import api from "../../Services/api";
 import { useTranslation } from "react-i18next";
 import { Search as SearchIcon } from "lucide-react";
-import eg from "../../assets/flags/eg.webp";
-import us from "../../assets/flags/us.webp";
-import es from "../../assets/flags/es.webp";
+
 
 const Header = (props) => {
   const { i18n, t } = useTranslation();

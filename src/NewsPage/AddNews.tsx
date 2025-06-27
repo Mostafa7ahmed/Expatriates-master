@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import api from "../Services/api";
 import "./AddNews.css";
 import { useNavigate } from "react-router-dom";
+import { RichTextEditor } from '@mantine/rte';
 
 interface Language {
   id: number;
@@ -108,7 +109,7 @@ const AddNews: React.FC = () => {
         newsImg = await fileToBase64(newsImgFile);
       }
 
-      const ownerId = localStorage.getItem("userId") || "00000000-0000-0000-0000-000000000000";
+      const ownerId = localStorage.getItem("userId");
       const payload = {
         ownerId,
         newsImg,
@@ -118,6 +119,7 @@ const AddNews: React.FC = () => {
       };
 
       const token = localStorage.getItem("token");
+      console.log(payload)
       await api.post("/news", payload, {
         headers: {
           Authorization: token ? `Bearer ${token}` : undefined,
@@ -240,13 +242,13 @@ const AddNews: React.FC = () => {
               </div>
               <div className="field">
                 <label>News Body:</label>
-                <textarea
-                  rows={6}
-                  value={t.newsBody}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsBody", e.target.value)
-                  }
-                />
+                <div className="news-body-editor">
+                  <RichTextEditor
+                    value={t.newsBody}
+                    onChange={(value) => handleTranslationChange(idx, "newsBody", value)}
+                    style={{ background: "#fff", borderRadius: 8, minHeight: 180 }}
+                  />
+                </div>
               </div>
               <div className="field">
                 <label>Image Alt Text:</label>
@@ -273,4 +275,4 @@ const AddNews: React.FC = () => {
   );
 };
 
-export default AddNews; 
+export default AddNews;

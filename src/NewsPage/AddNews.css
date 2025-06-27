@@ -188,4 +188,40 @@ button:hover {
 
 .delete-icon:hover {
   color: #a00;
-} 
+}
+
+/* ---------- News Body Editor Fallback ---------- */
+.news-body-editor-fallback {
+  background: #fff;
+  border-radius: 12px;
+  min-height: 200px;
+  border: 1.5px solid #e0e7ef;
+  padding: 20px 18px;
+  font-size: 17px;
+  font-family: var(--MNF_Body_EN, 'Segoe UI', Arial, sans-serif);
+  outline: none;
+  box-shadow: 0 4px 16px rgba(0, 19, 81, 0.06);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  line-height: 1.7;
+  color: #222;
+  word-break: break-word;
+}
+
+.news-body-editor-fallback:focus {
+  border-color: #F66B15;
+  box-shadow: 0 0 0 2px #F66B1520, 0 4px 16px rgba(0, 19, 81, 0.08);
+}
+
+.news-body-editor-fallback::placeholder {
+  color: #bbb;
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .news-body-editor-fallback {
+    padding: 14px 8px;
+    font-size: 15px;
+  }
+}
