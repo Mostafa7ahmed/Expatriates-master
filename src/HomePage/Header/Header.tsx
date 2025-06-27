@@ -34,7 +34,15 @@ const Header = (props) => {
   const ENstyle = { fontFamily: "var(--MNF_Body_EN)" };
   const closeStyle =
     savedLang.code === "ar" ? { right: "170px" } : { left: "170px" };
-  const [languages, setLanguages] = useState([]);
+
+  interface Language {
+    id: number;
+    code: string;
+    name: string;
+    flag: string;
+  }
+
+  const [languages, setLanguages] = useState<Language[]>([]);
 
   const navLinks = [
     { name: t("header.home"), link: "/" },
@@ -79,7 +87,7 @@ const Header = (props) => {
     try {
       const response = await api.get("/languages");
       if (response?.data?.success) {
-        setLanguages(response.data.result);
+        setLanguages(response.data.result as Language[]);
       }
     } catch (error) {
       console.error("Error fetching languages:", error);
@@ -156,7 +164,14 @@ const Header = (props) => {
         </div>
 
         <div className="nav-auth-container">
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
+            <button
+              className="login-btn"
+              onClick={() => navigate("/login")}
+            >
+              {t("header.login", "Login")}
+            </button>
+          ) : (
             <div className="user-wrapper" onClick={toggleUserMenu}>
               <i className="fa-solid fa-user"></i>
               <div
@@ -171,13 +186,6 @@ const Header = (props) => {
                 <span onClick={handleLogout}>{t("header.logout", "Logout")}</span>
               </div>
             </div>
-          ) : (
-            <button
-              className="login-btn"
-              onClick={() => navigate("/login")}
-            >
-              {t("header.login", "Login")}
-            </button>
           )}
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SectionOne from "./SectionOne/SectionOne";
 import Header from "../HomePage/Header/Header";
 import Footer from "../HomePage/Footer/Footer";
@@ -23,6 +24,8 @@ function News() {
   const [movePrevious, setMovePrevious] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
 
   const isArabic = savedLang?.code === "ar";
   const pStyle = {
@@ -110,6 +113,15 @@ function News() {
         <div className="hero-overlay"></div>
 
         <div className="searchCard">
+          {isLoggedIn && (
+            <button
+              className="add-news-btn"
+              onClick={() => navigate("/news/add")}
+              style={{ marginBottom: "20px" }}
+            >
+              Add New News
+            </button>
+          )}
           <div className="inputSerch">
             <input
               type="text"
