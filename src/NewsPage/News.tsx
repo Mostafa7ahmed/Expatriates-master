@@ -132,7 +132,6 @@ function News() {
             <button
               className="add-news-btn"
               onClick={() => navigate("/news/add")}
-              style={{ marginBottom: "20px" }}
             >
               Add New News
             </button>
