@@ -1,18 +1,17 @@
-import React from "react";
-import "./SectionOne.css";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import defaultImg from "../../assets/raes.jpg";
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import ReactTooltip from "react-tooltip";
 import { Edit, Trash2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { toast } from 'react-toastify';
+import ReactTooltip from "react-tooltip";
 import { useAuth } from "../../hooks/useAuth";
-import DeleteConfirmModal from "../../components/DeleteConfirmModal";
 import api from "../../Services/api";
+import DeleteConfirmModal from "../../components/DeleteConfirmModal";
+import "./SectionOne.css";
 
 // ✅ SmartImage component
 const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
-  const [imageSrc, setImageSrc] = useState(defaultImg);
+  const [imageSrc, setImageSrc] = useState("/src/assets/raes.jpg");
 
   useEffect(() => {
     if (!src) return;
@@ -24,6 +23,7 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
       setImageSrc(src);
     };
   }, [src]);
+  
   return (
     <img
       src={imageSrc}
@@ -36,7 +36,7 @@ const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
 
 function SectionOne({ News, row, onNewsDeleted }) {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
-  const { t } = useTranslation();
+  const { t } = useTranslation("News");
   const { isLoggedIn } = useAuth();
   
   // Modal state
@@ -97,14 +97,11 @@ function SectionOne({ News, row, onNewsDeleted }) {
     try {
       const token = localStorage.getItem('token');
       
-      await api.delete('news', {
+      await api.get(`news/delete/${deleteModal.newsId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'accept': 'text/plain'
-        },
-        data: {
-          id: deleteModal.newsId
         }
       });
 
@@ -120,14 +117,21 @@ function SectionOne({ News, row, onNewsDeleted }) {
         onNewsDeleted(deleteModal.newsId);
       }
 
-      // Show success message (you can implement a toast notification)
-      console.log("News deleted successfully");
+      // Show success toast
+      toast.success(t("delete.messages.success"), {
+        position: "top-right",
+        autoClose: 2000,
+      });
       
     } catch (error) {
       console.error("Error deleting news:", error);
       setDeleteModal(prev => ({ ...prev, isLoading: false }));
-      // Show error message (you can implement error handling)
-      alert("Failed to delete news. Please try again.");
+      
+      // Show error toast
+      toast.error(t("delete.messages.error"), {
+        position: "top-right",
+        autoClose: 4000,
+      });
     }
   };
 

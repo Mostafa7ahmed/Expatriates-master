@@ -27,6 +27,10 @@
         "removeTranslation": "Remove Translation",
         "atLeastOneRequired": "At least one translation is required",
         "allLanguagesSelected": "All available languages have been selected. You cannot add more translations.",
+        "warningMessages": {
+          "allLanguagesUsed": "All available languages have been selected. You cannot add more translations.",
+          "minimumTranslations": "At least one translation is required"
+        },
         "fields": {
           "language": "Language",
           "selectLanguage": "Select language",
@@ -109,7 +113,8 @@
       "warning": "This action cannot be undone.",
       "buttons": {
         "confirm": "Yes, Delete",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "deleting": "Deleting..."
       }
     },
     "messages": {
@@ -126,6 +131,9 @@
     "source": "Source",
     "readMore": "Read More",
     "backToNews": "Back to News List"
+  },
+  "tooltip": {
+    "details": "Click to view details"
   },
   "newsItems": [
     {

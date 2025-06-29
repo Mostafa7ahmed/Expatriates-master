@@ -28,6 +28,16 @@
     "serverError": "Server error. Please try again later."
   },
   "messages": {
+    "success": {
+      "title": "Login Successful!",
+      "text": "Welcome back! You have been successfully logged in.",
+      "confirm": "Continue"
+    },
+    "error": {
+      "title": "Login Failed",
+      "text": "Please check your credentials and try again.",
+      "confirm": "Try Again"
+    },
     "welcome": "Welcome back!",
     "loginSuccess": "Login successful. Redirecting...",
     "sessionExpired": "Your session has expired. Please log in again."

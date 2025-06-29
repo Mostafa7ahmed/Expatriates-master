@@ -27,6 +27,10 @@
         "removeTranslation": "Удалить перевод",
         "atLeastOneRequired": "Требуется минимум один перевод",
         "allLanguagesSelected": "Все доступные языки выбраны.",
+        "warningMessages": {
+          "allLanguagesUsed": "Все доступные языки выбраны. Вы не можете добавить больше переводов.",
+          "minimumTranslations": "Требуется минимум один перевод"
+        },
         "fields": {
           "language": "Язык",
           "selectLanguage": "Выберите язык",
@@ -109,7 +113,8 @@
       "warning": "Это действие нельзя отменить.",
       "buttons": {
         "confirm": "Да, удалить",
-        "cancel": "Отмена"
+        "cancel": "Отмена",
+        "deleting": "Удаление..."
       }
     },
     "messages": {
@@ -126,6 +131,9 @@
     "source": "Источник",
     "readMore": "Читать далее",
     "backToNews": "Назад к списку новостей"
+  },
+  "tooltip": {
+    "details": "Нажмите для просмотра деталей"
   },
   "newsItems": [
     {

@@ -28,6 +28,16 @@
     "serverError": "Serverfehler. Bitte versuchen Sie es später erneut."
   },
   "messages": {
+    "success": {
+      "title": "Anmeldung Erfolgreich!",
+      "text": "Willkommen zurück! Sie wurden erfolgreich angemeldet.",
+      "confirm": "Weiter"
+    },
+    "error": {
+      "title": "Anmeldung Fehlgeschlagen",
+      "text": "Bitte überprüfen Sie Ihre Anmeldedaten und versuchen Sie es erneut.",
+      "confirm": "Erneut Versuchen"
+    },
     "welcome": "Willkommen zurück!",
     "loginSuccess": "Anmeldung erfolgreich. Weiterleitung...",
     "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."

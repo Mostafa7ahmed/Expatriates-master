@@ -28,6 +28,16 @@
     "serverError": "服务器错误，请稍后重试。"
   },
   "messages": {
+    "success": {
+      "title": "登录成功！",
+      "text": "欢迎回来！您已成功登录。",
+      "confirm": "继续"
+    },
+    "error": {
+      "title": "登录失败",
+      "text": "请检查您的凭据并重试。",
+      "confirm": "重试"
+    },
     "welcome": "欢迎回来！",
     "loginSuccess": "登录成功，正在跳转...",
     "sessionExpired": "您的会话已过期，请重新登录。"

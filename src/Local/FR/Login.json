@@ -28,6 +28,16 @@
     "serverError": "Erreur serveur. Veuillez réessayer plus tard."
   },
   "messages": {
+    "success": {
+      "title": "Connexion Réussie!",
+      "text": "Bon retour! Vous avez été connecté avec succès.",
+      "confirm": "Continuer"
+    },
+    "error": {
+      "title": "Échec de Connexion",
+      "text": "Veuillez vérifier vos identifiants et réessayer.",
+      "confirm": "Réessayer"
+    },
     "welcome": "Bon retour!",
     "loginSuccess": "Connexion réussie. Redirection...",
     "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter."

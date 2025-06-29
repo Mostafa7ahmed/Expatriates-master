@@ -27,6 +27,10 @@
         "removeTranslation": "Übersetzung entfernen",
         "atLeastOneRequired": "Mindestens eine Übersetzung erforderlich",
         "allLanguagesSelected": "Alle verfügbaren Sprachen wurden ausgewählt.",
+        "warningMessages": {
+          "allLanguagesUsed": "Alle verfügbaren Sprachen wurden ausgewählt. Sie können keine weiteren Übersetzungen hinzufügen.",
+          "minimumTranslations": "Mindestens eine Übersetzung erforderlich"
+        },
         "fields": {
           "language": "Sprache",
           "selectLanguage": "Sprache auswählen",
@@ -109,7 +113,8 @@
       "warning": "Diese Aktion kann nicht rückgängig gemacht werden.",
       "buttons": {
         "confirm": "Ja, löschen",
-        "cancel": "Abbrechen"
+        "cancel": "Abbrechen",
+        "deleting": "Löschen..."
       }
     },
     "messages": {
@@ -126,6 +131,9 @@
     "source": "Quelle",
     "readMore": "Weiterlesen",
     "backToNews": "Zurück zur Nachrichtenliste"
+  },
+  "tooltip": {
+    "details": "Klicken Sie für Details"
   },
   "newsItems": [
     {

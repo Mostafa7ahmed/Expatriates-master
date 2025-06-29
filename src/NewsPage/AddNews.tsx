@@ -4,6 +4,7 @@ import "./AddNews.css";
 import { useNavigate } from "react-router-dom";
 import { RichTextEditor } from '@mantine/rte';
 import { useTranslation } from "react-i18next";
+import { toast } from 'react-toastify';
 
 // Custom Language Select Component with Flags
 interface CustomLanguageSelectProps {
@@ -179,30 +180,37 @@ const AddNews: React.FC = () => {
 
   const addTranslation = () => {
     // Check if all languages are already selected
-    const selectedLanguageIds = translations.map(t => t.langId).filter(id => id !== "");
-    const availableLanguagesCount = languages.filter(lang => !selectedLanguageIds.includes(lang.id)).length;
+    const availableLanguages = languages.filter(lang => 
+      !translations.map(translation => translation.langId).filter(id => id !== "").includes(lang.id)
+    );
     
-    if (availableLanguagesCount === 0) {
-      alert(t("addNews.form.translations.allLanguagesSelected"));
+    if (availableLanguages.length === 0) {
+      toast.warning(t("addNews.form.translations.allLanguagesSelected"), {
+        position: "top-right",
+        autoClose: 3000,
+      });
       return;
     }
-    
-    setTranslations(prev => [...prev, {
+
+    setTranslations([...translations, {
       newsHead: "",
       newsAbbr: "",
       newsBody: "",
       newsSource: "",
       langId: "",
-      imgAlt: "",
+      imgAlt: ""
     }]);
   };
 
   const removeTranslation = (index: number) => {
-    if (translations.length === 1) {
-      alert(t("addNews.form.translations.atLeastOneRequired"));
+    if (translations.length <= 1) {
+      toast.warning(t("addNews.form.translations.atLeastOneRequired"), {
+        position: "top-right",
+        autoClose: 3000,
+      });
       return;
     }
-    setTranslations(prev => prev.filter((_, i) => i !== index));
+    setTranslations(translations.filter((_, i) => i !== index));
   };
 
   const fileToBase64 = (file: File) => new Promise<string>((resolve, reject) => {
@@ -256,16 +264,24 @@ const AddNews: React.FC = () => {
 
       const token = localStorage.getItem("token");
       console.log(payload)
-      await api.post("/news", payload, {
+      const response = await api.post("/news", payload, {
         headers: {
           Authorization: token ? `Bearer ${token}` : undefined,
         },
       });
-      alert(t("addNews.messages.success"));
+
+      toast.success(t("addNews.messages.success"), {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      
       navigate("/news");
     } catch(err){
       console.error(err);
-      alert(t("addNews.messages.error"));
+      toast.error(t("addNews.messages.error"), {
+        position: "top-right",
+        autoClose: 4000,
+      });
     }
   };
 

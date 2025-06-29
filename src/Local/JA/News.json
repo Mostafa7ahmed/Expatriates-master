@@ -24,6 +24,10 @@
         "removeTranslation": "翻訳を削除",
         "atLeastOneRequired": "最低1つの翻訳が必要です",
         "allLanguagesSelected": "利用可能なすべての言語が選択されています。",
+        "warningMessages": {
+          "allLanguagesUsed": "利用可能なすべての言語が選択されています。これ以上翻訳を追加できません。",
+          "minimumTranslations": "最低1つの翻訳が必要です"
+        },
         "fields": {
           "language": "言語",
           "selectLanguage": "言語を選択",
@@ -106,7 +110,8 @@
       "warning": "この操作は元に戻せません。",
       "buttons": {
         "confirm": "はい、削除します",
-        "cancel": "キャンセル"
+        "cancel": "キャンセル",
+        "deleting": "削除中..."
       }
     },
     "messages": {
@@ -123,6 +128,9 @@
     "source": "ソース",
     "readMore": "続きを読む",
     "backToNews": "ニュース一覧に戻る"
+  },
+  "tooltip": {
+    "details": "クリックして詳細を表示"
   },
   "newsItems": [
     {

@@ -26,7 +26,11 @@
         "allLanguagesAdded": "✓ 已添加所有语言",
         "removeTranslation": "移除翻译",
         "atLeastOneRequired": "至少需要一个翻译",
-        "allLanguagesSelected": "所有可用语言已选择，无法添加更多翻译。",
+        "allLanguagesSelected": "已选择所有可用语言。无法添加更多翻译。",
+        "warningMessages": {
+          "allLanguagesUsed": "已选择所有可用语言。无法添加更多翻译。",
+          "minimumTranslations": "至少需要一个翻译"
+        },
         "fields": {
           "language": "语言",
           "selectLanguage": "选择语言",
@@ -109,7 +113,8 @@
       "warning": "此操作无法撤销。",
       "buttons": {
         "confirm": "是，删除",
-        "cancel": "取消"
+        "cancel": "取消",
+        "deleting": "删除中..."
       }
     },
     "messages": {
@@ -126,6 +131,9 @@
     "source": "来源",
     "readMore": "阅读更多",
     "backToNews": "返回新闻列表"
+  },
+  "tooltip": {
+    "details": "点击查看详情"
   },
   "newsItems": [
     {

@@ -28,7 +28,17 @@
     "serverError": "Sunucu hatası. Lütfen daha sonra tekrar deneyin."
   },
   "messages": {
-    "welcome": "Tekrar hoş geldiniz!",
+    "success": {
+      "title": "Giriş Başarılı!",
+      "text": "Hoş geldiniz! Başarıyla giriş yaptınız.",
+      "confirm": "Devam Et"
+    },
+    "error": {
+      "title": "Giriş Başarısız",
+      "text": "Lütfen kimlik bilgilerinizi kontrol edin ve tekrar deneyin.",
+      "confirm": "Tekrar Dene"
+    },
+    "welcome": "Hoş geldiniz!",
     "loginSuccess": "Giriş başarılı. Yönlendiriliyor...",
     "sessionExpired": "Oturumunuzun süresi doldu. Lütfen tekrar giriş yapın."
   },

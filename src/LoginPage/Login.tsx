@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Eye, EyeOff } from "lucide-react";
+import { toast } from 'react-toastify';
 import api from "../Services/api";
 import "./Login.css";
 
@@ -91,12 +92,25 @@ const Login: React.FC = () => {
         // Trigger storage event to update header
         window.dispatchEvent(new Event('storage'));
         
+        // Show success toast
+        toast.success(t("messages.success.text"), {
+          position: "top-right",
+          autoClose: 2000,
+        });
+        
         console.log('Login successful, redirecting...');
         navigate("/");
       }
     } catch (error: any) {
       console.error('Login error:', error);
       console.error('Error response:', error.response?.data);
+      
+      // Show error toast
+      toast.error(error.response?.data?.message || error.message || t("errors.general"), {
+        position: "top-right",
+        autoClose: 4000,
+      });
+      
       setErrors(prev => ({
         ...prev,
         general: error.response?.data?.message || error.message || t("errors.general")

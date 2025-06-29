@@ -28,7 +28,17 @@
     "serverError": "Server error. Please try again later."
   },
   "messages": {
-    "welcome": "Welcome back!",
+    "success": {
+      "title": "লগইন সফল!",
+      "text": "আপোনাক আকৌ স্বাগতম! আপুনি সফলভাৱে লগইন কৰিছে।",
+      "confirm": "আগবাঢ়ক"
+    },
+    "error": {
+      "title": "লগইন ব্যৰ্থ",
+      "text": "অনুগ্ৰহ কৰি আপোনাৰ পৰিচয়পত্ৰ পৰীক্ষা কৰক আৰু পুনৰ চেষ্টা কৰক।",
+      "confirm": "পুনৰ চেষ্টা কৰক"
+    },
+    "welcome": "আপোনাক স্বাগতম!",
     "loginSuccess": "Login successful. Redirecting...",
     "sessionExpired": "Your session has expired. Please log in again."
   },

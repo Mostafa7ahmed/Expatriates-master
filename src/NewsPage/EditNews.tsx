@@ -4,6 +4,7 @@ import "./AddNews.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { RichTextEditor } from '@mantine/rte';
 import { useTranslation } from "react-i18next";
+import { toast } from 'react-toastify';
 
 // Custom Language Select Component with Flags
 interface CustomLanguageSelectProps {
@@ -221,9 +222,11 @@ const EditNews: React.FC = () => {
         }]);
       }
     } catch (error) {
-      console.error("Error fetching news data:", error);
-      alert("Failed to load news data");
-      navigate('/news');
+      console.error("Error loading news:", error);
+      toast.error(t("editNews.messages.loadError"), {
+        position: "top-right",
+        autoClose: 4000,
+      });
     } finally {
       setLoading(false);
     }
@@ -243,7 +246,10 @@ const EditNews: React.FC = () => {
     const availableLanguagesCount = languages.filter(lang => !selectedLanguageIds.includes(lang.id)).length;
     
     if (availableLanguagesCount === 0) {
-      alert("All available languages have been selected. You cannot add more translations.");
+      toast.warning(t("addNews.form.translations.warningMessages.allLanguagesUsed"), {
+        position: "top-right",
+        autoClose: 3000,
+      });
       return;
     }
     
@@ -259,7 +265,10 @@ const EditNews: React.FC = () => {
 
   const removeTranslation = (index: number) => {
     if (translations.length === 1) {
-      alert("At least one translation is required");
+      toast.warning(t("addNews.form.translations.warningMessages.minimumTranslations"), {
+        position: "top-right",
+        autoClose: 3000,
+      });
       return;
     }
     setTranslations(prev => prev.filter((_, i) => i !== index));
@@ -327,7 +336,7 @@ const EditNews: React.FC = () => {
       console.log('Update payload:', payload);
       
       // Note: The URL in your curl seems to have duplicate path, using clean URL
-      await api.post(`news/update`, payload, {
+      const response = await api.post(`news/update`, payload, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -335,11 +344,20 @@ const EditNews: React.FC = () => {
         },
       });
       
-      alert("News updated successfully");
+      console.log("News updated successfully:", response.data);
+      
+      toast.success(t("editNews.messages.success"), {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      
       navigate("/news");
     } catch(err){
-      console.error(err);
-      alert("Failed to update news");
+      console.error("Error updating news:", err);
+      toast.error(t("editNews.messages.error"), {
+        position: "top-right",
+        autoClose: 4000,
+      });
     }
   };
 

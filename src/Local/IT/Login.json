@@ -28,6 +28,16 @@
     "serverError": "Errore del server. Riprova più tardi."
   },
   "messages": {
+    "success": {
+      "title": "Accesso Riuscito!",
+      "text": "Bentornato! Hai effettuato l'accesso con successo.",
+      "confirm": "Continua"
+    },
+    "error": {
+      "title": "Accesso Fallito",
+      "text": "Controlla le tue credenziali e riprova.",
+      "confirm": "Riprova"
+    },
     "welcome": "Bentornato!",
     "loginSuccess": "Accesso riuscito. Reindirizzamento...",
     "sessionExpired": "La tua sessione è scaduta. Accedi di nuovo."

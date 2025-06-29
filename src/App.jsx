@@ -1,5 +1,7 @@
 import Home from "./HomePage/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import News from "./NewsPage/News"
 import AddNews from "./NewsPage/AddNews";
 import EditNews from "./NewsPage/EditNews";
@@ -26,10 +28,22 @@ function App() {
         <Route path="/programs" element={<Programs />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-            <Footer />
-
+      <Footer />
+      
+      {/* Toast Container for notifications */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Router>
-    
   );
 }
 

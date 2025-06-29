@@ -1,6 +1,26 @@
 {
   "title": "Son Haberler",
   "description": "En son haberler ve etkinliklerden haberdar olun",
+  "delete": {
+    "confirm": {
+      "title": "Silmeyi Onayla",
+      "message": "Bu haberi silmek istediğinizden emin misiniz?",
+      "warning": "Bu işlem geri alınamaz.",
+      "buttons": {
+        "confirm": "Evet, Sil",
+        "cancel": "İptal",
+        "deleting": "Siliniyor..."
+      }
+    },
+    "messages": {
+      "success": "Haber başarıyla silindi!",
+      "error": "Haber silinirken hata oluştu. Lütfen tekrar deneyin."
+    }
+  },
+  "backToNews": "Haber Listesine Dön",
+  "tooltip": {
+    "details": "Detayları görmek için tıklayın"
+  },
   "newsItems": [
     {
       "id": 1,
