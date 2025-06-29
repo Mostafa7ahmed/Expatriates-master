@@ -4,10 +4,129 @@ import "./AddNews.css";
 import { useNavigate } from "react-router-dom";
 import { RichTextEditor } from '@mantine/rte';
 
+// Custom Language Select Component with Flags
+interface CustomLanguageSelectProps {
+  languages: Language[];
+  selectedLangId: number | "";
+  onLanguageChange: (langId: number | "") => void;
+  excludeLanguageIds?: (number | "")[];
+}
+
+const CustomLanguageSelect: React.FC<CustomLanguageSelectProps> = ({ 
+  languages, 
+  selectedLangId, 
+  onLanguageChange,
+  excludeLanguageIds = []
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const selectedLanguage = languages.find(l => l.id === selectedLangId);
+  
+  // Filter out already selected languages (excluding current selection)
+  const availableLanguages = languages.filter(lang => 
+    !excludeLanguageIds.includes(lang.id) || lang.id === selectedLangId
+  );
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="custom-language-select" ref={dropdownRef}>
+      {/* Selected Option Display */}
+      <div 
+        className="language-select-display"
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+          if (e.key === 'Escape') {
+            setIsOpen(false);
+          }
+        }}
+        tabIndex={0}
+        role="combobox"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+      >
+        {selectedLanguage ? (
+          <div className="selected-language-item">
+            <img 
+              src={selectedLanguage.flag} 
+              alt={`${selectedLanguage.name} flag`}
+              className="language-flag"
+            />
+            <span className="language-name">{selectedLanguage.name}</span>
+          </div>
+        ) : (
+          <div className="placeholder-language">
+            <span className="globe-icon">🌐</span>
+            <span>Select language</span>
+          </div>
+        )}
+        <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
+      </div>
+
+      {/* Dropdown Options */}
+      {isOpen && (
+        <div className="language-dropdown-options" role="listbox">
+          <div 
+            className="language-option placeholder"
+            onClick={() => {
+              onLanguageChange("");
+              setIsOpen(false);
+            }}
+          >
+            <span className="globe-icon">🌐</span>
+            <span>Select language</span>
+          </div>
+          {availableLanguages.length === 0 ? (
+            <div className="language-option disabled">
+              <span className="warning-icon">⚠️</span>
+              <span>All languages already selected</span>
+            </div>
+          ) : (
+            availableLanguages.map((language) => (
+              <div
+                key={language.id}
+                className={`language-option ${selectedLangId === language.id ? 'selected' : ''}`}
+                onClick={() => {
+                  onLanguageChange(language.id);
+                  setIsOpen(false);
+                }}
+              >
+                <img 
+                  src={language.flag} 
+                  alt={`${language.name} flag`}
+                  className="language-flag"
+                />
+                <span className="language-name">{language.name}</span>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 interface Language {
   id: number;
   code: string;
   name: string;
+  flag: string;
 }
 
 interface Translation {
@@ -56,6 +175,15 @@ const AddNews: React.FC = () => {
   };
 
   const addTranslation = () => {
+    // Check if all languages are already selected
+    const selectedLanguageIds = translations.map(t => t.langId).filter(id => id !== "");
+    const availableLanguagesCount = languages.filter(lang => !selectedLanguageIds.includes(lang.id)).length;
+    
+    if (availableLanguagesCount === 0) {
+      alert("All available languages have been selected. You cannot add more translations.");
+      return;
+    }
+    
     setTranslations(prev => [...prev, {
       newsHead: "",
       newsAbbr: "",
@@ -243,23 +371,12 @@ const AddNews: React.FC = () => {
             <div className="translation-body">
               <div className="field">
                 <label>Language:</label>
-                <select
-                  value={t.langId}
-                  onChange={(e) =>
-                    handleTranslationChange(
-                      idx,
-                      "langId",
-                      e.target.value === "" ? "" : Number(e.target.value)
-                    )
-                  }
-                >
-                  <option value="">Select language</option>
-                  {languages.map((l) => (
-                    <option key={l.id} value={l.id}>
-                      {l.name}
-                    </option>
-                  ))}
-                </select>
+                <CustomLanguageSelect
+                  languages={languages}
+                  selectedLangId={t.langId}
+                  onLanguageChange={(langId) => handleTranslationChange(idx, "langId", langId)}
+                  excludeLanguageIds={translations.map((trans, i) => i !== idx ? trans.langId : "").filter(id => id !== "")}
+                />
               </div>
               <div className="field">
                 <label>News Header:</label>
@@ -314,8 +431,19 @@ const AddNews: React.FC = () => {
             </div>
           </details>
         ))}
-        <button className="add-translation-btn" onClick={addTranslation}>
-          + Add Translation
+        <button 
+          className={`add-translation-btn ${
+            languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0 
+              ? 'disabled' 
+              : ''
+          }`} 
+          onClick={addTranslation}
+          disabled={languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0}
+        >
+          {languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0 
+            ? '✓ All Languages Added' 
+            : '+ Add Translation'
+          }
         </button>
       </section>
 
