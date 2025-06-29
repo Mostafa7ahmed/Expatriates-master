@@ -87,7 +87,8 @@ function SectionOne({ News, row, onNewsDeleted }) {
   const handleEditClick = (e, news) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Edit news:", news.id);
+    // Navigate to edit page
+    window.open(`/news/edit/${news.id}`, '_blank');
   };
 
   const handleDeleteConfirm = async () => {
@@ -96,11 +97,14 @@ function SectionOne({ News, row, onNewsDeleted }) {
     try {
       const token = localStorage.getItem('token');
       
-      await api.get(`news/delete/${deleteModal.newsId}`, {
+      await api.delete('news', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'accept': 'text/plain'
+        },
+        data: {
+          id: deleteModal.newsId
         }
       });
 

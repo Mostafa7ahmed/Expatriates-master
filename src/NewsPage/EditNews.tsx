@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import api from "../Services/api";
 import "./AddNews.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RichTextEditor } from '@mantine/rte';
 
 interface Language {
@@ -11,6 +11,7 @@ interface Language {
 }
 
 interface Translation {
+  id?: number;
   newsHead: string;
   newsAbbr: string;
   newsBody: string;
@@ -19,11 +20,15 @@ interface Translation {
   imgAlt: string;
 }
 
-const AddNews: React.FC = () => {
+const EditNews: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
   const [languages, setLanguages] = useState<Language[]>([]);
-
+  const [loading, setLoading] = useState(true);
+  const [newsId, setNewsId] = useState<number>(0);
+  const [ownerId, setOwnerId] = useState<string>("");
   const [newsImgFile, setNewsImgFile] = useState<File | null>(null);
   const [newsImgPreview, setNewsImgPreview] = useState<string>("");
+  const [currentNewsImg, setCurrentNewsImg] = useState<string>("");
   const [published, setPublished] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [translations, setTranslations] = useState<Translation[]>([{
@@ -36,9 +41,9 @@ const AddNews: React.FC = () => {
   }]);
 
   const navigate = useNavigate();
-
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  // Fetch languages
   useEffect(() => {
     api.get("/languages").then(res => {
       if(res?.data?.success){
@@ -46,6 +51,61 @@ const AddNews: React.FC = () => {
       }
     }).catch(err => console.error(err));
   }, []);
+
+  // Fetch existing news data
+  useEffect(() => {
+    if (id) {
+      fetchNewsData();
+    }
+  }, [id]);
+
+  const fetchNewsData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await api.get(`news/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'accept': 'text/plain'
+        }
+      });
+
+      if (response.data.success) {
+        const newsData = response.data.result;
+        setNewsId(newsData.id);
+        setOwnerId(newsData.ownerId);
+        setPublished(newsData.published);
+        setIsFeatured(newsData.isFeatured);
+        setCurrentNewsImg(newsData.newsImg);
+        setNewsImgPreview(`https://stage.menofia.edu.eg/images/${newsData.newsImg}`);
+        
+        // Map translations to our interface
+        const mappedTranslations = newsData.translations.map((trans: any) => ({
+          id: trans.id,
+          newsHead: trans.head,
+          newsAbbr: trans.abbr,
+          newsBody: trans.body,
+          newsSource: trans.source,
+          langId: trans.languageId,
+          imgAlt: trans.imgAlt,
+        }));
+        
+        setTranslations(mappedTranslations.length > 0 ? mappedTranslations : [{
+          newsHead: "",
+          newsAbbr: "",
+          newsBody: "",
+          newsSource: "",
+          langId: "",
+          imgAlt: "",
+        }]);
+      }
+    } catch (error) {
+      console.error("Error fetching news data:", error);
+      alert("Failed to load news data");
+      navigate('/news');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleTranslationChange = (index: number, field: keyof Translation, value: any) => {
     setTranslations(prev => {
@@ -87,13 +147,15 @@ const AddNews: React.FC = () => {
       const url = URL.createObjectURL(file);
       setNewsImgPreview(url);
     } else {
-      setNewsImgPreview("");
+      // Reset to current image if file is removed
+      setNewsImgPreview(currentNewsImg ? `https://stage.menofia.edu.eg/images/${currentNewsImg}` : "");
     }
   };
 
-  const removeImage = () => {
+  const removeCurrentImage = () => {
     setNewsImgFile(null);
     setNewsImgPreview("");
+    setCurrentNewsImg("");
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -109,13 +171,20 @@ const AddNews: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      let newsImg = "";
-      if(newsImgFile){
+      let newsImg = currentNewsImg;
+      
+      // Handle image changes
+      if (newsImgFile) {
+        // New image selected - convert to base64
         newsImg = await fileToBase64(newsImgFile);
+      } else if (!currentNewsImg) {
+        // Image was removed
+        newsImg = "";
       }
+      // Otherwise keep current image (newsImg = currentNewsImg)
 
-      const ownerId = localStorage.getItem("userId");
       const payload = {
+        id: newsId,
         ownerId,
         newsImg,
         published,
@@ -124,23 +193,36 @@ const AddNews: React.FC = () => {
       };
 
       const token = localStorage.getItem("token");
-      console.log(payload)
-      await api.post("/news", payload, {
+      console.log('Update payload:', payload);
+      
+      // Note: The URL in your curl seems to have duplicate path, using clean URL
+      await api.post(`news/update`, payload, {
         headers: {
-          Authorization: token ? `Bearer ${token}` : undefined,
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'accept': 'text/plain'
         },
       });
-      alert("News created successfully");
+      
+      alert("News updated successfully");
       navigate("/news");
     } catch(err){
       console.error(err);
-      alert("Failed to create news");
+      alert("Failed to update news");
     }
   };
 
+  if (loading) {
+    return (
+      <div className="add-news-container">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="add-news-container">
-      <h2>Add New News</h2>
+      <h2>Edit News</h2>
 
       {/* Main Info */}
       <section className="main-info">
@@ -148,22 +230,22 @@ const AddNews: React.FC = () => {
         <div className="field">
           <label>News Image:</label>
           
-          {/* Image Preview */}
+          {/* Current Image Preview */}
           {newsImgPreview && (
             <div className="image-preview-container" style={{ marginBottom: "15px" }}>
               <div className="image-preview-wrapper" style={{ position: "relative", display: "inline-block" }}>
                 <img 
                   src={newsImgPreview} 
-                  alt="Selected image" 
+                  alt="Current news image" 
                   className="preview-img" 
                   style={{ maxWidth: "300px", maxHeight: "200px", objectFit: "cover", borderRadius: "8px", border: "2px solid #ddd" }}
                 />
                 <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
-                  🆕 Selected image
+                  {newsImgFile ? "🆕 New image selected" : "📷 Current image"}
                 </div>
                 <button
                   type="button"
-                  onClick={removeImage}
+                  onClick={removeCurrentImage}
                   style={{
                     position: "absolute",
                     top: "-8px",
@@ -320,10 +402,10 @@ const AddNews: React.FC = () => {
       </section>
 
       <button className="save-news-btn" onClick={handleSubmit} style={{ marginTop: "20px" }}>
-        Save News
+        Update News
       </button>
     </div>
   );
 };
 
-export default AddNews;
+export default EditNews; 

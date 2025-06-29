@@ -2,6 +2,7 @@ import Home from "./HomePage/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import News from "./NewsPage/News"
 import AddNews from "./NewsPage/AddNews";
+import EditNews from "./NewsPage/EditNews";
 import Details from "./NewsDetails/Details";
 import ContactUs from "./ContactUsPage/ContactUs"
 import Collage from "./Collages/Collages"
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/add" element={<AddNews />} />
+        <Route path="/news/edit/:id" element={<EditNews />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/collage" element={<Collage />} />

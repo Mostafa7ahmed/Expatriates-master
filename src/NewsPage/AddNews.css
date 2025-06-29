@@ -112,6 +112,40 @@ button:hover {
   border-radius: 6px;
 }
 
+/* Enhanced Image Preview Styles */
+.image-preview-container {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.image-preview-wrapper {
+  text-align: center;
+}
+
+.image-preview-wrapper img {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.image-preview-wrapper img:hover {
+  transform: scale(1.02);
+}
+
+.image-preview-wrapper button:hover {
+  background-color: #b91c1c !important;
+  transform: scale(1.1);
+}
+
+/* Responsive image preview */
+@media (max-width: 768px) {
+  .image-preview-wrapper img {
+    max-width: 250px !important;
+    max-height: 150px !important;
+  }
+}
+
 /* ---------- Translation Card ---------- */
 .translation-card {
   background-color: #fff;
