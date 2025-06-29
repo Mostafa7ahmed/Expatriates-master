@@ -362,7 +362,7 @@ width: 100%;
   position: relative;
 }
 
-.login-btn {
+.nav-auth-container .login-btn {
   padding: 6px 14px;
   background-color: #F66B15;
   color: #fff;

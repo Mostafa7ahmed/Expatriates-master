@@ -87,9 +87,7 @@ function SectionOne({ News, row, onNewsDeleted }) {
   const handleEditClick = (e, news) => {
     e.preventDefault();
     e.stopPropagation();
-    // Navigate to edit page - you can implement this route
     console.log("Edit news:", news.id);
-    // window.open(`/news/edit/${news.id}`, '_blank');
   };
 
   const handleDeleteConfirm = async () => {
@@ -98,19 +96,14 @@ function SectionOne({ News, row, onNewsDeleted }) {
     try {
       const token = localStorage.getItem('token');
       
-      // Fixed: Match the API specification from curl command
-      await api.delete('news', {
+      await api.delete(`news/${deleteModal.newsId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
           'accept': 'text/plain'
-        },
-        data: {
-          id: deleteModal.newsId
         }
       });
 
-      // Close modal
       setDeleteModal({
         isOpen: false,
         newsId: null,

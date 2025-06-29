@@ -167,9 +167,7 @@ const Login: React.FC = () => {
                 <input type="checkbox" />
                 Remember me
               </label>
-              <Link to="/forgot-password" className="forgot-link">
-                Forgot password?
-              </Link>
+           
             </div>
 
             <button 
@@ -180,9 +178,9 @@ const Login: React.FC = () => {
               {isLoading ? "Signing in..." : "Sign In"}
             </button>
 
-            <div className="signup-section">
+            {/* <div className="signup-section">
               <p>Don't have an account? <Link to="/register" className="signup-link">Sign up</Link></p>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

@@ -1,5 +1,4 @@
 .login-page {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +9,7 @@
 
 .login-container {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
 }
 
 .login-card {
@@ -165,7 +164,7 @@
   background: #001351;
   color: #fff;
   border: none;
-  padding: 14px 20px;
+  padding: 24px 20px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 16px;

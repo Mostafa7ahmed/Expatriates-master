@@ -110,9 +110,11 @@ const Header = (props) => {
 
   return (
     <header className="nav-container">
-      <a href="/" className="nav-logo">
+       <Link
+                to='/'
+                className="nav-logo">
         <img src={logo} alt="International Students Affairs office Logo" />
-      </a>
+              </Link>
 
       <nav
         className={`${menuActive ? "nav-links nav-active" : "nav-links"} ${
@@ -178,9 +180,7 @@ const Header = (props) => {
                     ? "user-dropdown user-active"
                     : "user-dropdown"
                 }>
-                <Link to="/dashboard" onClick={() => setUserMenuActive(false)}>
-                  {t("header.dashboard", "Dashboard")}
-                </Link>
+      
                 <span onClick={handleLogout}>{t("header.logout", "Logout")}</span>
               </div>
             </div>
