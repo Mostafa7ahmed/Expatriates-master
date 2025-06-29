@@ -1,20 +1,146 @@
 {
-  "title": "Aktuelle Nachrichten",
+  "title": "Neueste Nachrichten",
   "description": "Bleiben Sie über die neuesten Nachrichten und Veranstaltungen informiert",
+  "addNews": {
+    "title": "Neue Nachricht hinzufügen",
+    "buttonText": "Neue Nachricht hinzufügen",
+    "sections": {
+      "mainInfo": "Hauptinformationen"
+    },
+    "form": {
+      "imageUpload": {
+        "title": "Nachrichtenbild",
+        "dragDrop": "Bild hier ablegen oder zum Auswählen klicken",
+        "clickToSelect": "Zum Auswählen klicken",
+        "currentImage": "Aktuelles Bild",
+        "newImageSelected": "Neues Bild ausgewählt",
+        "removeImage": "Bild entfernen",
+        "fileTypes": "Unterstützte Formate: JPG, PNG, GIF (max 5MB)"
+      },
+      "published": "Veröffentlicht",
+      "featured": "Hervorgehoben",
+      "translations": {
+        "title": "Nachrichtenübersetzungen",
+        "translationNumber": "Übersetzung {{number}}",
+        "addTranslation": "Übersetzung hinzufügen",
+        "allLanguagesAdded": "✓ Alle Sprachen hinzugefügt",
+        "removeTranslation": "Übersetzung entfernen",
+        "atLeastOneRequired": "Mindestens eine Übersetzung erforderlich",
+        "allLanguagesSelected": "Alle verfügbaren Sprachen wurden ausgewählt.",
+        "fields": {
+          "language": "Sprache",
+          "selectLanguage": "Sprache auswählen",
+          "allLanguagesSelectedWarning": "Alle Sprachen bereits ausgewählt",
+          "title": "Nachrichtentitel",
+          "summary": "Nachrichtenzusammenfassung",
+          "content": "Nachrichteninhalt",
+          "source": "Nachrichtenquelle",
+          "imageAlt": "Bildbeschreibung",
+          "titlePlaceholder": "Nachrichtentitel eingeben...",
+          "summaryPlaceholder": "Zusammenfassung eingeben...",
+          "sourcePlaceholder": "Quelle eingeben...",
+          "imageAltPlaceholder": "Bildbeschreibung eingeben..."
+        }
+      },
+      "buttons": {
+        "submit": "Nachricht hinzufügen",
+        "submitting": "Wird hinzugefügt...",
+        "cancel": "Abbrechen",
+        "back": "Zurück zu Nachrichten"
+      }
+    },
+    "messages": {
+      "success": "Nachricht erfolgreich hinzugefügt!",
+      "error": "Fehler beim Hinzufügen. Bitte erneut versuchen.",
+      "validation": {
+        "titleRequired": "Titel erforderlich",
+        "summaryRequired": "Zusammenfassung erforderlich",
+        "contentRequired": "Inhalt erforderlich",
+        "languageRequired": "Bitte Sprache auswählen",
+        "imageRequired": "Bitte Bild auswählen"
+      }
+    }
+  },
+  "editNews": {
+    "title": "Nachricht bearbeiten",
+    "loading": "Nachrichtendaten werden geladen...",
+    "form": {
+      "buttons": {
+        "submit": "Nachricht aktualisieren",
+        "submitting": "Wird aktualisiert...",
+        "cancel": "Abbrechen",
+        "back": "Zurück zu Nachrichten"
+      }
+    },
+    "messages": {
+      "success": "Nachricht erfolgreich aktualisiert!",
+      "error": "Fehler beim Aktualisieren. Bitte erneut versuchen.",
+      "loadError": "Fehler beim Laden der Nachrichtendaten"
+    }
+  },
+  "list": {
+    "search": {
+      "placeholder": "Nachrichten suchen...",
+      "button": "Suchen",
+      "noResults": "Keine passenden Nachrichten gefunden"
+    },
+    "pagination": {
+      "page": "Seite",
+      "of": "von",
+      "previous": "Vorherige",
+      "next": "Nächste",
+      "goto": "Gehe zu Seite"
+    },
+    "actions": {
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "view": "Details anzeigen"
+    },
+    "status": {
+      "published": "Veröffentlicht",
+      "draft": "Entwurf",
+      "featured": "Hervorgehoben"
+    }
+  },
+  "delete": {
+    "confirm": {
+      "title": "Löschen bestätigen",
+      "message": "Sind Sie sicher, dass Sie diese Nachricht löschen möchten?",
+      "warning": "Diese Aktion kann nicht rückgängig gemacht werden.",
+      "buttons": {
+        "confirm": "Ja, löschen",
+        "cancel": "Abbrechen"
+      }
+    },
+    "messages": {
+      "success": "Nachricht erfolgreich gelöscht!",
+      "error": "Fehler beim Löschen. Bitte erneut versuchen."
+    }
+  },
+  "details": {
+    "searchPlaceholder": "Nachrichten suchen...",
+    "search": "Suchen",
+    "noResultsFound": "Keine Nachrichten gefunden",
+    "loading": "Wird geladen...",
+    "publishedOn": "Veröffentlicht am",
+    "source": "Quelle",
+    "readMore": "Weiterlesen",
+    "backToNews": "Zurück zur Nachrichtenliste"
+  },
   "newsItems": [
     {
       "id": 1,
       "title": "Universitätsankündigung",
       "date": "2025-06-01",
       "summary": "Wichtige Universitätsankündigung",
-      "content": "Aktuelle Updates der Universitätsverwaltung"
+      "content": "Neueste Updates der Universitätsverwaltung"
     },
     {
       "id": 2,
       "title": "Akademische Leistung",
       "date": "2025-05-30",
       "summary": "Studentische Erfolge und Auszeichnungen",
-      "content": "Wir feiern den Erfolg unserer Studenten"
+      "content": "Feier unserer Studentenerfolge"
     }
   ]
 }

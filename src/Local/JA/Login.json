@@ -1,0 +1,45 @@
+{
+  "title": "ログイン",
+  "subtitle": "アカウントにアクセスするための認証情報を入力してください",
+  "form": {
+    "email": {
+      "label": "メールアドレス",
+      "placeholder": "メールアドレスを入力",
+      "required": "メールアドレスは必須です",
+      "invalid": "有効なメールアドレスを入力してください"
+    },
+    "password": {
+      "label": "パスワード",
+      "placeholder": "パスワードを入力",
+      "required": "パスワードは必須です",
+      "minLength": "パスワードは6文字以上である必要があります",
+      "show": "パスワードを表示",
+      "hide": "パスワードを非表示"
+    },
+    "rememberMe": "ログイン状態を保持",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "signIn": "ログイン",
+    "signingIn": "ログイン中..."
+  },
+  "errors": {
+    "general": "ログインに失敗しました。再度お試しください。",
+    "invalidCredentials": "メールアドレスまたはパスワードが無効です",
+    "networkError": "ネットワークエラーです。接続を確認してください。",
+    "serverError": "サーバーエラーです。後でもう一度お試しください。"
+  },
+  "messages": {
+    "welcome": "おかえりなさい！",
+    "loginSuccess": "ログインに成功しました。リダイレクト中...",
+    "sessionExpired": "セッションが期限切れです。再度ログインしてください。"
+  },
+  "links": {
+    "signUp": "サインアップ",
+    "noAccount": "アカウントをお持ちでない方は",
+    "backToHome": "ホームに戻る"
+  },
+  "accessibility": {
+    "logo": "会社ロゴ",
+    "togglePassword": "パスワードの表示切替",
+    "loginForm": "ログインフォーム"
+  }
+} 

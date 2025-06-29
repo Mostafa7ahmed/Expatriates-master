@@ -1,0 +1,45 @@
+{
+  "title": "Accedi",
+  "subtitle": "Inserisci le tue credenziali per accedere al tuo account",
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Inserisci la tua email",
+      "required": "L'email è richiesta",
+      "invalid": "Inserisci un'email valida"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Inserisci la tua password",
+      "required": "La password è richiesta",
+      "minLength": "La password deve contenere almeno 6 caratteri",
+      "show": "Mostra password",
+      "hide": "Nascondi password"
+    },
+    "rememberMe": "Ricordami",
+    "forgotPassword": "Password dimenticata?",
+    "signIn": "Accedi",
+    "signingIn": "Accesso in corso..."
+  },
+  "errors": {
+    "general": "Accesso fallito. Riprova.",
+    "invalidCredentials": "Email o password non valida",
+    "networkError": "Errore di rete. Controlla la connessione.",
+    "serverError": "Errore del server. Riprova più tardi."
+  },
+  "messages": {
+    "welcome": "Bentornato!",
+    "loginSuccess": "Accesso riuscito. Reindirizzamento...",
+    "sessionExpired": "La tua sessione è scaduta. Accedi di nuovo."
+  },
+  "links": {
+    "signUp": "Registrati",
+    "noAccount": "Non hai un account?",
+    "backToHome": "Torna alla Home"
+  },
+  "accessibility": {
+    "logo": "Logo dell'azienda",
+    "togglePassword": "Attiva/disattiva visibilità password",
+    "loginForm": "Modulo di accesso"
+  }
+} 

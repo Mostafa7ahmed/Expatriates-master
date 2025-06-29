@@ -1,0 +1,45 @@
+{
+  "title": "Anmelden",
+  "subtitle": "Geben Sie Ihre Anmeldedaten ein, um auf Ihr Konto zuzugreifen",
+  "form": {
+    "email": {
+      "label": "E-Mail",
+      "placeholder": "E-Mail eingeben",
+      "required": "E-Mail ist erforderlich",
+      "invalid": "Bitte geben Sie eine gültige E-Mail ein"
+    },
+    "password": {
+      "label": "Passwort",
+      "placeholder": "Passwort eingeben",
+      "required": "Passwort ist erforderlich",
+      "minLength": "Passwort muss mindestens 6 Zeichen lang sein",
+      "show": "Passwort anzeigen",
+      "hide": "Passwort verbergen"
+    },
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "signIn": "Anmelden",
+    "signingIn": "Anmeldung läuft..."
+  },
+  "errors": {
+    "general": "Anmeldung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "invalidCredentials": "Ungültige E-Mail oder Passwort",
+    "networkError": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut."
+  },
+  "messages": {
+    "welcome": "Willkommen zurück!",
+    "loginSuccess": "Anmeldung erfolgreich. Weiterleitung...",
+    "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+  },
+  "links": {
+    "signUp": "Registrieren",
+    "noAccount": "Kein Konto?",
+    "backToHome": "Zurück zur Startseite"
+  },
+  "accessibility": {
+    "logo": "Firmenlogo",
+    "togglePassword": "Passwort-Sichtbarkeit umschalten",
+    "loginForm": "Anmeldeformular"
+  }
+} 

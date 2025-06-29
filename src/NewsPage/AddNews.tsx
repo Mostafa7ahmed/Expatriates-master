@@ -3,6 +3,7 @@ import api from "../Services/api";
 import "./AddNews.css";
 import { useNavigate } from "react-router-dom";
 import { RichTextEditor } from '@mantine/rte';
+import { useTranslation } from "react-i18next";
 
 // Custom Language Select Component with Flags
 interface CustomLanguageSelectProps {
@@ -18,6 +19,7 @@ const CustomLanguageSelect: React.FC<CustomLanguageSelectProps> = ({
   onLanguageChange,
   excludeLanguageIds = []
 }) => {
+  const { t } = useTranslation("News");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const selectedLanguage = languages.find(l => l.id === selectedLangId);
@@ -73,7 +75,7 @@ const CustomLanguageSelect: React.FC<CustomLanguageSelectProps> = ({
         ) : (
           <div className="placeholder-language">
             <span className="globe-icon">🌐</span>
-            <span>Select language</span>
+            <span>{t("addNews.form.translations.fields.selectLanguage")}</span>
           </div>
         )}
         <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
@@ -90,12 +92,12 @@ const CustomLanguageSelect: React.FC<CustomLanguageSelectProps> = ({
             }}
           >
             <span className="globe-icon">🌐</span>
-            <span>Select language</span>
+            <span>{t("addNews.form.translations.fields.selectLanguage")}</span>
           </div>
           {availableLanguages.length === 0 ? (
             <div className="language-option disabled">
               <span className="warning-icon">⚠️</span>
-              <span>All languages already selected</span>
+              <span>{t("addNews.form.translations.fields.allLanguagesSelectedWarning")}</span>
             </div>
           ) : (
             availableLanguages.map((language) => (
@@ -139,6 +141,7 @@ interface Translation {
 }
 
 const AddNews: React.FC = () => {
+  const { t } = useTranslation("News");
   const [languages, setLanguages] = useState<Language[]>([]);
 
   const [newsImgFile, setNewsImgFile] = useState<File | null>(null);
@@ -180,7 +183,7 @@ const AddNews: React.FC = () => {
     const availableLanguagesCount = languages.filter(lang => !selectedLanguageIds.includes(lang.id)).length;
     
     if (availableLanguagesCount === 0) {
-      alert("All available languages have been selected. You cannot add more translations.");
+      alert(t("addNews.form.translations.allLanguagesSelected"));
       return;
     }
     
@@ -196,7 +199,7 @@ const AddNews: React.FC = () => {
 
   const removeTranslation = (index: number) => {
     if (translations.length === 1) {
-      alert("At least one translation is required");
+      alert(t("addNews.form.translations.atLeastOneRequired"));
       return;
     }
     setTranslations(prev => prev.filter((_, i) => i !== index));
@@ -258,23 +261,23 @@ const AddNews: React.FC = () => {
           Authorization: token ? `Bearer ${token}` : undefined,
         },
       });
-      alert("News created successfully");
+      alert(t("addNews.messages.success"));
       navigate("/news");
     } catch(err){
       console.error(err);
-      alert("Failed to create news");
+      alert(t("addNews.messages.error"));
     }
   };
 
   return (
     <div className="add-news-container">
-      <h2>Add New News</h2>
+      <h2>{t("addNews.title")}</h2>
 
       {/* Main Info */}
       <section className="main-info">
-        <h3>Main Information</h3>
+        <h3>{t("addNews.sections.mainInfo")}</h3>
         <div className="field">
-          <label>News Image:</label>
+          <label>{t("addNews.form.imageUpload.title")}:</label>
           
           {/* Image Preview */}
           {newsImgPreview && (
@@ -287,7 +290,7 @@ const AddNews: React.FC = () => {
                   style={{ maxWidth: "300px", maxHeight: "200px", objectFit: "cover", borderRadius: "8px", border: "2px solid #ddd" }}
                 />
                 <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
-                  🆕 Selected image
+                  🆕 {t("addNews.form.imageUpload.newImageSelected")}
                 </div>
                 <button
                   type="button"
@@ -308,7 +311,7 @@ const AddNews: React.FC = () => {
                     alignItems: "center",
                     justifyContent: "center"
                   }}
-                  title="Remove image"
+                  title={t("addNews.form.imageUpload.removeImage")}
                 >
                   ✕
                 </button>
@@ -330,7 +333,7 @@ const AddNews: React.FC = () => {
             }}
           >
             <span>
-              {newsImgPreview ? "Click to change image or drop new image here" : "Click or drop an image here"}
+              {newsImgPreview ? t("addNews.form.imageUpload.clickToSelect") : t("addNews.form.imageUpload.dragDrop")}
             </span>
             <input
               ref={fileInputRef}
@@ -343,21 +346,21 @@ const AddNews: React.FC = () => {
         </div>
         <div className="field">
           <label>
-            <input type="checkbox" checked={isFeatured} onChange={e => setIsFeatured(e.target.checked)} /> Feature
+            <input type="checkbox" checked={isFeatured} onChange={e => setIsFeatured(e.target.checked)} /> {t("addNews.form.featured")}
           </label>
           <label style={{marginInlineStart: '20px'}}>
-            <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} /> Publish
+            <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} /> {t("addNews.form.published")}
           </label>
         </div>
       </section>
 
       {/* Translations */}
       <section className="translations">
-        <h3>News Translations</h3>
-        {translations.map((t, idx) => (
+        <h3>{t("addNews.form.translations.title")}</h3>
+        {translations.map((translation, idx) => (
           <details key={idx} className="translation-card" open>
             <summary>
-              <span>Translation {idx + 1}</span>
+              <span>{t("addNews.form.translations.translationNumber", { number: idx + 1 })}</span>
               {translations.length > 1 && (
                 <i
                   className="fa-solid fa-trash delete-icon"
@@ -370,59 +373,63 @@ const AddNews: React.FC = () => {
             </summary>
             <div className="translation-body">
               <div className="field">
-                <label>Language:</label>
+                <label>{t("addNews.form.translations.fields.language")}:</label>
                 <CustomLanguageSelect
                   languages={languages}
-                  selectedLangId={t.langId}
+                  selectedLangId={translation.langId}
                   onLanguageChange={(langId) => handleTranslationChange(idx, "langId", langId)}
                   excludeLanguageIds={translations.map((trans, i) => i !== idx ? trans.langId : "").filter(id => id !== "")}
                 />
               </div>
               <div className="field">
-                <label>News Header:</label>
+                <label>{t("addNews.form.translations.fields.title")}:</label>
                 <input
                   type="text"
-                  value={t.newsHead}
+                  value={translation.newsHead}
+                  placeholder={t("addNews.form.translations.fields.titlePlaceholder")}
                   onChange={(e) =>
                     handleTranslationChange(idx, "newsHead", e.target.value)
                   }
                 />
               </div>
               <div className="field">
-                <label>News Abbr:</label>
+                <label>{t("addNews.form.translations.fields.summary")}:</label>
                 <input
                   type="text"
-                  value={t.newsAbbr}
+                  value={translation.newsAbbr}
+                  placeholder={t("addNews.form.translations.fields.summaryPlaceholder")}
                   onChange={(e) =>
                     handleTranslationChange(idx, "newsAbbr", e.target.value)
                   }
                 />
               </div>
               <div className="field">
-                <label>News Source:</label>
+                <label>{t("addNews.form.translations.fields.source")}:</label>
                 <input
                   type="text"
-                  value={t.newsSource}
+                  value={translation.newsSource}
+                  placeholder={t("addNews.form.translations.fields.sourcePlaceholder")}
                   onChange={(e) =>
                     handleTranslationChange(idx, "newsSource", e.target.value)
                   }
                 />
               </div>
               <div className="field">
-                <label>News Body:</label>
+                <label>{t("addNews.form.translations.fields.content")}:</label>
                 <div className="news-body-editor">
                   <RichTextEditor
-                    value={t.newsBody}
+                    value={translation.newsBody}
                     onChange={(value) => handleTranslationChange(idx, "newsBody", value)}
                     style={{ background: "#fff", borderRadius: 8, minHeight: 180 }}
                   />
                 </div>
               </div>
               <div className="field">
-                <label>Image Alt Text:</label>
+                <label>{t("addNews.form.translations.fields.imageAlt")}:</label>
                 <input
                   type="text"
-                  value={t.imgAlt}
+                  value={translation.imgAlt}
+                  placeholder={t("addNews.form.translations.fields.imageAltPlaceholder")}
                   onChange={(e) =>
                     handleTranslationChange(idx, "imgAlt", e.target.value)
                   }
@@ -433,22 +440,22 @@ const AddNews: React.FC = () => {
         ))}
         <button 
           className={`add-translation-btn ${
-            languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0 
+            languages.filter(lang => !translations.map(translation => translation.langId).filter(id => id !== "").includes(lang.id)).length === 0 
               ? 'disabled' 
               : ''
           }`} 
           onClick={addTranslation}
-          disabled={languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0}
+          disabled={languages.filter(lang => !translations.map(translation => translation.langId).filter(id => id !== "").includes(lang.id)).length === 0}
         >
-          {languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0 
-            ? '✓ All Languages Added' 
-            : '+ Add Translation'
+          {languages.filter(lang => !translations.map(translation => translation.langId).filter(id => id !== "").includes(lang.id)).length === 0 
+            ? t("addNews.form.translations.allLanguagesAdded")
+            : t("addNews.form.translations.addTranslation")
           }
         </button>
       </section>
 
       <button className="save-news-btn" onClick={handleSubmit} style={{ marginTop: "20px" }}>
-        Save News
+        {t("addNews.form.buttons.submit")}
       </button>
     </div>
   );

@@ -1,17 +1,143 @@
 {
-  "title": "آخر الأخبار",
-  "description": "ابق على اطلاع بآخر الأخبار والفعاليات",
+  "title": "أحدث الأخبار",
+  "description": "ابق على اطلاع بأحدث الأخبار والفعاليات",
+  "addNews": {
+    "title": "إضافة خبر جديد",
+    "buttonText": "إضافة خبر جديد",
+    "sections": {
+      "mainInfo": "المعلومات الأساسية"
+    },
+    "form": {
+      "imageUpload": {
+        "title": "صورة الخبر",
+        "dragDrop": "اسحب وأفلت صورة هنا، أو انقر للاختيار",
+        "clickToSelect": "انقر لاختيار صورة",
+        "currentImage": "الصورة الحالية",
+        "newImageSelected": "تم اختيار صورة جديدة",
+        "removeImage": "إزالة الصورة",
+        "fileTypes": "الأشكال المدعومة: JPG, PNG, GIF (حد أقصى 5 ميجا)"
+      },
+      "published": "منشور",
+      "featured": "مميز",
+      "translations": {
+        "title": "ترجمات الخبر",
+        "translationNumber": "الترجمة {{number}}",
+        "addTranslation": "إضافة ترجمة",
+        "allLanguagesAdded": "✓ تم إضافة جميع اللغات",
+        "removeTranslation": "إزالة الترجمة",
+        "atLeastOneRequired": "مطلوب ترجمة واحدة على الأقل",
+        "allLanguagesSelected": "تم اختيار جميع اللغات المتاحة. لا يمكنك إضافة المزيد من الترجمات.",
+        "fields": {
+          "language": "اللغة",
+          "selectLanguage": "اختر اللغة",
+          "allLanguagesSelectedWarning": "تم اختيار جميع اللغات بالفعل",
+          "title": "عنوان الخبر",
+          "summary": "ملخص الخبر",
+          "content": "محتوى الخبر",
+          "source": "مصدر الخبر",
+          "imageAlt": "النص البديل للصورة",
+          "titlePlaceholder": "أدخل عنوان الخبر...",
+          "summaryPlaceholder": "أدخل ملخص الخبر...",
+          "sourcePlaceholder": "أدخل مصدر الخبر...",
+          "imageAltPlaceholder": "أدخل وصف الصورة..."
+        }
+      },
+      "buttons": {
+        "submit": "إضافة الخبر",
+        "submitting": "جاري إضافة الخبر...",
+        "cancel": "إلغاء",
+        "back": "العودة إلى الأخبار"
+      }
+    },
+    "messages": {
+      "success": "تم إضافة الخبر بنجاح!",
+      "error": "فشل في إضافة الخبر. يرجى المحاولة مرة أخرى.",
+      "validation": {
+        "titleRequired": "العنوان مطلوب",
+        "summaryRequired": "الملخص مطلوب",
+        "contentRequired": "المحتوى مطلوب",
+        "languageRequired": "يرجى اختيار اللغة",
+        "imageRequired": "يرجى اختيار صورة"
+      }
+    }
+  },
+  "editNews": {
+    "title": "تحرير الخبر",
+    "loading": "جاري تحميل بيانات الخبر...",
+    "form": {
+      "buttons": {
+        "submit": "تحديث الخبر",
+        "submitting": "جاري تحديث الخبر...",
+        "cancel": "إلغاء",
+        "back": "العودة إلى الأخبار"
+      }
+    },
+    "messages": {
+      "success": "تم تحديث الخبر بنجاح!",
+      "error": "فشل في تحديث الخبر. يرجى المحاولة مرة أخرى.",
+      "loadError": "فشل في تحميل بيانات الخبر"
+    }
+  },
+  "list": {
+    "search": {
+      "placeholder": "البحث في الأخبار...",
+      "button": "بحث",
+      "noResults": "لم يتم العثور على أخبار مطابقة لبحثك"
+    },
+    "pagination": {
+      "page": "صفحة",
+      "of": "من",
+      "previous": "السابق",
+      "next": "التالي",
+      "goto": "الذهاب إلى الصفحة"
+    },
+    "actions": {
+      "edit": "تحرير",
+      "delete": "حذف",
+      "view": "عرض التفاصيل"
+    },
+    "status": {
+      "published": "منشور",
+      "draft": "مسودة",
+      "featured": "مميز"
+    }
+  },
+  "delete": {
+    "confirm": {
+      "title": "تأكيد الحذف",
+      "message": "هل أنت متأكد من أنك تريد حذف هذا الخبر؟",
+      "warning": "لا يمكن التراجع عن هذا الإجراء.",
+      "buttons": {
+        "confirm": "نعم، احذف",
+        "cancel": "إلغاء"
+      }
+    },
+    "messages": {
+      "success": "تم حذف الخبر بنجاح!",
+      "error": "فشل في حذف الخبر. يرجى المحاولة مرة أخرى."
+    }
+  },
+  "details": {
+    "searchPlaceholder": "البحث في الأخبار...",
+    "search": "بحث",
+    "noResultsFound": "لم يتم العثور على أخبار",
+    "loading": "جاري التحميل...",
+    "publishedOn": "نُشر في",
+    "source": "المصدر",
+    "readMore": "اقرأ المزيد",
+    "backToNews": "العودة إلى قائمة الأخبار"
+  },
   "newsItems": [
     {
       "id": 1,
       "title": "إعلان الجامعة",
       "date": "2025-06-01",
-      "summary": "إعلان هام من الجامعة",
-      "content": "آخر التحديثات من إدارة الجامعة"
+      "summary": "إعلان مهم من الجامعة",
+      "content": "أحدث التحديثات من إدارة الجامعة"
     },
     {
       "id": 2,
-      "title": "الإنجاز الأكاديمي",
+      "title": "إنجاز أكاديمي",
       "date": "2025-05-30",
       "summary": "إنجازات وجوائز الطلاب",
       "content": "الاحتفال بنجاح طلابنا"

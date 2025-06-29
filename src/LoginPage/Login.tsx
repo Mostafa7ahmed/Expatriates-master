@@ -7,7 +7,7 @@ import "./Login.css";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation("Login");
   const savedLang = JSON.parse(localStorage.getItem("lang") || '{"code": "en"}');
   
   const [formData, setFormData] = useState({
@@ -52,15 +52,15 @@ const Login: React.FC = () => {
     };
 
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = t("form.email.required");
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t("form.email.invalid");
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t("form.password.required");
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = t("form.password.minLength");
     }
 
     setErrors(newErrors);
@@ -99,7 +99,7 @@ const Login: React.FC = () => {
       console.error('Error response:', error.response?.data);
       setErrors(prev => ({
         ...prev,
-        general: error.response?.data?.message || error.message || "Login failed. Please try again."
+        general: error.response?.data?.message || error.message || t("errors.general")
       }));
     } finally {
       setIsLoading(false);
@@ -113,9 +113,9 @@ const Login: React.FC = () => {
       <div className="login-container">
         <div className="login-card">
           <div className="login-header">
-            <img src="/src/assets/image.png" alt="Logo" className="login-logo" />
-            <h1>Sign In</h1>
-            <p>Enter your credentials to access your account</p>
+            <img src="/src/assets/image.png" alt={t("accessibility.logo")} className="login-logo" />
+            <h1>{t("title")}</h1>
+            <p>{t("subtitle")}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="login-form">
@@ -126,21 +126,21 @@ const Login: React.FC = () => {
             )}
 
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t("form.email.label")}</label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                placeholder="Enter your email"
+                placeholder={t("form.email.placeholder")}
                 className={errors.email ? "error" : ""}
               />
               {errors.email && <span className="error-text">{errors.email}</span>}
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{t("form.password.label")}</label>
               <div className="password-wrapper">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -148,13 +148,14 @@ const Login: React.FC = () => {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  placeholder="Enter your password"
+                  placeholder={t("form.password.placeholder")}
                   className={errors.password ? "error" : ""}
                 />
                 <button
                   type="button"
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
+                  title={t("accessibility.togglePassword")}
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -165,7 +166,7 @@ const Login: React.FC = () => {
             <div className="form-options">
               <label className="remember-me">
                 <input type="checkbox" />
-                Remember me
+                {t("form.rememberMe")}
               </label>
            
             </div>
@@ -175,7 +176,7 @@ const Login: React.FC = () => {
               className="login-btn" 
               disabled={isLoading}
             >
-              {isLoading ? "Signing in..." : "Sign In"}
+              {isLoading ? t("form.signingIn") : t("form.signIn")}
             </button>
 
             {/* <div className="signup-section">

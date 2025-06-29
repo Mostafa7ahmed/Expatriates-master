@@ -1,0 +1,45 @@
+{
+  "title": "Se connecter",
+  "subtitle": "Entrez vos identifiants pour accéder à votre compte",
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Entrez votre email",
+      "required": "L'email est requis",
+      "invalid": "Veuillez entrer un email valide"
+    },
+    "password": {
+      "label": "Mot de passe",
+      "placeholder": "Entrez votre mot de passe",
+      "required": "Le mot de passe est requis",
+      "minLength": "Le mot de passe doit contenir au moins 6 caractères",
+      "show": "Afficher le mot de passe",
+      "hide": "Masquer le mot de passe"
+    },
+    "rememberMe": "Se souvenir de moi",
+    "forgotPassword": "Mot de passe oublié?",
+    "signIn": "Se connecter",
+    "signingIn": "Connexion en cours..."
+  },
+  "errors": {
+    "general": "Échec de la connexion. Veuillez réessayer.",
+    "invalidCredentials": "Email ou mot de passe invalide",
+    "networkError": "Erreur réseau. Vérifiez votre connexion.",
+    "serverError": "Erreur serveur. Veuillez réessayer plus tard."
+  },
+  "messages": {
+    "welcome": "Bon retour!",
+    "loginSuccess": "Connexion réussie. Redirection...",
+    "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter."
+  },
+  "links": {
+    "signUp": "S'inscrire",
+    "noAccount": "Pas de compte?",
+    "backToHome": "Retour à l'accueil"
+  },
+  "accessibility": {
+    "logo": "Logo de l'entreprise",
+    "togglePassword": "Basculer la visibilité du mot de passe",
+    "loginForm": "Formulaire de connexion"
+  }
+} 

@@ -1,0 +1,45 @@
+{
+  "title": "Sign In",
+  "subtitle": "Enter your credentials to access your account",
+  "form": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email",
+      "required": "Email is required",
+      "invalid": "Please enter a valid email"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "required": "Password is required",
+      "minLength": "Password must be at least 6 characters",
+      "show": "Show password",
+      "hide": "Hide password"
+    },
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot Password?",
+    "signIn": "Sign In",
+    "signingIn": "Signing in..."
+  },
+  "errors": {
+    "general": "Login failed. Please try again.",
+    "invalidCredentials": "Invalid email or password",
+    "networkError": "Network error. Please check your connection.",
+    "serverError": "Server error. Please try again later."
+  },
+  "messages": {
+    "welcome": "Welcome back!",
+    "loginSuccess": "Login successful. Redirecting...",
+    "sessionExpired": "Your session has expired. Please log in again."
+  },
+  "links": {
+    "signUp": "Sign up",
+    "noAccount": "Don't have an account?",
+    "backToHome": "Back to Home"
+  },
+  "accessibility": {
+    "logo": "Company Logo",
+    "togglePassword": "Toggle password visibility",
+    "loginForm": "Login form"
+  }
+} 

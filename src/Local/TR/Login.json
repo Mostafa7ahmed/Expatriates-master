@@ -1,0 +1,45 @@
+{
+  "title": "Giriş Yap",
+  "subtitle": "Hesabınıza erişmek için kimlik bilgilerinizi girin",
+  "form": {
+    "email": {
+      "label": "E-posta",
+      "placeholder": "E-postanızı girin",
+      "required": "E-posta gereklidir",
+      "invalid": "Geçerli bir e-posta adresi girin"
+    },
+    "password": {
+      "label": "Şifre",
+      "placeholder": "Şifrenizi girin",
+      "required": "Şifre gereklidir",
+      "minLength": "Şifre en az 6 karakter olmalıdır",
+      "show": "Şifreyi göster",
+      "hide": "Şifreyi gizle"
+    },
+    "rememberMe": "Beni hatırla",
+    "forgotPassword": "Şifremi unuttum?",
+    "signIn": "Giriş Yap",
+    "signingIn": "Giriş yapılıyor..."
+  },
+  "errors": {
+    "general": "Giriş başarısız. Lütfen tekrar deneyin.",
+    "invalidCredentials": "Geçersiz e-posta veya şifre",
+    "networkError": "Ağ hatası. Bağlantınızı kontrol edin.",
+    "serverError": "Sunucu hatası. Lütfen daha sonra tekrar deneyin."
+  },
+  "messages": {
+    "welcome": "Tekrar hoş geldiniz!",
+    "loginSuccess": "Giriş başarılı. Yönlendiriliyor...",
+    "sessionExpired": "Oturumunuzun süresi doldu. Lütfen tekrar giriş yapın."
+  },
+  "links": {
+    "signUp": "Kaydol",
+    "noAccount": "Hesabınız yok mu?",
+    "backToHome": "Ana Sayfaya Dön"
+  },
+  "accessibility": {
+    "logo": "Şirket Logosu",
+    "togglePassword": "Şifre görünürlüğünü değiştir",
+    "loginForm": "Giriş formu"
+  }
+} 

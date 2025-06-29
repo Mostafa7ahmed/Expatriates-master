@@ -3,6 +3,7 @@ import api from "../Services/api";
 import "./AddNews.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { RichTextEditor } from '@mantine/rte';
+import { useTranslation } from "react-i18next";
 
 // Custom Language Select Component with Flags
 interface CustomLanguageSelectProps {
@@ -18,6 +19,7 @@ const CustomLanguageSelect: React.FC<CustomLanguageSelectProps> = ({
   onLanguageChange,
   excludeLanguageIds = []
 }) => {
+  const { t } = useTranslation("News");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const selectedLanguage = languages.find(l => l.id === selectedLangId);
@@ -140,6 +142,7 @@ interface Translation {
 }
 
 const EditNews: React.FC = () => {
+  const { t } = useTranslation("News");
   const { id } = useParams<{ id: string }>();
   const [languages, setLanguages] = useState<Language[]>([]);
   const [loading, setLoading] = useState(true);
@@ -343,14 +346,14 @@ const EditNews: React.FC = () => {
   if (loading) {
     return (
       <div className="add-news-container">
-        <h2>Loading...</h2>
+        <h2>{t("editNews.loading")}</h2>
       </div>
     );
   }
 
   return (
     <div className="add-news-container">
-      <h2>Edit News</h2>
+      <h2>{t("editNews.title")}</h2>
 
       {/* Main Info */}
       <section className="main-info">
@@ -530,7 +533,7 @@ const EditNews: React.FC = () => {
       </section>
 
       <button className="save-news-btn" onClick={handleSubmit} style={{ marginTop: "20px" }}>
-        Update News
+        {t("editNews.form.buttons.submit")}
       </button>
     </div>
   );

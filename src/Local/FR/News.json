@@ -1,6 +1,132 @@
 {
   "title": "Dernières Nouvelles",
   "description": "Restez informé des dernières nouvelles et événements",
+  "addNews": {
+    "title": "Ajouter une Nouvelle",
+    "buttonText": "Ajouter une Nouvelle",
+    "sections": {
+      "mainInfo": "Informations Principales"
+    },
+    "form": {
+      "imageUpload": {
+        "title": "Image de la Nouvelle",
+        "dragDrop": "Glissez et déposez une image ici, ou cliquez pour sélectionner",
+        "clickToSelect": "Cliquez pour sélectionner une image",
+        "currentImage": "Image actuelle",
+        "newImageSelected": "Nouvelle image sélectionnée",
+        "removeImage": "Supprimer l'image",
+        "fileTypes": "Formats supportés: JPG, PNG, GIF (max 5MB)"
+      },
+      "published": "Publié",
+      "featured": "En vedette",
+      "translations": {
+        "title": "Traductions de la Nouvelle",
+        "translationNumber": "Traduction {{number}}",
+        "addTranslation": "Ajouter une Traduction",
+        "allLanguagesAdded": "✓ Toutes les Langues Ajoutées",
+        "removeTranslation": "Supprimer la Traduction",
+        "atLeastOneRequired": "Au moins une traduction est requise",
+        "allLanguagesSelected": "Toutes les langues disponibles ont été sélectionnées. Vous ne pouvez pas ajouter plus de traductions.",
+        "fields": {
+          "language": "Langue",
+          "selectLanguage": "Sélectionner la langue",
+          "allLanguagesSelectedWarning": "Toutes les langues déjà sélectionnées",
+          "title": "Titre de la Nouvelle",
+          "summary": "Résumé de la Nouvelle",
+          "content": "Contenu de la Nouvelle",
+          "source": "Source de la Nouvelle",
+          "imageAlt": "Texte Alternatif de l'Image",
+          "titlePlaceholder": "Entrez le titre de la nouvelle...",
+          "summaryPlaceholder": "Entrez le résumé de la nouvelle...",
+          "sourcePlaceholder": "Entrez la source de la nouvelle...",
+          "imageAltPlaceholder": "Entrez la description de l'image..."
+        }
+      },
+      "buttons": {
+        "submit": "Ajouter la Nouvelle",
+        "submitting": "Ajout en cours...",
+        "cancel": "Annuler",
+        "back": "Retour aux Nouvelles"
+      }
+    },
+    "messages": {
+      "success": "Nouvelle ajoutée avec succès!",
+      "error": "Échec de l'ajout de la nouvelle. Veuillez réessayer.",
+      "validation": {
+        "titleRequired": "Le titre est requis",
+        "summaryRequired": "Le résumé est requis",
+        "contentRequired": "Le contenu est requis",
+        "languageRequired": "Veuillez sélectionner une langue",
+        "imageRequired": "Veuillez sélectionner une image"
+      }
+    }
+  },
+  "editNews": {
+    "title": "Modifier la Nouvelle",
+    "loading": "Chargement des données de la nouvelle...",
+    "form": {
+      "buttons": {
+        "submit": "Mettre à jour la Nouvelle",
+        "submitting": "Mise à jour en cours...",
+        "cancel": "Annuler",
+        "back": "Retour aux Nouvelles"
+      }
+    },
+    "messages": {
+      "success": "Nouvelle mise à jour avec succès!",
+      "error": "Échec de la mise à jour de la nouvelle. Veuillez réessayer.",
+      "loadError": "Échec du chargement des données de la nouvelle"
+    }
+  },
+  "list": {
+    "search": {
+      "placeholder": "Rechercher des nouvelles...",
+      "button": "Rechercher",
+      "noResults": "Aucune nouvelle trouvée correspondant à votre recherche"
+    },
+    "pagination": {
+      "page": "Page",
+      "of": "de",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "goto": "Aller à la page"
+    },
+    "actions": {
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "view": "Voir les Détails"
+    },
+    "status": {
+      "published": "Publié",
+      "draft": "Brouillon",
+      "featured": "En vedette"
+    }
+  },
+  "delete": {
+    "confirm": {
+      "title": "Confirmer la Suppression",
+      "message": "Êtes-vous sûr de vouloir supprimer cette nouvelle?",
+      "warning": "Cette action ne peut pas être annulée.",
+      "buttons": {
+        "confirm": "Oui, Supprimer",
+        "cancel": "Annuler"
+      }
+    },
+    "messages": {
+      "success": "Nouvelle supprimée avec succès!",
+      "error": "Échec de la suppression de la nouvelle. Veuillez réessayer."
+    }
+  },
+  "details": {
+    "searchPlaceholder": "Rechercher des nouvelles...",
+    "search": "Rechercher",
+    "noResultsFound": "Aucune nouvelle trouvée",
+    "loading": "Chargement...",
+    "publishedOn": "Publié le",
+    "source": "Source",
+    "readMore": "Lire la Suite",
+    "backToNews": "Retour à la Liste des Nouvelles"
+  },
   "newsItems": [
     {
       "id": 1,
@@ -13,8 +139,8 @@
       "id": 2,
       "title": "Réussite Académique",
       "date": "2025-05-30",
-      "summary": "Réalisations et récompenses des étudiants",
-      "content": "Célébration du succès de nos étudiants"
+      "summary": "Réussites et prix des étudiants",
+      "content": "Célébrer le succès de nos étudiants"
     }
   ]
 }

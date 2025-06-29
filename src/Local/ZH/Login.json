@@ -1,0 +1,45 @@
+{
+  "title": "登录",
+  "subtitle": "输入您的凭据以访问您的账户",
+  "form": {
+    "email": {
+      "label": "邮箱",
+      "placeholder": "输入您的邮箱",
+      "required": "邮箱为必填项",
+      "invalid": "请输入有效的邮箱地址"
+    },
+    "password": {
+      "label": "密码",
+      "placeholder": "输入您的密码",
+      "required": "密码为必填项",
+      "minLength": "密码至少需要6个字符",
+      "show": "显示密码",
+      "hide": "隐藏密码"
+    },
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "signIn": "登录",
+    "signingIn": "正在登录..."
+  },
+  "errors": {
+    "general": "登录失败，请重试。",
+    "invalidCredentials": "邮箱或密码无效",
+    "networkError": "网络错误，请检查您的连接。",
+    "serverError": "服务器错误，请稍后重试。"
+  },
+  "messages": {
+    "welcome": "欢迎回来！",
+    "loginSuccess": "登录成功，正在跳转...",
+    "sessionExpired": "您的会话已过期，请重新登录。"
+  },
+  "links": {
+    "signUp": "注册",
+    "noAccount": "没有账户？",
+    "backToHome": "返回首页"
+  },
+  "accessibility": {
+    "logo": "公司徽标",
+    "togglePassword": "切换密码可见性",
+    "loginForm": "登录表单"
+  }
+} 

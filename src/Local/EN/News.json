@@ -1,6 +1,132 @@
 {
   "title": "Latest News",
   "description": "Stay updated with the latest news and events",
+  "addNews": {
+    "title": "Add New News",
+    "buttonText": "Add New News",
+    "sections": {
+      "mainInfo": "Main Information"
+    },
+    "form": {
+      "imageUpload": {
+        "title": "News Image",
+        "dragDrop": "Drag and drop an image here, or click to select",
+        "clickToSelect": "Click to select image",
+        "currentImage": "Current image",
+        "newImageSelected": "New image selected",
+        "removeImage": "Remove image",
+        "fileTypes": "Supported formats: JPG, PNG, GIF (max 5MB)"
+      },
+      "published": "Published",
+      "featured": "Featured",
+      "translations": {
+        "title": "News Translations",
+        "translationNumber": "Translation {{number}}",
+        "addTranslation": "Add Translation",
+        "allLanguagesAdded": "✓ All Languages Added",
+        "removeTranslation": "Remove Translation",
+        "atLeastOneRequired": "At least one translation is required",
+        "allLanguagesSelected": "All available languages have been selected. You cannot add more translations.",
+        "fields": {
+          "language": "Language",
+          "selectLanguage": "Select language",
+          "allLanguagesSelectedWarning": "All languages already selected",
+          "title": "News Title",
+          "summary": "News Summary",
+          "content": "News Content",
+          "source": "News Source",
+          "imageAlt": "Image Alt Text",
+          "titlePlaceholder": "Enter news title...",
+          "summaryPlaceholder": "Enter news summary...",
+          "sourcePlaceholder": "Enter news source...",
+          "imageAltPlaceholder": "Enter image description..."
+        }
+      },
+      "buttons": {
+        "submit": "Add News",
+        "submitting": "Adding News...",
+        "cancel": "Cancel",
+        "back": "Back to News"
+      }
+    },
+    "messages": {
+      "success": "News added successfully!",
+      "error": "Failed to add news. Please try again.",
+      "validation": {
+        "titleRequired": "Title is required",
+        "summaryRequired": "Summary is required",
+        "contentRequired": "Content is required",
+        "languageRequired": "Please select a language",
+        "imageRequired": "Please select an image"
+      }
+    }
+  },
+  "editNews": {
+    "title": "Edit News",
+    "loading": "Loading news data...",
+    "form": {
+      "buttons": {
+        "submit": "Update News",
+        "submitting": "Updating News...",
+        "cancel": "Cancel",
+        "back": "Back to News"
+      }
+    },
+    "messages": {
+      "success": "News updated successfully!",
+      "error": "Failed to update news. Please try again.",
+      "loadError": "Failed to load news data"
+    }
+  },
+  "list": {
+    "search": {
+      "placeholder": "Search news...",
+      "button": "Search",
+      "noResults": "No news found matching your search"
+    },
+    "pagination": {
+      "page": "Page",
+      "of": "of",
+      "previous": "Previous",
+      "next": "Next",
+      "goto": "Go to page"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View Details"
+    },
+    "status": {
+      "published": "Published",
+      "draft": "Draft",
+      "featured": "Featured"
+    }
+  },
+  "delete": {
+    "confirm": {
+      "title": "Confirm Delete",
+      "message": "Are you sure you want to delete this news item?",
+      "warning": "This action cannot be undone.",
+      "buttons": {
+        "confirm": "Yes, Delete",
+        "cancel": "Cancel"
+      }
+    },
+    "messages": {
+      "success": "News deleted successfully!",
+      "error": "Failed to delete news. Please try again."
+    }
+  },
+  "details": {
+    "searchPlaceholder": "Search news...",
+    "search": "Search",
+    "noResultsFound": "No news found",
+    "loading": "Loading...",
+    "publishedOn": "Published on",
+    "source": "Source",
+    "readMore": "Read More",
+    "backToNews": "Back to News List"
+  },
   "newsItems": [
     {
       "id": 1,
