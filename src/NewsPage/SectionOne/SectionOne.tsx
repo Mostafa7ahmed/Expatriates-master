@@ -97,9 +97,13 @@ function SectionOne({ News, row, onNewsDeleted }) {
 
     try {
       const token = localStorage.getItem('token');
+      
+      // Fixed: Match the API specification from curl command
       await api.delete('news', {
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'accept': 'text/plain'
         },
         data: {
           id: deleteModal.newsId
