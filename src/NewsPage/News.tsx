@@ -80,6 +80,21 @@ function News() {
     if (movePrevious) setCurrentPage((prev) => prev - 1);
   };
 
+  const handleNewsDeleted = (deletedNewsId) => {
+    // Remove deleted news from current list
+    setFilteredNews(prev => prev.filter(news => news?.id !== deletedNewsId));
+    
+    // If current page becomes empty and it's not the first page, go to previous page
+    if (filteredNews.length === 1 && currentPage > 1) {
+      setCurrentPage(prev => prev - 1);
+    } else {
+      // Refresh the current page to get updated data
+      setTimeout(() => {
+        fetchNews(currentPage, searchTerm);
+      }, 100);
+    }
+  };
+
   // Generate page numbers for pagination
   const getPageNumbers = () => {
     const maxPagesToShow = 5; // Number of page buttons to show
@@ -146,7 +161,7 @@ function News() {
             <h2>{t("details.noResultsFound")}</h2>
           </div>
         ) : (
-          <SectionOne row="row" News={filteredNews} />
+          <SectionOne row="row" News={filteredNews} onNewsDeleted={handleNewsDeleted} />
         )}
       </div>
       <div className="pagainationDown">

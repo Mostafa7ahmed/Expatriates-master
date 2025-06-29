@@ -146,6 +146,67 @@
     color: black;
 }
 
+/* Admin Actions Styles */
+.admin-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .admin-actions {
+    opacity: 1;
+}
+
+.admin-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn {
+    color: #3b82f6;
+}
+
+.edit-btn:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.delete-btn {
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+    color: white;
+}
+
+/* RTL Support for Admin Actions */
+[dir="rtl"] .admin-actions {
+    right: auto;
+    left: 10px;
+}
+
 /* Responsive Design */
 
 @media (max-width: 1200px) {
@@ -222,6 +283,14 @@
         margin-bottom: 10px;
     }
 
+    .admin-actions {
+        opacity: 1; /* Always show on mobile */
+    }
+    
+    .admin-btn {
+        width: 28px;
+        height: 28px;
+    }
 }
 
 

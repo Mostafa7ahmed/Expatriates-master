@@ -6,6 +6,7 @@ import Details from "./NewsDetails/Details";
 import ContactUs from "./ContactUsPage/ContactUs"
 import Collage from "./Collages/Collages"
 import Programs from "./ProgramsPage/Programs";
+import Login from "./LoginPage/Login";
 import Header from "./HomePage/Header/Header";
 import Footer from "./HomePage/Footer/Footer";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/collage" element={<Collage />} />
         <Route path="/programs" element={<Programs />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
             <Footer />
 
