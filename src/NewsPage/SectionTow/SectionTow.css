@@ -18,11 +18,11 @@
     height: 0%;
     width: 100%;
     overflow: hidden;
-    background: linear-gradient(360deg, #000000b5 70%, transparent);
+    background: linear-gradient(360deg, #000000b5 60%, transparent);
     color: white;
     display: flex;
     align-items: flex-end;
-    transition: 0.4s;
+
 }
 
 .news-bottom-section .card-overlay .content {
