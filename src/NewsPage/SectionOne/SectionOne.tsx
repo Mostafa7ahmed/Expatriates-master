@@ -96,7 +96,7 @@ function SectionOne({ News, row, onNewsDeleted }) {
     try {
       const token = localStorage.getItem('token');
       
-      await api.delete(`news/${deleteModal.newsId}`, {
+      await api.get(`news/delete/${deleteModal.newsId}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
