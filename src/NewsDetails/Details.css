@@ -278,6 +278,20 @@
   .news-grid {
     grid-template-columns: repeat(2, 45%);
   }
+
+  .title-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .admin-actions-details {
+    align-self: flex-start;
+  }
+  
+  .admin-btn {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 @media (max-width: 620px) {
@@ -401,4 +415,58 @@
     margin: 12px;
     padding: 4px;
   }
+}
+
+/* Admin Actions */
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+.admin-actions-details {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.admin-btn {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.edit-btn {
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.edit-btn:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.delete-btn {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.delete-btn:hover {
+  background: #ef4444;
+  color: white;
 }

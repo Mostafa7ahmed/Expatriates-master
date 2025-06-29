@@ -7,6 +7,10 @@ import api from "../Services/api";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import defaultImg from "../assets/raes.jpg";
+import { Edit, Trash2 } from "lucide-react";
+import { toast } from "react-toastify";
+import { useAuth } from "../hooks/useAuth";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
 
 // ✅ SmartImage component
 const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
@@ -56,10 +60,20 @@ function Details(props) {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentNews, setCurrentNews] = useState();
   const [langId, setLangId] = useState(savedLang?.id || 2);
-  const { i18n, t } = useTranslation();
+  const { i18n, t } = useTranslation("News");
+  const { t: tDetails } = useTranslation("NewsDetails");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+  
+  // Modal state for delete confirmation
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    newsId: null,
+    newsTitle: "",
+    isLoading: false
+  });
 
   const images = [
     currentNews?.images?.[0],
@@ -144,6 +158,70 @@ useEffect(() => {
       });
   };
 
+  const handleDeleteClick = () => {
+    setDeleteModal({
+      isOpen: true,
+      newsId: currentNews?.id,
+      newsTitle: currentNews?.newsDetails?.head || "",
+      isLoading: false
+    });
+  };
+
+  const handleEditClick = () => {
+    window.open(`/news/edit/${currentNews?.id}`, '_blank');
+  };
+
+  const handleDeleteConfirm = async () => {
+    setDeleteModal(prev => ({ ...prev, isLoading: true }));
+
+    try {
+      const token = localStorage.getItem('token');
+      
+      await api.get(`news/delete/${deleteModal.newsId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'accept': 'text/plain'
+        }
+      });
+
+      setDeleteModal({
+        isOpen: false,
+        newsId: null,
+        newsTitle: "",
+        isLoading: false
+      });
+
+      // Show success toast
+      toast.success(t("delete.messages.success"), {
+        position: "top-right",
+        autoClose: 2000,
+      });
+
+      // Navigate back to news list
+      navigate("/news");
+      
+    } catch (error) {
+      console.error("Error deleting news:", error);
+      setDeleteModal(prev => ({ ...prev, isLoading: false }));
+      
+      // Show error toast
+      toast.error(t("delete.messages.error"), {
+        position: "top-right",
+        autoClose: 4000,
+      });
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteModal({
+      isOpen: false,
+      newsId: null,
+      newsTitle: "",
+      isLoading: false
+    });
+  };
+
   return (
     <div>
 
@@ -152,13 +230,35 @@ useEffect(() => {
           <div className="content-wrapper">
             <div className="event-text-content">
               <div className="headertext">
-                <h2
-                  className="event-title"
-                  style={
-                    savedLang?.code === `ar` ? headerArStyle : headerEnStyle
-                  }>
-                  {currentNews?.newsDetails.head}
-                </h2>
+                <div className="title-section">
+                  <h2
+                    className="event-title"
+                    style={
+                      savedLang?.code === `ar` ? headerArStyle : headerEnStyle
+                    }>
+                    {currentNews?.newsDetails.head}
+                  </h2>
+                  
+                  {isLoggedIn && currentNews && (
+                    <div className="admin-actions-details">
+                      <button
+                        className="admin-btn edit-btn"
+                        onClick={handleEditClick}
+                        title="Edit news"
+                      >
+                        <Edit size={20} />
+                      </button>
+                      <button
+                        className="admin-btn delete-btn"
+                        onClick={handleDeleteClick}
+                        title="Delete news"
+                      >
+                        <Trash2 size={20} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+                
                 <div className="p-5 slider">
                   <div className="languages-container">
                     {currentNews?.languages.map((language) => (
@@ -234,7 +334,7 @@ useEffect(() => {
                 style={
                   savedLang?.code === `ar` ? headerArStyle : headerEnStyle
                 }>
-                {t("details.latest")}
+                {tDetails("relatedNews")}
               </h3>
 
               <div className="news-grid">
@@ -281,6 +381,13 @@ useEffect(() => {
         </div>
       </main>
 
+      <DeleteConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+        newsTitle={deleteModal.newsTitle}
+        isLoading={deleteModal.isLoading}
+      />
     </div>
   );
 }
