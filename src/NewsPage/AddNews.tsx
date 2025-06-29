@@ -147,6 +147,8 @@ const AddNews: React.FC = () => {
 
   const [newsImgFile, setNewsImgFile] = useState<File | null>(null);
   const [newsImgPreview, setNewsImgPreview] = useState<string>("");
+  const [newsImgFileName, setNewsImgFileName] = useState<string>("");
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [published, setPublished] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
   const [translations, setTranslations] = useState<Translation[]>([{
@@ -213,26 +215,65 @@ const AddNews: React.FC = () => {
     setTranslations(translations.filter((_, i) => i !== index));
   };
 
-  const fileToBase64 = (file: File) => new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
+  const uploadImageToServer = async (file: File): Promise<{path: string, fileName: string}> => {
+    const formData = new FormData();
+    formData.append('file', file);
 
-  const handleFileChange = (file: File | null) => {
+    const token = localStorage.getItem('token');
+    const response = await api.post('/stream', formData, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+        'accept': '*/*'
+      }
+    });
+
+    if (response.data.success) {
+      return {
+        path: response.data.result.path,
+        fileName: response.data.result.fileName
+      };
+    } else {
+      throw new Error('Failed to upload image');
+    }
+  };
+
+  const handleFileChange = async (file: File | null) => {
     setNewsImgFile(file);
     if (file) {
-      const url = URL.createObjectURL(file);
-      setNewsImgPreview(url);
+      setUploadingImage(true);
+      try {
+        const uploadResult = await uploadImageToServer(file);
+        setNewsImgPreview(uploadResult.path);
+        setNewsImgFileName(uploadResult.fileName);
+        
+        toast.success("Image uploaded successfully!", {
+          position: "top-right",
+          autoClose: 2000,
+        });
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        toast.error("Failed to upload image. Please try again.", {
+          position: "top-right",
+          autoClose: 4000,
+        });
+        // Fallback to local preview if upload fails
+        const url = URL.createObjectURL(file);
+        setNewsImgPreview(url);
+        setNewsImgFileName("");
+      } finally {
+        setUploadingImage(false);
+      }
     } else {
       setNewsImgPreview("");
+      setNewsImgFileName("");
     }
   };
 
   const removeImage = () => {
     setNewsImgFile(null);
     setNewsImgPreview("");
+    setNewsImgFileName("");
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -248,15 +289,19 @@ const AddNews: React.FC = () => {
 
   const handleSubmit = async () => {
     try {
-      let newsImg = "";
-      if(newsImgFile){
-        newsImg = await fileToBase64(newsImgFile);
+      // Validate that image is uploaded if file was selected
+      if (newsImgFile && !newsImgFileName) {
+        toast.error("Please wait for image upload to complete", {
+          position: "top-right",
+          autoClose: 4000,
+        });
+        return;
       }
 
       const ownerId = localStorage.getItem("userId");
       const payload = {
         ownerId,
-        newsImg,
+        newsImg: newsImgFileName, // Use uploaded fileName instead of base64
         published,
         isFeatured,
         translations: translations.filter(t => t.langId !== ""),
@@ -338,24 +383,34 @@ const AddNews: React.FC = () => {
           {/* Upload Area */}
           <div
             className="file-drop"
-            onClick={() => fileInputRef.current?.click()}
+            onClick={() => !uploadingImage && fileInputRef.current?.click()}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             style={{ 
               minHeight: newsImgPreview ? "60px" : "120px",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
+              opacity: uploadingImage ? 0.6 : 1,
+              cursor: uploadingImage ? "not-allowed" : "pointer"
             }}
           >
             <span>
-              {newsImgPreview ? t("addNews.form.imageUpload.clickToSelect") : t("addNews.form.imageUpload.dragDrop")}
+              {uploadingImage ? (
+                <>
+                  <i className="fa fa-spinner fa-spin" style={{ marginRight: "8px" }}></i>
+                  Uploading image...
+                </>
+              ) : (
+                newsImgPreview ? t("addNews.form.imageUpload.clickToSelect") : t("addNews.form.imageUpload.dragDrop")
+              )}
             </span>
             <input
               ref={fileInputRef}
               type="file"
               accept="image/*"
               style={{ display: "none" }}
+              disabled={uploadingImage}
               onChange={(e) => handleFileChange(e.target.files ? e.target.files[0] : null)}
             />
           </div>
