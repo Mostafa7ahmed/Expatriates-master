@@ -425,9 +425,9 @@ const EditNews: React.FC = () => {
 
       {/* Main Info */}
       <section className="main-info">
-        <h3>Main Information</h3>
+        <h3>{t("addNews.sections.mainInfo")}</h3>
         <div className="field">
-          <label>News Image:</label>
+          <label>{t("addNews.form.imageUpload.title")}:</label>
           
           {/* Current Image Preview */}
           {newsImgPreview && (
@@ -437,10 +437,10 @@ const EditNews: React.FC = () => {
                   src={newsImgPreview} 
                   alt="Current news image" 
                   className="preview-img" 
-                  style={{ maxWidth: "300px", maxHeight: "200px", objectFit: "cover", borderRadius: "8px", border: "2px solid #ddd" }}
+                  style={{ objectFit: "cover", borderRadius: "8px", border: "1px solid #ddd" }}
                 />
                 <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
-                  {newsImgFile ? "🆕 New image selected" : "📷 Current image"}
+                  {newsImgFile ? t("addNews.form.imageUpload.newImageSelected") : t("addNews.form.imageUpload.currentImage")}
                 </div>
                 <button
                   type="button"
@@ -461,7 +461,7 @@ const EditNews: React.FC = () => {
                     alignItems: "center",
                     justifyContent: "center"
                   }}
-                  title="Remove image"
+                  title={t("addNews.form.imageUpload.removeImage")}
                 >
                   ✕
                 </button>
@@ -491,7 +491,7 @@ const EditNews: React.FC = () => {
                   Uploading image...
                 </>
               ) : (
-                newsImgPreview ? "Click to change image or drop new image here" : "Click or drop an image here"
+                newsImgPreview ? t("addNews.form.imageUpload.clickToSelect") : t("addNews.form.imageUpload.dragDrop")
               )}
             </span>
             <input
@@ -506,21 +506,21 @@ const EditNews: React.FC = () => {
         </div>
         <div className="field">
           <label>
-            <input type="checkbox" checked={isFeatured} onChange={e => setIsFeatured(e.target.checked)} /> Feature
+            <input type="checkbox" checked={isFeatured} onChange={e => setIsFeatured(e.target.checked)} /> {t("addNews.form.featured")}
           </label>
           <label style={{marginInlineStart: '20px'}}>
-            <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} /> Publish
+            <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} /> {t("addNews.form.published")}
           </label>
         </div>
       </section>
 
       {/* Translations */}
       <section className="translations">
-        <h3>News Translations</h3>
-        {translations.map((t, idx) => (
+        <h3>{t("addNews.form.translations.title")}</h3>
+        {translations.map((translation, idx) => (
           <details key={idx} className="translation-card" open>
             <summary>
-              <span>Translation {idx + 1}</span>
+              <span>{t("addNews.form.translations.translationNumber", { number: idx + 1 })}</span>
               {translations.length > 1 && (
                 <i
                   className="fa-solid fa-trash delete-icon"
@@ -533,64 +533,92 @@ const EditNews: React.FC = () => {
             </summary>
             <div className="translation-body">
               <div className="field">
-                <label>Language:</label>
+                <label style={{marginBottom: 6, display: 'block', color: '#F66B15', fontWeight: 500}}>
+                  {t("addNews.form.translations.fields.language")}
+                </label>
                 <CustomLanguageSelect
                   languages={languages}
-                  selectedLangId={t.langId}
+                  selectedLangId={translation.langId}
                   onLanguageChange={(langId) => handleTranslationChange(idx, "langId", langId)}
                   excludeLanguageIds={translations.map((trans, i) => i !== idx ? trans.langId : "").filter(id => id !== "")}
                 />
               </div>
               <div className="field">
-                <label>News Header:</label>
-                <input
-                  type="text"
-                  value={t.newsHead}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsHead", e.target.value)
-                  }
-                />
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-textarea"
+                    id={`newsHead-${idx}`}
+                    value={translation.newsHead}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "newsHead", e.target.value)}
+                    required
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`newsHead-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.title")}
+                  </label>
+                </div>
               </div>
               <div className="field">
-                <label>News Abbr:</label>
-                <input
-                  type="text"
-                  value={t.newsAbbr}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsAbbr", e.target.value)
-                  }
-                />
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-textarea"
+                    id={`newsAbbr-${idx}`}
+                    value={translation.newsAbbr}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "newsAbbr", e.target.value)}
+                    required
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`newsAbbr-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.summary")}
+                  </label>
+                </div>
               </div>
               <div className="field">
-                <label>News Source:</label>
-                <input
-                  type="text"
-                  value={t.newsSource}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsSource", e.target.value)
-                  }
-                />
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-textarea"
+                    id={`newsSource-${idx}`}
+                    value={translation.newsSource}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "newsSource", e.target.value)}
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`newsSource-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.source")}
+                  </label>
+                </div>
               </div>
               <div className="field">
-                <label>News Body:</label>
+                <label>{t("addNews.form.translations.fields.content")}:</label>
                 <div className="news-body-editor">
                   <RichTextEditor
-                    value={t.newsBody}
+                    value={translation.newsBody}
                     onChange={(value) => handleTranslationChange(idx, "newsBody", value)}
                     style={{ background: "#fff", borderRadius: 8, minHeight: 180 }}
                   />
                 </div>
               </div>
-              <div className="field">
-                <label>Image Alt Text:</label>
-                <input
-                  type="text"
-                  value={t.imgAlt}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "imgAlt", e.target.value)
-                  }
-                />
-              </div>
+              {/* <div className="field">
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-textarea"
+                    id={`imgAlt-${idx}`}
+                    value={translation.imgAlt}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "imgAlt", e.target.value)}
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`imgAlt-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.imageAlt")}
+                  </label>
+                </div>
+              </div> */}
             </div>
           </details>
         ))}
@@ -604,8 +632,8 @@ const EditNews: React.FC = () => {
           disabled={languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0}
         >
           {languages.filter(lang => !translations.map(t => t.langId).filter(id => id !== "").includes(lang.id)).length === 0 
-            ? '✓ All Languages Added' 
-            : '+ Add Translation'
+            ? t("addNews.form.translations.allLanguagesAdded")
+            : t("addNews.form.translations.addTranslation")
           }
         </button>
       </section>

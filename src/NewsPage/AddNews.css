@@ -20,7 +20,24 @@
   color: #333;
 }
 
-.main-info,
+.main-info {
+  margin-bottom: 32px;
+  padding: 24px 20px 20px 20px;
+  background: linear-gradient(120deg, #f8fafc 60%, #f3f6fb 100%);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 19, 81, 0.04);
+  border: 1.5px solid #e0e7ef;
+  position: relative;
+}
+
+.main-info h3 {
+  font-size: 20px;
+  color: #001351;
+  margin-bottom: 18px;
+  font-family: var(--MNF_Heading_EN, 'Segoe UI', Arial, sans-serif);
+  letter-spacing: 0.01em;
+}
+
 .translations {
   margin-bottom: 32px;
   padding: 16px;
@@ -29,36 +46,123 @@
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+  position: relative;
+  margin-bottom: 24px;
 }
 
-.field label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  font-family: var(--MNF_Body_EN);
+.floating-group {
+  position: relative;
+  margin-bottom: 24px;
 }
 
-.field input,
-.field select,
-.field textarea {
-  padding: 10px 14px;
-  border: 1px solid #ccc;
+.floating-label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+  background: transparent;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+  padding: 0 4px;
+  z-index: 2;
+}
+
+.floating-label-input:not(:placeholder-shown) + .floating-label,
+.floating-label-input:focus + .floating-label {
+  top: 0;
+  left: 12px;
+  font-size: 13px;
+  color: #F66B15;
+  background: #fff;
+  transform: translateY(-50%) scale(0.85);
+  font-weight: 500;
+  padding: 0 4px;
+}
+
+/* For select and textarea if needed */
+.floating-label-select:not([value=""]) + .floating-label,
+.floating-label-select:focus + .floating-label,
+.floating-label-textarea:not(:placeholder-shown) + .floating-label,
+.floating-label-textarea:focus + .floating-label {
+  top: 0;
+  left: 12px;
+  font-size: 13px;
+  color: #F66B15;
+  background: #fff;
+  transform: translateY(-50%) scale(0.85);
+  font-weight: 500;
+  padding: 0 4px;
+}
+
+.floating-label-input,
+.floating-label-select,
+.floating-label-textarea {
+  width: 100%;
+  padding: 16px 14px 16px 14px;
+  border: 1.8px solid #e0e7ef;
   border-radius: 6px;
-  font-family: var(--MNF_Body_EN);
-  font-size: 14px;
+  font-family: var(--MNF_Body_EN, 'Segoe UI', Arial, sans-serif);
+  font-size: 16px;
+  color: #222;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
 }
 
-.field textarea {
-  resize: vertical;
+.floating-label-input:focus,
+.floating-label-select:focus,
+.floating-label-textarea:focus {
+  border-color: #F66B15;
+  background: #fff;
+}
+
+.floating-label-input::placeholder,
+.floating-label-textarea::placeholder {
+  color: #b6b6b6;
+  opacity: 1;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.floating-label-input[disabled],
+.floating-label-select[disabled],
+.floating-label-textarea[disabled] {
+  background: #f1f1f1;
+  color: #aaa;
+  cursor: not-allowed;
+  border-style: dashed;
 }
 
 .translation-card {
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 16px;
+  padding: 0 16px 16px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #F66B15;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--MNF_Body_EN);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  background: transparent;
+}
+
+.translation-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0 16px 16px;
   margin-bottom: 20px;
 }
 
@@ -86,6 +190,10 @@ button:hover {
   .add-news-container {
     padding: 16px;
   }
+
+  .main-info {
+    padding: 14px 6px 10px 6px;
+  }
 }
 
 /* ---------- Image Uploader ---------- */
@@ -107,8 +215,7 @@ button:hover {
 
 .preview-img {
   max-width: 100%;
-  max-height: 200px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 6px;
 }
 
@@ -125,18 +232,10 @@ button:hover {
 }
 
 .image-preview-wrapper img {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
-.image-preview-wrapper img:hover {
-  transform: scale(1.02);
-}
 
-.image-preview-wrapper button:hover {
-  background-color: #b91c1c !important;
-  transform: scale(1.1);
-}
 
 /* Responsive image preview */
 @media (max-width: 768px) {
@@ -370,6 +469,14 @@ button:hover {
   background-color: #000820;
 }
 
+.save-news-btn:disabled {
+  background-color: #bfc4d1 !important;
+  color: #fff !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
 .delete-icon {
   color: #d11a2a;
   font-size: 18px;
@@ -416,4 +523,44 @@ button:hover {
     padding: 14px 8px;
     font-size: 15px;
   }
+}
+
+.floating-label-textarea {
+  width: 100%;
+  padding: 16px 14px 16px 14px;
+  border: 1.8px solid #e0e7ef;
+  border-radius: 12px;
+  font-family: var(--MNF_Body_EN, 'Segoe UI', Arial, sans-serif);
+  font-size: 16px;
+  background: #f7fafd;
+  color: #222;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,19,81,0.04);
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
+  resize: vertical;
+  min-height: 48px;
+  max-height: 200px;
+}
+
+.floating-label-textarea:focus {
+  border-color: #F66B15;
+  box-shadow: 0 0 0 2px #F66B1520, 0 2px 8px rgba(0,19,81,0.08);
+  background: #fff;
+}
+
+.floating-label-textarea::placeholder {
+  color: #b6b6b6;
+  opacity: 1;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.floating-label-textarea[disabled] {
+  background: #f1f1f1;
+  color: #aaa;
+  cursor: not-allowed;
+  border-style: dashed;
 }

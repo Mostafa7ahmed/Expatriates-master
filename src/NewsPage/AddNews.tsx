@@ -157,7 +157,7 @@ const AddNews: React.FC = () => {
     newsBody: "",
     newsSource: "",
     langId: "",
-    imgAlt: "",
+    imgAlt: "Image Not Found",
   }]);
 
   const navigate = useNavigate();
@@ -200,7 +200,7 @@ const AddNews: React.FC = () => {
       newsBody: "",
       newsSource: "",
       langId: "",
-      imgAlt: ""
+      imgAlt: "Image Not Found"
     }]);
   };
 
@@ -287,6 +287,9 @@ const AddNews: React.FC = () => {
     }
   };
 
+  // Compute if save button should be disabled
+  const isSaveDisabled = uploadingImage || translations.some(t => !t.newsHead.trim() || t.langId === "");
+
   const handleSubmit = async () => {
     try {
       // Validate that image is uploaded if file was selected
@@ -348,11 +351,9 @@ const AddNews: React.FC = () => {
                   src={newsImgPreview} 
                   alt="Selected image" 
                   className="preview-img" 
-                  style={{ maxWidth: "300px", maxHeight: "200px", objectFit: "cover", borderRadius: "8px", border: "2px solid #ddd" }}
+                  style={{ objectFit: "cover", borderRadius: "8px", border: "1px solid #ddd" }}
                 />
-                <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
-                  🆕 {t("addNews.form.imageUpload.newImageSelected")}
-                </div>
+          
                 <button
                   type="button"
                   onClick={removeImage}
@@ -444,7 +445,9 @@ const AddNews: React.FC = () => {
             </summary>
             <div className="translation-body">
               <div className="field">
-                <label>{t("addNews.form.translations.fields.language")}:</label>
+                <label style={{marginBottom: 6, display: 'block', color: '#F66B15', fontWeight: 500}}>
+                  {t("addNews.form.translations.fields.language")}
+                </label>
                 <CustomLanguageSelect
                   languages={languages}
                   selectedLangId={translation.langId}
@@ -453,37 +456,54 @@ const AddNews: React.FC = () => {
                 />
               </div>
               <div className="field">
-                <label>{t("addNews.form.translations.fields.title")}:</label>
-                <input
-                  type="text"
-                  value={translation.newsHead}
-                  placeholder={t("addNews.form.translations.fields.titlePlaceholder")}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsHead", e.target.value)
-                  }
-                />
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-input"
+                    id={`newsHead-${idx}`}
+                    value={translation.newsHead}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "newsHead", e.target.value)}
+                    required
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`newsHead-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.title")}
+                  </label>
+                </div>
               </div>
               <div className="field">
-                <label>{t("addNews.form.translations.fields.summary")}:</label>
-                <input
-                  type="text"
-                  value={translation.newsAbbr}
-                  placeholder={t("addNews.form.translations.fields.summaryPlaceholder")}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsAbbr", e.target.value)
-                  }
-                />
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-input"
+                    id={`newsAbbr-${idx}`}
+                    value={translation.newsAbbr}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "newsAbbr", e.target.value)}
+                    required
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`newsAbbr-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.summary")}
+                  </label>
+                </div>
               </div>
               <div className="field">
-                <label>{t("addNews.form.translations.fields.source")}:</label>
-                <input
-                  type="text"
-                  value={translation.newsSource}
-                  placeholder={t("addNews.form.translations.fields.sourcePlaceholder")}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "newsSource", e.target.value)
-                  }
-                />
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-input"
+                    id={`newsSource-${idx}`}
+                    value={translation.newsSource}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "newsSource", e.target.value)}
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`newsSource-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.source")}
+                  </label>
+                </div>
               </div>
               <div className="field">
                 <label>{t("addNews.form.translations.fields.content")}:</label>
@@ -495,17 +515,22 @@ const AddNews: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="field">
-                <label>{t("addNews.form.translations.fields.imageAlt")}:</label>
-                <input
-                  type="text"
-                  value={translation.imgAlt}
-                  placeholder={t("addNews.form.translations.fields.imageAltPlaceholder")}
-                  onChange={(e) =>
-                    handleTranslationChange(idx, "imgAlt", e.target.value)
-                  }
-                />
-              </div>
+              {/* <div className="field">
+                <div className="floating-group">
+                  <textarea
+                    className="floating-label-input"
+                    id={`imgAlt-${idx}`}
+                    value={translation.imgAlt}
+                    placeholder=" "
+                    onChange={(e) => handleTranslationChange(idx, "imgAlt", e.target.value)}
+                    rows={2}
+                    style={{resize: 'vertical'}}
+                  />
+                  <label htmlFor={`imgAlt-${idx}`} className="floating-label">
+                    {t("addNews.form.translations.fields.imageAlt")}
+                  </label>
+                </div>
+              </div> */}
             </div>
           </details>
         ))}
@@ -525,7 +550,7 @@ const AddNews: React.FC = () => {
         </button>
       </section>
 
-      <button className="save-news-btn" onClick={handleSubmit} style={{ marginTop: "20px" }}>
+      <button className="save-news-btn" onClick={handleSubmit} style={{ marginTop: "20px" }} disabled={isSaveDisabled}>
         {t("addNews.form.buttons.submit")}
       </button>
     </div>
