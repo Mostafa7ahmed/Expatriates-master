@@ -11,13 +11,19 @@ import ReactTooltip from "react-tooltip";
 
 const ITEMS_PER_PAGE = 10;
 
+interface NewsItem {
+  id: number;
+  // Add other properties of news item here
+  [key: string]: any;
+}
+
 function News() {
   const savedLang = JSON.parse(localStorage.getItem("lang") || "{}");
   const { t } = useTranslation();
   const [inputPage, setInputPage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [filteredNews, setFilteredNews] = useState([]);
+  const [filteredNews, setFilteredNews] = useState<any[]>([]);
   const [langId, setLangId] = useState(savedLang?.id || 2);
   const [totalPages, setTotalPages] = useState(0);
   const [moveNext, setMoveNext] = useState(false);
@@ -66,7 +72,7 @@ function News() {
     fetchNews(1, searchTerm);
   };
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: any) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
     }
@@ -80,7 +86,7 @@ function News() {
     if (movePrevious) setCurrentPage((prev) => prev - 1);
   };
 
-  const handleNewsDeleted = (deletedNewsId) => {
+  const handleNewsDeleted = (deletedNewsId: any) => {
     // Remove deleted news from current list
     setFilteredNews(prev => prev.filter(news => news?.id !== deletedNewsId));
     
@@ -140,7 +146,12 @@ function News() {
             <input
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                if (e.target.value.trim() === '') {
+                  fetchNews(1, '');
+                }
+              }}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               placeholder={t("details.searchPlaceholder")}
             />
