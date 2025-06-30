@@ -593,17 +593,7 @@ const EditNews: React.FC = () => {
                   </label>
                 </div>
               </div>
-              <div className="field">
-                <label>{t("addNews.form.translations.fields.content")}:</label>
-                <div className="news-body-editor">
-                  <RichTextEditor
-                    value={translation.newsBody}
-                    onChange={(value) => handleTranslationChange(idx, "newsBody", value)}
-                    style={{ background: "#fff", borderRadius: 8, minHeight: 180 }}
-                  />
-                </div>
-              </div>
-              {/* <div className="field">
+                    <div className="field">
                 <div className="floating-group">
                   <textarea
                     className="floating-label-textarea"
@@ -618,7 +608,18 @@ const EditNews: React.FC = () => {
                     {t("addNews.form.translations.fields.imageAlt")}
                   </label>
                 </div>
-              </div> */}
+              </div> 
+              <div className="field">
+                <label>{t("addNews.form.translations.fields.content")}:</label>
+                <div className="news-body-editor">
+                  <RichTextEditor
+                    value={translation.newsBody}
+                    onChange={(value) => handleTranslationChange(idx, "newsBody", value)}
+                    style={{ background: "#fff", borderRadius: 8, minHeight: 180 }}
+                  />
+                </div>
+              </div>
+       
             </div>
           </details>
         ))}
