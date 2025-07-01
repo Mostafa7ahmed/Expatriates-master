@@ -11,7 +11,7 @@ import "./SectionOne.css";
 
 // ✅ SmartImage component
 const SmartImage = ({ src, alt = "", className, style, clipPath }) => {
-  const [imageSrc, setImageSrc] = useState("/src/assets/raes.jpg");
+  const [imageSrc, setImageSrc] = useState("/assets/raes.jpg");
 
   useEffect(() => {
     if (!src) return;

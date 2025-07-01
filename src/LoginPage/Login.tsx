@@ -127,7 +127,7 @@ const Login: React.FC = () => {
       <div className="login-container">
         <div className="login-card">
           <div className="login-header">
-            <img src="/src/assets/image.png" alt={t("accessibility.logo")} className="login-logo" />
+            <img src="/assets/image.png" alt={t("accessibility.logo")} className="login-logo" />
             <h1>{t("title")}</h1>
             <p>{t("subtitle")}</p>
           </div>
