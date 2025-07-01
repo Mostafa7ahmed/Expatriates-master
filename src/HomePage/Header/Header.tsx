@@ -48,6 +48,7 @@ const Header = (props) => {
     { name: t("header.Colleges"), link: "/collage" },
     { name: t("header.Programs"), link: "/programs" },
     { name: t("header.News"), link: "/news" },
+    { name: t("header.Events"), link: "/events" },
     { name: t("header.contact US"), link: "/contactUs" },
   ];
 

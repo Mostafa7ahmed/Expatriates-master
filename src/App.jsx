@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import News from "./NewsPage/News"
 import AddNews from "./NewsPage/AddNews";
 import EditNews from "./NewsPage/EditNews";
+import Events from "./EventsPage/Events";
 import Details from "./NewsDetails/Details";
 import ContactUs from "./ContactUsPage/ContactUs"
 import Collage from "./Collages/Collages"
@@ -22,6 +23,7 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/news/add" element={<AddNews />} />
         <Route path="/news/edit/:id" element={<EditNews />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/collage" element={<Collage />} />

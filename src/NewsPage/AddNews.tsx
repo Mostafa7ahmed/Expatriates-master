@@ -151,6 +151,7 @@ const AddNews: React.FC = () => {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [published, setPublished] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
+  const [isEvent, setIsEvent] = useState(false);
   const [translations, setTranslations] = useState<Translation[]>([{
     newsHead: "",
     newsAbbr: "",
@@ -307,6 +308,7 @@ const AddNews: React.FC = () => {
         newsImg: newsImgFileName, // Use uploaded fileName instead of base64
         published,
         isFeatured,
+        isEvent,
         translations: translations.filter(t => t.langId !== ""),
       };
 
@@ -422,6 +424,9 @@ const AddNews: React.FC = () => {
           </label>
           <label style={{marginInlineStart: '20px'}}>
             <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} /> {t("addNews.form.published")}
+          </label>
+          <label style={{marginInlineStart: '20px'}}>
+            <input type="checkbox" checked={isEvent} onChange={e => setIsEvent(e.target.checked)} /> {t("addNews.form.isEvent")}
           </label>
         </div>
       </section>

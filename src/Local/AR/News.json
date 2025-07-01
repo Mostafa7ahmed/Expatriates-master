@@ -19,6 +19,7 @@
       },
       "published": "منشور",
       "featured": "مميز",
+      "isEvent": "تحديد كفعالية",
       "translations": {
         "title": "ترجمات الخبر",
         "translationNumber": "الترجمة {{number}}",

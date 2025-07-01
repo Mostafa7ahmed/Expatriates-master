@@ -1,6 +1,112 @@
 {
   "title": "Son Haberler",
   "description": "En son haberler ve etkinliklerden haberdar olun",
+  "addNews": {
+    "title": "Yeni Haber Ekle",
+    "buttonText": "Yeni Haber Ekle",
+    "sections": {
+      "mainInfo": "Ana Bilgiler"
+    },
+    "form": {
+      "imageUpload": {
+        "title": "Haber Görseli",
+        "dragDrop": "Bir görsel buraya sürükleyin veya seçmek için tıklayın",
+        "clickToSelect": "Görsel seçmek için tıklayın",
+        "currentImage": "Mevcut görsel",
+        "newImageSelected": "Yeni görsel seçildi",
+        "removeImage": "Görseli kaldır",
+        "fileTypes": "Desteklenen formatlar: JPG, PNG, GIF (maks 5MB)"
+      },
+      "published": "Yayınlandı",
+      "featured": "Öne Çıkan",
+      "isEvent": "Etkinlik olarak işaretle",
+      "translations": {
+        "title": "Haber Çevirileri",
+        "translationNumber": "Çeviri {{number}}",
+        "addTranslation": "Çeviri Ekle",
+        "allLanguagesAdded": "✓ Tüm Diller Eklendi",
+        "removeTranslation": "Çeviriyi Kaldır",
+        "atLeastOneRequired": "En az bir çeviri gereklidir",
+        "allLanguagesSelected": "Tüm mevcut diller seçildi.",
+        "warningMessages": {
+          "allLanguagesUsed": "Tüm mevcut diller seçildi. Daha fazla çeviri ekleyemezsiniz.",
+          "minimumTranslations": "En az bir çeviri gereklidir"
+        },
+        "fields": {
+          "language": "Dil",
+          "selectLanguage": "Dil seçin",
+          "allLanguagesSelectedWarning": "Tüm diller zaten seçildi",
+          "title": "Haber Başlığı",
+          "summary": "Haber Özeti",
+          "content": "Haber İçeriği",
+          "source": "Haber Kaynağı",
+          "imageAlt": "Görsel Alt Metni",
+          "titlePlaceholder": "Haber başlığını girin...",
+          "summaryPlaceholder": "Haber özetini girin...",
+          "sourcePlaceholder": "Haber kaynağını girin...",
+          "imageAltPlaceholder": "Görsel açıklamasını girin..."
+        }
+      },
+      "buttons": {
+        "submit": "Haber Ekle",
+        "submitting": "Ekleniyor...",
+        "cancel": "İptal",
+        "back": "Haberlere Dön"
+      }
+    },
+    "messages": {
+      "success": "Haber başarıyla eklendi!",
+      "error": "Haber eklenirken hata oluştu. Lütfen tekrar deneyin.",
+      "validation": {
+        "titleRequired": "Başlık gereklidir",
+        "summaryRequired": "Özet gereklidir",
+        "contentRequired": "İçerik gereklidir",
+        "languageRequired": "Lütfen bir dil seçin",
+        "imageRequired": "Lütfen bir görsel seçin"
+      }
+    }
+  },
+  "editNews": {
+    "title": "Haber Düzenle",
+    "loading": "Haber verileri yükleniyor...",
+    "form": {
+      "buttons": {
+        "submit": "Haberi Güncelle",
+        "submitting": "Güncelleniyor...",
+        "cancel": "İptal",
+        "back": "Haberlere Dön"
+      }
+    },
+    "messages": {
+      "success": "Haber başarıyla güncellendi!",
+      "error": "Haber güncellenirken hata oluştu. Lütfen tekrar deneyin.",
+      "loadError": "Haber verileri yüklenirken hata oluştu"
+    }
+  },
+  "list": {
+    "search": {
+      "placeholder": "Haber ara...",
+      "button": "Ara",
+      "noResults": "Haber bulunamadı"
+    },
+    "pagination": {
+      "page": "Sayfa",
+      "of": "/",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "goto": "Sayfaya git"
+    },
+    "actions": {
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "view": "Detayları Göster"
+    },
+    "status": {
+      "published": "Yayınlandı",
+      "draft": "Taslak",
+      "featured": "Öne Çıkan"
+    }
+  },
   "delete": {
     "confirm": {
       "title": "Silmeyi Onayla",
@@ -17,7 +123,16 @@
       "error": "Haber silinirken hata oluştu. Lütfen tekrar deneyin."
     }
   },
-  "backToNews": "Haber Listesine Dön",
+  "details": {
+    "searchPlaceholder": "Haber ara...",
+    "search": "Ara",
+    "noResultsFound": "Haber bulunamadı",
+    "loading": "Yükleniyor...",
+    "publishedOn": "Yayınlanma tarihi",
+    "source": "Kaynak",
+    "readMore": "Devamını Oku",
+    "backToNews": "Haber Listesine Dön"
+  },
   "tooltip": {
     "details": "Detayları görmek için tıklayın"
   },

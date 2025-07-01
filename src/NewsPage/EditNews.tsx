@@ -156,6 +156,7 @@ const EditNews: React.FC = () => {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [published, setPublished] = useState(false);
   const [isFeatured, setIsFeatured] = useState(false);
+  const [isEvent, setIsEvent] = useState(false);
   const [translations, setTranslations] = useState<Translation[]>([{
     newsHead: "",
     newsAbbr: "",
@@ -200,6 +201,7 @@ const EditNews: React.FC = () => {
         setOwnerId(newsData.ownerId);
         setPublished(newsData.published);
         setIsFeatured(newsData.isFeatured);
+        setIsEvent(newsData.isEvent || false);
         setCurrentNewsImg(newsData.newsImg);
         setNewsImgPreview(`https://stage.menofia.edu.eg/images/${newsData.newsImg}`);
         
@@ -379,6 +381,7 @@ const EditNews: React.FC = () => {
         newsImg,
         published,
         isFeatured,
+        isEvent,
         translations: translations.filter(t => t.langId !== ""),
       };
 
@@ -510,6 +513,9 @@ const EditNews: React.FC = () => {
           </label>
           <label style={{marginInlineStart: '20px'}}>
             <input type="checkbox" checked={published} onChange={e => setPublished(e.target.checked)} /> {t("addNews.form.published")}
+          </label>
+          <label style={{marginInlineStart: '20px'}}>
+            <input type="checkbox" checked={isEvent} onChange={e => setIsEvent(e.target.checked)} /> {t("addNews.form.isEvent")}
           </label>
         </div>
       </section>

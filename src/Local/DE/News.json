@@ -19,6 +19,7 @@
       },
       "published": "Veröffentlicht",
       "featured": "Hervorgehoben",
+      "isEvent": "Als Veranstaltung markieren",
       "translations": {
         "title": "Nachrichtenübersetzungen",
         "translationNumber": "Übersetzung {{number}}",

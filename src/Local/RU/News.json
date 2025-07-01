@@ -19,6 +19,7 @@
       },
       "published": "Опубликовано",
       "featured": "Рекомендуемое",
+      "isEvent": "Отметить как событие",
       "translations": {
         "title": "Переводы новости",
         "translationNumber": "Перевод {{number}}",

@@ -19,6 +19,7 @@
       },
       "published": "Publié",
       "featured": "En vedette",
+      "isEvent": "Marquer comme événement",
       "translations": {
         "title": "Traductions de la Nouvelle",
         "translationNumber": "Traduction {{number}}",
