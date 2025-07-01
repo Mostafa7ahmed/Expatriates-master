@@ -346,8 +346,8 @@ border-radius: 5px;
   }
 
   .searchCard {
-    width: 90%;
-    inset-inline-start: 25px;
+    width: 100%;
+    inset-inline-start: 0px;
   }
   .heroSlider {
     margin: 20px;
@@ -382,7 +382,7 @@ border-radius: 5px;
   }
   .btnSearch button{
     width:fit-content ;
-    padding: 10px !important;
+    padding: 2px !important;
   }
   .Btntext{
     display: none;
@@ -396,7 +396,7 @@ border-radius: 5px;
 }
 @media (max-width: 390px) {
       .searchCard {
-        padding: 9px;
+        padding: 4px;
         gap: 10px;
     }
 }

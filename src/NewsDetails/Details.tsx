@@ -239,6 +239,10 @@ useEffect(() => {
                     {currentNews?.newsDetails.head}
                   </h2>
                   
+                  
+                </div>
+                
+                <div className="p-5 slider d-flex justify-content-between ">
                   {isLoggedIn && currentNews && (
                     <div className="admin-actions-details">
                       <button
@@ -257,9 +261,6 @@ useEffect(() => {
                       </button>
                     </div>
                   )}
-                </div>
-                
-                <div className="p-5 slider">
                   <div className="languages-container">
                     {currentNews?.languages.map((language) => (
                       <div

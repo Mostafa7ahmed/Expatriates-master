@@ -203,7 +203,7 @@ const EditNews: React.FC = () => {
         setIsFeatured(newsData.isFeatured);
         setIsEvent(newsData.isEvent || false);
         setCurrentNewsImg(newsData.newsImg);
-        setNewsImgPreview(`https://stage.menofia.edu.eg/images/${newsData.newsImg}`);
+        setNewsImgPreview(`${newsData.newsImg}`);
         
         // Map translations to our interface
         const mappedTranslations = newsData.translations.map((trans: any) => ({

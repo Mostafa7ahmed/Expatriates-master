@@ -132,14 +132,7 @@ function Events() {
         <div className="hero-overlay"></div>
 
         <div className="searchCard">
-          {isLoggedIn && (
-            <button
-              className="add-news-btn"
-              onClick={() => navigate("/news/add")}
-            >
-              Add New Event
-            </button>
-          )}
+             
           <div className="inputSerch">
             <input
               type="text"
@@ -159,6 +152,17 @@ function Events() {
               <i className="fa fa-search" aria-hidden="true"></i>
               <span className="Btntext">{t("details.search")}</span>
             </button>
+          </div>
+                 <div className="btnSearch">
+                     {isLoggedIn && (
+            <button
+              onClick={() => navigate("/news/add")}
+            >
+            <i className="fa-solid fa-plus"></i>
+           <span className="Btntext">Add</span>
+ 
+            </button>
+          )}
           </div>
         </div>
       </div>

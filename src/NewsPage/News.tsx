@@ -134,14 +134,7 @@ function News() {
         <div className="hero-overlay"></div>
 
         <div className="searchCard">
-          {isLoggedIn && (
-            <button
-              className="add-news-btn"
-              onClick={() => navigate("/news/add")}
-            >
-              Add New News
-            </button>
-          )}
+  
           <div className="inputSerch">
             <input
               type="text"
@@ -162,6 +155,18 @@ function News() {
               <span className="Btntext">{t("details.search")}</span>
             </button>
           </div>
+          <div className="btnSearch">
+                     {isLoggedIn && (
+            <button
+              onClick={() => navigate("/news/add")}
+            >
+            <i className="fa-solid fa-plus"></i>
+           <span className="Btntext">Add</span>
+ 
+            </button>
+          )}
+          </div>
+         
         </div>
       </div>
 
