@@ -135,7 +135,7 @@ function Events() {
           {isLoggedIn && (
             <button
               className="add-news-btn"
-              onClick={() => navigate("/events/add")}
+              onClick={() => navigate("/news/add")}
             >
               Add New Event
             </button>
